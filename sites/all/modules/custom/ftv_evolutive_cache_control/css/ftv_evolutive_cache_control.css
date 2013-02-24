@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+li.ttl-level {
+    background-color: red;
+    border-color: #FF0000;
+    border-width: 1px;
+    border-style: solid solid none solid;
+    padding: 0 1em;
+    color: white;
+}

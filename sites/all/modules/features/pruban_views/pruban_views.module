@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pavel Ruban Views feature.
+ */
+
+include_once 'pruban_views.features.inc';

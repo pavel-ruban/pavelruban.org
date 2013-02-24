@@ -1,0 +1,48 @@
+name = Le360
+description = A flexible, recolorable theme with many regions.
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = css/le-asset-tooltip-theme.css
+stylesheets[all][] = css/fonts.css
+stylesheets[all][] = css/form.css
+stylesheets[all][] = css/ie.css
+stylesheets[all][] = css/styles.css
+stylesheets[all][] = css/custom.css
+
+scripts[] = scripts/html5.js
+scripts[] = scripts/jquery-1.8.3.min.js
+scripts[] = scripts/jquery.tabs.js
+scripts[] = scripts/jquery.form.js
+scripts[] = scripts/jquery.main.js
+scripts[] = scripts/placeholder.js
+scripts[] = scripts/scripts.js
+
+regions[header] = Header
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+
+regions[featured] = Featured
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+regions[footer] = Footer
+
+; Panels
+plugins[panels][layouts] = plugins/layouts
+plugins[panels][styles] = plugins/styles
+api[panels][styles][version] = 2
+
+settings[shortcut_module_link] = 0

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Le360 Dashboard Pages feature.
+ */
+
+include_once('le_dashboard_page.features.inc');

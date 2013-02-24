@@ -1,0 +1,5 @@
+name = "Wordpress audio player"
+description = "Provides wordpress audio player file formatter"
+core = "7.x"
+package = "Media"
+dependencies[] = "field_ui"

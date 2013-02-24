@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Geopolis site main module.
+ */
+
+define('GEOPOLIS_MENU_MODULE_PATH', drupal_get_path('module', 'geopolis_menu'));
+
+/**
+ * Return array of term names for main menu.
+ */
+function geopolis_menu_get_terms_for_main_menu() {
+  return array('Afrique', 'Amérique', 'Asie-Pacifique', 'Europe', 'Moyen-Orient');
+}

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Le360 Dashboard Flash news feature.
+ */
+
+include_once 'le_dashboard_flash_news.features.inc';

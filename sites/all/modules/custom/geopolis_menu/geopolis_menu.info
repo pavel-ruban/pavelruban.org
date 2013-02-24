@@ -1,0 +1,4 @@
+name = Geopolis Menu
+description = Provides functionality specific for menu of Geopolis site
+core = 7.x
+package = "Geopolis"

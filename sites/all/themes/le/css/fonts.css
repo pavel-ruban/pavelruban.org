@@ -1,0 +1,50 @@
+@font-face {
+	font-family: 'glypha_bold';
+	src: url('../fonts/glypha-bold-webfont.eot');
+	src: url('../fonts/glypha-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/glypha-bold-webfont.woff') format('woff'),
+	url('../fonts/glypha-bold-webfont.ttf') format('truetype'),
+	url('../fonts/glypha-bold-webfont.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'TradeGothicLTStd_gerular';
+	src: url('../fonts1/TradeGothicLTStd.eot');
+	src: url('../fonts1/TradeGothicLTStd.eot?#iefix') format('embedded-opentype'),
+	url('../fonts1/TradeGothicLTStd.woff') format('woff'),
+	url('../fonts1/TradeGothicLTStd.ttf') format('truetype'),
+	url('../fonts1/TradeGothicLTStd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'TradeGothicLTStd_bold';
+	src: url('../fonts1/TradeGothicLTStd-Bold.eot');
+	src: url('../fonts1/TradeGothicLTStd-Bold.eot?#iefix') format('embedded-opentype'),
+	url('../fonts1/TradeGothicLTStd-Bold.woff') format('woff'),
+	url('../fonts1/TradeGothicLTStd-Bold.ttf') format('truetype'),
+	url('../fonts1/TradeGothicLTStd-Bold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*@font-face {
+	font-family: 'TradeGothicLTStd_gerular';
+	src: url('../fonts/tradegothicltstd.eot');
+	src: url('../fonts/tradegothicltstd.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/tradegothicltstd.woff') format('woff'),
+	url('../fonts/tradegothicltstd.ttf') format('truetype'),
+	url('../fonts/tradegothicltstd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}*/
+/*@font-face {
+	font-family: 'TradeGothicLTStd_bold';
+	src: url('../fonts/tradegothicltstdbold.eot');
+	src: url('../fonts/tradegothicltstdbold.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/tradegothicltstdbold.woff') format('woff'),
+	url('../fonts/tradegothicltstdbold.ttf') format('truetype'),
+	url('../fonts/tradegothicltstdbold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}*/

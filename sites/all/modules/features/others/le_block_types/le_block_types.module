@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Le360 Block types feature.
+ */
+
+include_once 'le_block_types.features.inc';

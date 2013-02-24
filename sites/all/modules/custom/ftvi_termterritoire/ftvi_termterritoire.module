@@ -1,0 +1,58 @@
+<?php
+
+function ftvi_termterritoire_init(){
+	drupal_add_css(drupal_get_path('module', 'ftvi_termterritoire') . '/css/ftvi_termterritoire.css');
+}
+
+function ftvi_termterritoire_block_load() {
+	$output = '';
+	if( arg(0) == 'taxonomy') {
+      $tid = arg(2);
+      $voc = taxonomy_vocabulary_machine_name_load('place');
+      $tree = taxonomy_get_tree($voc->vid, $parent = $tid, $max_depth = 1, $load_entities = FALSE);
+      foreach($tree as $term) {
+        if (count(taxonomy_get_parents_all($tid)) > 1  && $term->parents[count($term->parents)-1] == $tid && !empty($term->description)) {
+          $output .= '<div class="bloc note_territoire">';
+            $output .= '<p class="header">'.$term->name.'</p>';
+            $output .= '<div class="content">';
+              $output .= strip_tags($term->description);
+              if ($term->tid != 0 && !empty($term->tid)) {
+                $term = taxonomy_term_load($term->tid);
+                $field_localisation_visible = field_get_items('taxonomy_term', $term, 'field_localisation_visible');
+                if (!empty($field_localisation_visible[0]['value']) && $field_localisation_visible[0]['value'] == 1) {
+                    $output .= l($term->name, 'taxonomy/term/' . $term->tid, array('attributes' => array('class' => array('more-link'))));
+                }
+              }
+            $output .= '</div>';
+          $output .= '</div>';
+        }
+      }
+	}
+	return $output;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function ftvi_termterritoire_block_info() {
+	//Affichage du bloc du territoire
+	$blocks['ftvi_termterritoire'] = array(
+		'info'    =>  t('Territoire d\'un pays donnée'),
+		'cache'   =>  DRUPAL_NO_CACHE,
+	);
+	return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ftvi_termterritoire_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'ftvi_termterritoire':
+      $block['content'] = ftvi_termterritoire_block_load();
+      break;
+
+  }
+  return $block;
+}

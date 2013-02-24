@@ -1,0 +1,139 @@
+<?php
+
+define('FTV_TIMESTAMP_MINUTE', 60);
+define('FTV_TIMESTAMP_HOUR', 3600);
+define('FTV_TIMESTAMP_DAY', 86400);
+define('FTV_TIMESTAMP_WEEK', 604800);
+
+define('FTV_TTL_LEVEL_1', FTV_TIMESTAMP_MINUTE * 2);
+define('FTV_TTL_LEVEL_2', FTV_TIMESTAMP_MINUTE * 5);
+define('FTV_TTL_LEVEL_3', FTV_TIMESTAMP_HOUR);
+define('FTV_TTL_LEVEL_4', FTV_TIMESTAMP_DAY);
+
+
+require_once 'includes/ftv_evolutive_cache_control.inc';
+
+/**
+ * Implements hook_permission
+ */
+function ftv_evolutive_cache_control_permission() {
+  return array(
+      'view ttl level' => array(
+          'title' => 'View Evolutive Cache control TTL Level',
+          'description' => 'View Evolutive Cache control TTL Level',
+      ),
+      'administer ecc' => array(
+          'title' => 'Administer Evolutive Cache control TTL Level',
+          'description' => 'Administer Evolutive Cache control TTL Level',
+      ),
+  );
+}
+
+/**
+ * Implementation of hook_menu().
+ *
+ * @return An array of menu items.
+ */
+function ftv_evolutive_cache_control_menu() {
+  $items = array();
+
+  $items['admin/config/development/evolutive-cache-control'] = array(
+      'title' => 'Evolutive Cache Control admin page',
+      'description' => 'Evolutive Cache Control admin page',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('_ftv_evolutive_cache_control_admin'),
+      'access arguments' => array('administer ecc'),
+      'file' => 'includes/ftv_evolutive_cache_control.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme
+ */
+function ftv_evolutive_cache_control_theme() {
+  return array(
+      'ttl_level' => array(
+          'variables' => array('link' => NULL),
+      ),
+  );
+}
+
+/**
+ * Implements hook theme_ttl_level
+ */
+function theme_ttl_level($variables) {
+  return '<li class="ttl-level"><strong>' . $variables['link'] . '</strong></li>';
+}
+
+/**
+ * Implements hook_preprocess_page
+ */
+function ftv_evolutive_cache_control_preprocess_page(&$vars) {
+  if (!user_is_logged_in()) {
+    if (isset($vars['node']) && $vars['node']->status != NODE_PUBLISHED) {
+      return;
+    }
+
+    $cache = _ftv_evolutive_cache_control_get_cache($vars);
+    drupal_add_http_header('Cache-Control', 'max-age=' . $cache->ttl_level, FALSE);
+    drupal_add_http_header('Expires', $cache->gmdate);
+    _ftv_evolutive_cache_control_set_ttl_db($cache);
+  }
+  elseif (user_access('view ttl level')) {
+    if (isset($vars['node'])) {
+      $cache = _ftv_evolutive_cache_control_get_ttl_db($vars['node']->nid);
+      if ($cache) {
+        $vars['tabs']['#primary'][] = array(
+            '#theme' => 'ttl_level',
+            '#link' => _ftv_evolutive_cache_control_get_human_ttl_level($cache),
+        );
+      }
+    }
+  }
+}
+
+
+function ftv_evolutive_cache_control_page_build(&$page) {
+  if (module_exists('page_manager')) {
+    $managed_page = page_manager_get_current_page();
+    if ($managed_page) {
+      if ($managed_page['task']['name'] === 'node_view') {
+        $contexts = $managed_page['handler']->conf['display']->context;
+        foreach ($contexts as $context) {
+          if ($context->is_type('node') && !empty($context->data)) { //then we will use a content type settings
+            if (!user_is_logged_in()) {
+              if ($context->data->status != NODE_PUBLISHED) {
+                return;
+              }
+              $cache = _ftv_evolutive_cache_control_get_cache(array('node' => $context->data, 'task' => 'node_view'));
+              drupal_add_http_header('Cache-Control', 'max-age=' . $cache->ttl_level, FALSE);
+              drupal_add_http_header('Expires', $cache->gmdate);
+              _ftv_evolutive_cache_control_set_ttl_db($cache);
+            }
+            elseif (user_access('view ttl level')) {
+              $cache = _ftv_evolutive_cache_control_get_ttl_db($context->data->nid);
+              if ($cache) {
+                drupal_set_message(_ftv_evolutive_cache_control_get_human_ttl_level($cache));
+              }
+            }
+          }
+        }
+      }
+      else {
+        if ($managed_page['task']['name'] === 'page') {
+          $subtask = $managed_page['subtask']['name'];
+        }
+        else {
+          $subtask = $managed_page['task']['name'];
+        }
+        if (!user_is_logged_in()) {
+          $cache = _ftv_evolutive_cache_control_get_cache(array('task' => $subtask));
+          drupal_add_http_header('Cache-Control', 'max-age=' . $cache->ttl_level, FALSE);
+          drupal_add_http_header('Expires', $cache->gmdate);
+        }
+      }
+    }
+  }
+}

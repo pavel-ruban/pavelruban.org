@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the le360 Dashboard Article feature.
+ */
+
+include_once('le_dashboard_article.features.inc');

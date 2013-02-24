@@ -1,0 +1,4 @@
+name = Geopolis Users
+description = Provides functionality specific for "Geopolis" website
+core = 7.x
+package = "Geopolis"

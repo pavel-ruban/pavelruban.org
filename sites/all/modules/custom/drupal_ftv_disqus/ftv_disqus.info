@@ -1,0 +1,8 @@
+name = FTV Disqus
+description = Provides additional France Televisions specific features for Disqus implementation
+package = FranceTV
+core = 7.x
+version = "7.x-2.0"
+configure = admin/config/services/disqus
+dependencies[] = disqus
+dependencies[] = ftv_janrain_capture

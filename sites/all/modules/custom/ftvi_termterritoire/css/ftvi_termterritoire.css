@@ -1,0 +1,4 @@
+.site_side .bloc.note_territoire{ background:url("../img/bg_asterix.png") no-repeat top left #FFF; }
+.site_side .bloc.note_territoire .header{ display:none; }
+.site_side .bloc.note_territoire .content{ padding:25px 15px 15px 30px; }
+.site_side .bloc.note_territoire .more-link{ float:right; margin:5px 5px 10px 0; background: url("../img/bg_arrow_small.png") left 3px no-repeat; padding-left: 10px; color: #999; font-weight:bold; }

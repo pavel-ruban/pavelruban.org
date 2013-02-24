@@ -1,0 +1,259 @@
+# $Id$
+#
+# French translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  content_lock.admin.inc: n/a
+#  content_lock.module: n/a
+#  content_lock.info: n/a
+#  views/content_lock.views.inc: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-06-20 11:17+0200\n"
+"PO-Revision-Date: 2012-06-20 11:17+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: content_lock.admin.inc:20
+msgid "Use javascript to detect leaving the node form"
+msgstr ""
+
+#: content_lock.admin.inc:21
+msgid "If you disable this, nodes will remain locked if the user navigates away from the node without saving it or clicking the cancel button."
+msgstr ""
+
+#: content_lock.admin.inc:26
+msgid "Javascript detection options."
+msgstr ""
+
+#: content_lock.admin.inc:30
+msgid "Confirm that the user really wants to leave the node form with a Javascript popup"
+msgstr ""
+
+#: content_lock.admin.inc:31
+msgid "This will cause a Javascript popup to ask the user if navigating away from the node edit page is intentional, giving the user an opportunity to cancel navigation so that the changes to the node may be saved. This will not appear if the user clicks the cancel button."
+msgstr ""
+
+#: content_lock.admin.inc:36
+msgid "Javascript popup message text"
+msgstr ""
+
+#: content_lock.admin.inc:37
+msgid "This option allows you to modify the text the user sees when navigating away from an edited node."
+msgstr ""
+
+#: content_lock.admin.inc:43
+msgid "Show lock / unlock messages"
+msgstr ""
+
+#: content_lock.admin.inc:44
+msgid "This option controls whether or not content_lock inform the user that he has locked/unlocked a node. This does not control the javascript dialogues."
+msgstr ""
+
+#: content_lock.admin.inc:50
+msgid "Add cancel button"
+msgstr ""
+
+#: content_lock.admin.inc:51
+msgid "Adds a cancel button to the node / user / comment form. This way a user can properly cancel the transaction."
+msgstr ""
+
+#: content_lock.admin.inc:61
+msgid "Lockable content types"
+msgstr ""
+
+#: content_lock.admin.inc:62
+msgid "Apply lock to the selected content types. Leave blank for all node types to be lockable."
+msgstr ""
+
+#: content_lock.admin.inc:75
+msgid "Lockable text formats"
+msgstr ""
+
+#: content_lock.admin.inc:76
+msgid "Apply lock to selected formats only. Leave blank for all node input formats to be lockable."
+msgstr ""
+
+#: content_lock.module:14
+msgid "Check Out/Lock Documents"
+msgstr ""
+
+#: content_lock.module:15
+msgid "Enables users to lock documents and requires them to respect locks others have made."
+msgstr ""
+
+#: content_lock.module:18
+msgid "Administer Checked Out Documents"
+msgstr ""
+
+#: content_lock.module:19
+msgid "Enables administrators to view and break locks made by other users."
+msgstr ""
+
+#: content_lock.module:31
+msgid "Drupal's default content locking strategy is optimistic, that is, two users may start to edit the same content and the one who is hitting the save button first wins the race, while the other is displayed a message stating <em>this content has been modified by another user, changes cannot be saved</em>.  Depending on the number of editors in your organization this might not be an acceptable solution."
+msgstr ""
+
+#: content_lock.module:32
+msgid "The Content locking module implements pessimistic locking, which means that content will be exclusively locked whenever a user starts editing it.  The lock will be automatically released when the user submits the form or navigates away from the edit page."
+msgstr ""
+
+#: content_lock.module:33
+msgid "Users may also permanently lock content, to prevent others from editing it.  Content locks that have been \"forgotten\" can be automatically released after a configurable time span."
+msgstr ""
+
+#: content_lock.module:37
+msgid "Below is a list of all locked documents. Click on <em>!checkin</em> to release a lock."
+msgstr ""
+
+#: content_lock.module:37;40;596
+msgid "release lock"
+msgstr ""
+
+#: content_lock.module:40
+msgid "Below is a list of all documents locked by you. Click on <em>!checkin</em> to release a lock."
+msgstr ""
+
+#: content_lock.module:114
+msgid "Your lock has been removed!"
+msgstr ""
+
+#: content_lock.module:114
+msgid "You can still save the content if this user aborts the edit operation without saving changes."
+msgstr ""
+
+#: content_lock.module:120
+msgid "Your lock has been removed due to inactivity or by an administrator. Failed to regain the lock since the document has been changed since. Please !discard."
+msgstr ""
+
+#: content_lock.module:401
+msgid "Cancel"
+msgstr "Annuler"
+
+#: content_lock.module:448
+msgid "This document is locked for editing by !name since @date."
+msgstr ""
+
+#: content_lock.module:485
+msgid "Click !here to check back in now."
+msgstr ""
+
+#: content_lock.module:485
+msgid "here"
+msgstr ""
+
+#: content_lock.module:508
+msgid "This document is now locked against simultaneous editing. It will unlock when you navigate elsewhere."
+msgstr "Ce document est maintenant vérouillé et ne peut pas être édité par un autre utilisateur. Si vous quittez cette page, il sera disponible pour les autres utilisateurs."
+
+#: content_lock.module:560
+msgid "Title"
+msgstr "Titre"
+
+#: content_lock.module:563
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: content_lock.module:570
+msgid "Locked since"
+msgstr ""
+
+#: content_lock.module:572
+msgid "Operations"
+msgstr "Actions"
+
+#: content_lock.module:602
+msgid "No locked documents."
+msgstr ""
+
+#: content_lock.module:635
+msgid "The editing lock held by !user has been released."
+msgstr ""
+
+#: content_lock.module:637
+msgid "The editing lock has been released."
+msgstr ""
+
+#: content_lock.module:676
+msgid "release the lock"
+msgstr ""
+
+#: content_lock.module:677
+msgid "The node '!nodetitle_link' is locked by you. You may want to '!releasethelock_link' in order to allow others to edit."
+msgstr ""
+
+#: content_lock.module:49;69
+msgid "Locked documents"
+msgstr ""
+
+#: content_lock.module:84
+msgid "Content lock"
+msgstr ""
+
+#: content_lock.module:85
+msgid "Configuration options for the Content lock module"
+msgstr ""
+
+#: content_lock.info:0
+msgid "Content locking (edit lock)"
+msgstr ""
+
+#: content_lock.info:0
+msgid "Prevents multiple users from trying to edit a single node simultaneously to prevent edit conflicts."
+msgstr ""
+
+#: views/content_lock.views.inc:17
+msgid "Content Lock"
+msgstr ""
+
+#: views/content_lock.views.inc:33;36
+msgid "Node locked"
+msgstr ""
+
+#: views/content_lock.views.inc:34
+msgid "The node being locked"
+msgstr ""
+
+#: views/content_lock.views.inc:43;46
+msgid "Lock Owner"
+msgstr ""
+
+#: views/content_lock.views.inc:44
+msgid "The user locking the node"
+msgstr ""
+
+#: views/content_lock.views.inc:55
+msgid "Is persistent"
+msgstr ""
+
+#: views/content_lock.views.inc:56
+msgid "Whether this node has been persistently locked"
+msgstr ""
+
+#: views/content_lock.views.inc:63
+msgid "Persistent"
+msgstr ""
+
+#: views/content_lock.views.inc:72
+msgid "Lock Date/Time"
+msgstr ""
+
+#: views/content_lock.views.inc:73
+msgid "Timestamp of the lock"
+msgstr ""
+
+#: views/content_lock.views.inc:87
+msgid "Is Locked"
+msgstr ""
+
+#: views/content_lock.views.inc:88
+msgid "Whether the node is currently locked"
+msgstr ""
+

@@ -1,0 +1,84 @@
+# $Id$
+#
+# French translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  le_form_layouts.module: n/a
+#  le_form_layouts.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-04-23 12:12+0200\n"
+"PO-Revision-Date: 2012-04-23 12:12+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: le_form_layouts.module:45
+msgid "Edit article"
+msgstr "Modifier un article"
+
+#: le_form_layouts.module:48
+msgid "Add article"
+msgstr "Créer un article"
+
+#: le_form_layouts.module:98
+msgid "Add tag"
+msgstr "Créer un tag"
+
+#: le_form_layouts.module:115
+msgid "!name field is required."
+msgstr "Le champ !name est obligatoire."
+
+#: le_form_layouts.module:214
+msgid "Access additional node settings"
+msgstr ""
+
+#: le_form_layouts.module:215
+msgid "Access additional node settings fieldsets on node forms"
+msgstr ""
+
+#: le_form_layouts.module:218
+msgid "Access additional term settings"
+msgstr ""
+
+#: le_form_layouts.module:219
+msgid "Access additional settings on term forms"
+msgstr ""
+
+#: le_form_layouts.module:253
+msgid "URL"
+msgstr "URL"
+
+#: le_form_layouts.module:261
+msgid "Title"
+msgstr "Titre"
+
+#: le_form_layouts.module:262
+msgid "The link title is limited to @length characters maximum."
+msgstr ""
+
+#: le_form_layouts.module:278
+msgid "Open URL in a New Window"
+msgstr ""
+
+#: le_form_layouts.module:286
+msgid "Link \"title\" attribute"
+msgstr ""
+
+#: le_form_layouts.info:0
+msgid "Gepolis Form Layouts"
+msgstr ""
+
+#: le_form_layouts.info:0
+msgid "Provides form customization specific for \"France3 Regions\" website"
+msgstr ""
+
+#: le_form_layouts.info:0
+msgid "France3 Regions"
+msgstr ""
+

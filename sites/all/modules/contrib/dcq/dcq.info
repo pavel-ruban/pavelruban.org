@@ -1,0 +1,12 @@
+name = DCQ
+description = This module provides checking Drupal code quality through git.
+package = Development
+core = 7.x
+dependencies[] = coder
+
+; Information added by drupal.org packaging script on 2013-01-30
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "dcq"
+datestamp = "1359507287"
+

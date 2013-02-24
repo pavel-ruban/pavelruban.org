@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Unit Tests for the evolutive cache control
+ */
+
+include_once 'ftv_evolutive_cache_control.module';
+
+class EvolutiveCacheControlTestCase extends SimpleTestCloneTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Evolutive Cache Control',
+      'description' => 'Unit test for evolutive cache Control',
+      'group' => 'EvolutiveCacheControl'
+    );
+  }
+  
+  public function testGetTllLevel30sSinceLastChanged1minttl() {
+    $ttlLevelResult = _ftv_evolutive_cache_control_get_ttl_level(30);
+    $this->assertEqual($ttlLevelResult, 120);
+  }
+  
+  public function testGetTllLevel61minSinceLastChanged5minttl() {
+    $ttlLevelResult = _ftv_evolutive_cache_control_get_ttl_level(3660);
+    $this->assertEqual($ttlLevelResult, 300);
+  }
+  
+  public function testGetTllLevel1day1minSinceLastChanged1httl() {
+    $ttlLevelResult = _ftv_evolutive_cache_control_get_ttl_level(86460);
+    $this->assertEqual($ttlLevelResult, 3600);
+  }
+  public function testGetTllLevel1week1minSinceLastChanged1dttl() {
+    $ttlLevelResult = _ftv_evolutive_cache_control_get_ttl_level(604860);
+    $this->assertEqual($ttlLevelResult, 86400);
+  }
+}

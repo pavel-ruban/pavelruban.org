@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pavel Ruban Panels feature.
+ */
+
+include_once 'pavel_ruban_panels.features.inc';

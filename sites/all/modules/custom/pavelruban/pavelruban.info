@@ -1,0 +1,4 @@
+name = Pavel Ruban Site
+description = Provides functionality specific for "Pavel Ruban" website
+core = 7.x
+package = "Pavel Ruban"

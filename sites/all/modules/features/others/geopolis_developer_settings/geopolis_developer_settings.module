@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Geopolis Developer settings feature.
+ */
+
+include_once 'geopolis_developer_settings.features.inc';

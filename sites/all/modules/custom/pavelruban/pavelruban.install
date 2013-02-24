@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Provides update functional.
+ */
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7001() {
+  $modules = array(
+    'pavel_ruban_panels',
+    'pruban_image_styles',
+    'pavel_ruban_assets',
+    'pruban_article_content_type',
+    'pruban_image_styles',
+    'pruban_views',
+    'ckeditor',
+    'jquery_update',
+    'admin_menu',
+    'asset',
+    'ctools',
+    'devel',
+    'entity',
+    'features',
+    'menu_block',
+    'menu_position',
+    'panels_everywhere',
+    'panels',
+    'pathauto',
+    'strongarm',
+    'views',
+    'views_autocomplete_filters',
+    'views_bulk_operations',
+    'le_site',
+    'pavelruban',
+    'le_admin_menu',
+    'le_dashboard_article',
+    'le_dashboard_medialibrary',
+    'le_dashboard_tags',
+    'le_dashboard_users',
+    'le_input_formats',
+    'le_menu_position_rules',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}

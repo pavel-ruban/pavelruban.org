@@ -1,0 +1,555 @@
+<?php
+
+/**
+ * @file
+ * le form layouts module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function le_form_layouts_theme() {
+
+  $items = array();
+  $items['asset_form_edit'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'le_admin') . '/templates',
+    'template' => 'form-default',
+  );
+
+  $items['node_form'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'le_admin') . '/templates',
+    'template' => 'form-default',
+  );
+
+  $items['taxonomy_form_term'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'le_admin') . '/templates',
+    'template' => 'form-default',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_node_form_alter(&$form, &$form_state) {
+
+  if (strpos($form['#id'], 'node-form') !== FALSE) {
+
+    $form['options']['#access'] = 0;
+    $form['status'] = $form['options']['status'];
+    unset($form['options']['status']);
+
+    $form['additional_settings']['#access'] = user_access('access additional node settings');
+    $form['additional_settings']['#weight'] = 49;
+
+    if (isset($form['domain'])) {
+      $form['domain']['#weight'] = 50;
+      $form['domain']['#access'] = user_access('access additional node settings')
+        || user_access("set {$form['#bundle']} domain access");
+    }
+
+    if (isset($form['scheduler_settings'])) {
+      unset($form['scheduler_settings']['#group']);
+      $form['scheduler_settings']['#collapsible'] = 0;
+    }
+
+    switch ($form['type']['#value']) {
+      case 'programme':
+        $lang = $form['field_emission_type']['#language'];
+        $form['field_programme_menu']['#states'] = array(
+          'visible' => array(
+            ':input[name="field_emission_type[' . $lang . ']"]' => array('value' => (string) '3'),
+          ),
+        );
+        $form['field_minisite_link']['#states'] = array(
+          'visible' => array(
+            ':input[name="field_emission_type[' . $lang . ']"]' => array('value' => (string) '4'),
+          ),
+        );
+        break;
+
+      case 'article':
+        unset($form['comment_settings']['#group']);
+        $form['comment_settings']['#collapsible'] = 0;
+        $node = $form['#node'];
+        if (isset($node->nid)) {
+          drupal_set_title(t('Edit article'));
+        }
+        else {
+          drupal_set_title(t('Add article'));
+        }
+        break;
+
+      case 'note':
+      case 'issue':
+        $issue_nid = arg(3);
+        if (is_numeric($issue_nid) && isset($form['field_programme'])) {
+          $issue = node_load($issue_nid);
+          if ($issue && $issue->type == 'programme') {
+            $lang = $form['field_programme']['#language'];
+            $label = entity_label('node', $issue);
+            $key = "$label ($issue_nid)";
+            $form['field_programme'][$lang][0]['target_id']['#default_value'] = $key;
+          }
+        }
+        break;
+
+      case 'review':
+        $form['title']['#maxlength'] = 180;
+        $form['title']['#maxlength_js'] = TRUE;
+        break;
+
+    }
+
+    // Common actions.
+    $form['actions']['preview_changes']['#access'] = FALSE;
+    $form['actions']['delete']['#access'] = FALSE;
+
+    // Publish button.
+    $form['actions']['save_and_publish'] = array(
+      '#type' => 'submit',
+      '#value' => t('Save and publish'),
+      '#weight' => 12,
+      '#submit' => array('le_form_layouts_save_and_publish_submit', 'le_form_layouts_add_redirect_for_publish_submit'),
+    );
+    $form['actions']['submit']['#submit'][] = 'le_form_layouts_remove_redirect_submit';
+
+    // Preview button.
+    $form['actions']['preview'] = array(
+      '#type' => 'submit',
+      '#value' => t('Preview'),
+      '#weight' => 11,
+      '#submit' => array('node_form_submit', 'le_form_layouts_add_redirect_submit'),
+    );
+
+    // Unpublish button.
+    if (!empty($form['#node'])) {
+      if ($form['#node']->status) {
+        $form['actions']['unpublish'] = array(
+          '#type' => 'submit',
+          '#value' => t('Unpublish'),
+          '#weight' => 12,
+          '#submit' => array('le_form_layouts_unpublish_submit', 'le_form_layouts_add_redirect_submit'),
+        );
+        $form['actions']['save_and_publish']['#access'] = FALSE;
+      }
+    }
+
+    // Disable default checkbox of status element and set image for status.
+    $form['status']['#disabled'] = TRUE;
+    $image = 'unpublished.png';
+    $class = 'unpublished';
+    $msg = 'Non-publié';
+
+    if (!empty($form['#node'])) {
+      if ($form['#node']->status == 1) {
+        $image = 'published.png';
+        $class = 'published';
+        $msg = 'publié';
+      }
+      else {
+        if (!empty($form['scheduler_settings']['publish_on']['#default_value'])) {
+          $image = 'clock.png';
+          $class = 'clock';
+          $msg = 'Programmé';
+        }
+      }
+    }
+    $image = theme('image', array('path' => LE_ADMIN_THEME_PATH . '/images/' . $image));
+
+    $form['status'] = array(
+      '#type' => 'markup',
+      '#prefix' => '<div class="status-bar ' . $class . '">',
+      '#suffix' => '</div>',
+      '#markup' => '<div class="form-item">' . $image . '<label>STATUT: ' . $msg . '</label></div>',
+    );
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id) {
+
+  switch ($form['#vocabulary']->machine_name) {
+
+    case 'event':
+      $form['description']['#maxlength'] = 500;
+      $form['description']['#maxlength_js'] = TRUE;
+      break;
+
+  }
+
+  if (isset($form['relations'])) {
+    $form['relations']['#weight'] = 50;
+    $form['relations']['#access'] = user_access('access additional term settings');
+  }
+
+  $form['#after_build'][] = 'le_form_layouts_term_after_build';
+  $form['description']['#format'] = 'plain_text';
+  if (isset($form['#bundle']) && $form['#bundle'] == 'tags') {
+    $lang = $form['field_tag_type']['#language'];
+    $form['#attached']['library'][] = array('system', 'drupal.states');
+    $form['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array(
+        'states' => array(
+          '#taxonomy_term_tags_form_group_evenement' => array(
+            'visible' => array(
+              ':input[name="field_tag_type[' . $lang . ']"]' => array('value' => '3'),
+            ),
+          ),
+        ),
+      ),
+    );
+    $form['field_dressing_image']['#states'] = array(
+      'required' => array(
+        ':input[name="field_tag_type[' . $lang . ']"]' => array('value' => '3'),
+      ),
+    );
+    $form['field_dressing_image']['#element_validate'][] = 'le_form_layouts_dressing_validate';
+    $form['path']['#access'] = user_access('access additional term settings');
+  }
+  if (!is_object($form['#term']) && !$form['#term']['tid']) {
+    drupal_set_title(t('Add tag'));
+  }
+}
+
+/**
+ * Term after_build.
+ */
+function le_form_layouts_term_after_build($form) {
+  $form['description']['format']['#access'] = FALSE;
+  return $form;
+}
+
+/**
+ * Validate function.
+ */
+function le_form_layouts_dressing_validate(&$element_wrapper, &$form_state) {
+  $values = $form_state['values'];
+  $langcode = field_language('taxonomy_term', $form_state['term'], 'field_tag_type');
+  if ($values['field_tag_type'][$langcode][0]['value'] == 3) {
+    $clicked_button = end($form_state['triggering_element']['#parents']);
+    $langcode = field_language('taxonomy_term', $form_state['term'], 'field_dressing_image');
+    $element = &$element_wrapper[$langcode][0];
+    if (empty($element['fid']['#value']) && !in_array($clicked_button, array('upload_button', 'remove_button'))) {
+      form_error($element['upload'], t('!name field is required.', array('!name' => $element['#title'])));
+    }
+  }
+}
+
+/**
+ * Preprocess function for le node forms.
+ */
+function le_form_layouts_preprocess_form_node(&$vars) {
+  if (isset($vars['form']['#node_edit_form']) && $vars['form']['#node_edit_form']) {
+
+    drupal_add_js(drupal_get_path('module', 'le_form_layouts') . '/controls.js', 'file');
+    $vars['sidebar'] = isset($vars['sidebar']) ? $vars['sidebar'] : array();
+
+    if (isset($vars['form']['field_meta_selection'])) {
+      $vars['sidebar']['field_meta_selection'] = $vars['form']['field_meta_selection'];
+      $vars['sidebar']['field_meta_selection']['#weight'] = 1;
+      unset($vars['form']['field_meta_selection']);
+    }
+
+    // Action buttons.
+    $vars['sidebar']['actions'] = $vars['form']['actions'];
+    $vars['sidebar']['actions']['#weight'] = 100;
+
+    $vars['sidebar']['status'] = $vars['form']['status'];
+    $vars['sidebar']['status']['#weight'] = 95;
+    unset($vars['form']['status']);
+
+    if (isset($vars['form']['scheduler_settings'])) {
+      $vars['form']['scheduler_settings']['#access'] = !$vars['form']['#node']->status;
+      $vars['form']['scheduler_settings']['#attributes'] = array();
+      $vars['sidebar']['scheduler_settings'] = $vars['form']['scheduler_settings'];
+      unset($vars['form']['scheduler_settings']);
+    }
+
+    switch ($vars['form']['#bundle']) {
+
+      case 'article':
+        $vars['sidebar']['comment_settings'] = $vars['form']['comment_settings'];
+        unset($vars['form']['comment_settings']);
+        break;
+
+    }
+  }
+}
+
+/**
+ * Preprocess taxonomy form term.
+ */
+function le_form_layouts_preprocess_taxonomy_form_term(&$vars) {
+  drupal_add_js(drupal_get_path('module', 'le_form_layouts') . '/controls.js', 'file');
+
+  if ('tags' === $vars['form']['#bundle']) {
+    $vars['sidebar'] = isset($vars['sidebar']) ? $vars['sidebar'] : array();
+
+    $vars['sidebar']['field_tag_type'] = $vars['form']['field_tag_type'];
+    $vars['sidebar']['field_tag_type']['#weight'] = 0;
+    unset($vars['form']['field_tag_type']);
+
+    $vars['sidebar']['field_related_tags'] = $vars['form']['field_related_tags'];
+    $vars['sidebar']['field_related_tags']['#weight'] = 1;
+    unset($vars['form']['field_related_tags']);
+  }
+}
+
+/**
+ * Preprocess function.
+ */
+function le_form_layouts_preprocess_asset_form(&$vars) {
+  if ('tags' === $vars['form']['#bundle']) {
+    drupal_add_js(drupal_get_path('module', 'le_form_layouts') . '/controls.js', 'file');
+    $vars['sidebar'] = isset($vars['sidebar']) ? $vars['sidebar'] : array();
+
+    $vars['sidebar']['field_tag_type'] = $vars['form']['field_tag_type'];
+    $vars['sidebar']['field_tag_type']['#weight'] = 0;
+    unset($vars['form']['field_tag_type']);
+
+    $vars['sidebar']['field_related_tags'] = $vars['form']['field_related_tags'];
+    $vars['sidebar']['field_related_tags']['#weight'] = 1;
+    unset($vars['form']['field_related_tags']);
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function le_form_layouts_theme_registry_alter(&$theme_registry) {
+  $theme_registry['node_form']['preprocess functions'][] = 'le_form_layouts_preprocess_form_node';
+  $theme_registry['taxonomy_form_term']['preprocess functions'][] = 'le_form_layouts_preprocess_taxonomy_form_term';
+}
+
+/**
+ * Implements hook_permission().
+ */
+function le_form_layouts_permission() {
+  return array(
+    'access additional node settings' => array(
+      'title' => t('Access additional node settings'),
+      'description' => t('Access additional node settings fieldsets on node forms'),
+    ),
+    'access additional term settings' => array(
+      'title' => t('Access additional term settings'),
+      'description' => t('Access additional settings on term forms'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_views_exposed_form_alter(&$form, &$form_state) {
+  $children = element_children($form);
+  foreach ($children as $child_name) {
+    $child = $form[$child_name];
+    if (isset($child['value']) &&  isset($child['value']['#type']) && $child['value']['#type'] == 'date_popup') {
+      $form[$child_name]['value']['#date_format'] = LE_SITE_EXPOSED_DATE_FORMAT;
+    }
+  }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function le_form_layouts_element_info_alter(&$type) {
+  if (module_exists('link') && !empty($type['link_field'])) {
+    array_pop($type['link_field']['#process']);
+    array_push($type['link_field']['#process'], '_le_form_layouts_link_field_process');
+  }
+}
+
+/**
+ * Custom process function for the link field.
+ */
+function _le_form_layouts_link_field_process($element, $form_state, $complete_form) {
+  $instance = field_widget_instance($element, $form_state);
+  $settings = $instance['settings'];
+  $element['url'] = array(
+    '#type' => 'textfield',
+    '#maxlength' => LINK_URL_MAX_LENGTH,
+    '#title' => t('URL'),
+    '#required' => ($element['#delta'] == 0 && $settings['url'] !== 'optional') ? $element['#required'] : FALSE,
+    '#default_value' => isset($element['#value']['url']) ? $element['#value']['url'] : NULL,
+  );
+  if ($settings['title'] !== 'none' && $settings['title'] !== 'value') {
+    $element['title'] = array(
+      '#type' => 'textfield',
+      // Patch #1307788 from nmc.
+      '#maxlength' => $settings['title_maxlength'],
+      '#title' => t('Title'),
+      // Patch #1307788 from nmc.
+      '#description' => t('The link title is limited to @length characters maximum.',
+        array('@length' => $settings['title_maxlength'])),
+      // Davereids patch from jan 2011.
+      '#required' => ($settings['title'] == 'required' && (($element['#delta'] == 0
+        && $element['#required']) || !empty($element['#value']['url']))) ? TRUE : FALSE,
+      '#default_value' => isset($element['#value']['title']) ? $element['#value']['title'] : NULL,
+    );
+  }
+
+  // Initialize field attributes as an array if it is not an array yet.
+  if (!is_array($settings['attributes'])) {
+    $settings['attributes'] = array();
+  }
+  // Add default attributes.
+  $settings['attributes'] += _link_default_attributes();
+  $attributes = isset($element['#value']['attributes']) ? $element['#value']['attributes'] : $settings['attributes'];
+  if (!empty($settings['attributes']['target']) && $settings['attributes']['target'] == LINK_TARGET_USER) {
+    $element['attributes']['target'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Open URL in a New Window'),
+      '#return_value' => LINK_TARGET_NEW_WINDOW,
+      '#default_value' => isset($attributes['target']) ? $attributes['target'] : FALSE,
+    );
+  }
+  if (!empty($settings['attributes']['configurable_title']) && $settings['attributes']['configurable_title'] == 1) {
+    $element['attributes']['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Link "title" attribute'),
+      '#default_value' => isset($attributes['title']) ? $attributes['title'] : '',
+      '#field_prefix' => 'title = "',
+      '#field_suffix' => '"',
+    );
+  }
+
+  $link_field_settings = field_widget_field($element, $form_state);
+  if ($link_field_settings['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
+    $element['#required'] = FALSE;
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_asset_edit_image_form_alter(&$form, &$form_state) {
+  $form['field_asset_free_crop']['#attached']['js'][] = drupal_get_path('module', 'le_form_layouts') . '/imagefield_free_crop.js';
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_assets_frame_form_alter(&$form, &$form_state) {
+  if ($form['#bundle'] == 'image') {
+    le_form_layouts_form_asset_edit_image_form_alter($form, $form_state);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function le_form_layouts_form_alter(&$form, &$form_state, $form_id) {
+  // Form of asset edit via wysiwyg.
+  if ($form_id == 'assets_wysiwyg_form' && $form['#bundle'] === 'image') {
+    $form['field_asset_free_crop']['#attached']['js'][] = drupal_get_path('module', 'le_form_layouts') . '/imagefield_free_crop.js';
+  }
+}
+
+/**
+ * Preprocess function.
+ */
+function le_form_layouts_preprocess_asset_form_edit(&$vars) {
+  drupal_add_js(drupal_get_path('module', 'le_form_layouts') . '/controls.js', 'file');
+  $vars['sidebar'] = isset($vars['sidebar']) ? $vars['sidebar'] : array();
+  $vars['sidebar']['nodes_using_this_asset']['#markup'] = views_embed_view('nodes_using_asset', 'block');
+  if (!empty($vars['form']['actions'])) {
+    $vars['actions'] = $vars['form']['actions'];
+    unset($vars['form']['actions']);
+  }
+}
+
+/**
+ * Form submit handler for save_and_publish button.
+ */
+function le_form_layouts_save_and_publish_submit($form, &$form_state) {
+  $form_state['values']['status'] = 1;
+  foreach ($form['actions']['submit']['#submit'] as $function) {
+    $function($form, $form_state);
+  }
+}
+
+/**
+ * Form submit handler for unpublish button.
+ */
+function le_form_layouts_unpublish_submit($form, &$form_state) {
+  $form_state['values']['status'] = 0;
+  $node_form_submit = !empty($form['actions']['submit']['#submit']) ? reset($form['actions']['submit']['#submit']) : 'node_form_submit';
+  $node_form_submit($form, $form_state);
+}
+
+/**
+ * Add redirect when node is save & publish.
+ */
+function le_form_layouts_add_redirect_for_publish_submit($form, &$form_state) {
+  if (!empty($form_state['values']['publish_on'])) {
+    list($date, $time) = explode(' ', $form_state['values']['publish_on']);
+
+    // Show  warning about scheduler.
+    $publish_link = le_site_l(
+      t('Force publication'),
+      'node/' . $form_state['node']->nid . '/publish',
+      array(
+        'query' => array('destination' => 'node/' . $form_state['node']->nid),
+      )
+    );
+    $scheduler_link = le_site_l(
+      t('Do not publish and maintain the initial programming'),
+      'node/' . $form_state['node']->nid
+    );
+    drupal_set_message(
+      t(
+        "The publication of this article was scheduled for !date at !time. Would you force the publication of the article?
+          <br /> !accept | !cancel",
+        array('!date' => $date, '!time' => $time, '!accept' => $publish_link, '!cancel' => $scheduler_link)
+      ),
+      'warning'
+    );
+  }
+  else {
+    unset($_GET['destination']);
+
+    // Set redirect.
+    $form_state['redirect'] = 'node/' . $form_state['node']->nid;
+  }
+}
+
+/**
+ * Remove redirect when node is saved.
+ */
+function le_form_layouts_remove_redirect_submit($form, &$form_state) {
+  // If form opened not in reference dialog, unset destination and set redirect.
+  if (!empty($_GET['render']) && $_GET['render'] !== 'references-dialog') {
+    unset($_GET['destination']);
+    $form_state['redirect'] = 'node/' . $form_state['node']->nid . '/edit';
+  }
+}
+
+/**
+ * Add redirect when node is saved.
+ */
+function le_form_layouts_add_redirect_submit($form, &$form_state) {
+  unset($_GET['destination']);
+
+  if ($form['form_id']['#value'] == 'bean_form') {
+    $form_state['redirect'] = 'admin/dashboard/blocs';
+  }
+
+  // Manage redirects.
+  switch ($form['type']['#value']) {
+    case 'article':
+    case 'page':
+      $form_state['redirect'] = 'node/' . $form_state['node']->nid;
+      break;
+  }
+}

@@ -1,0 +1,12 @@
+name = Le360 Menu Additional header
+description = Le360 Menu Additional header
+core = 7.x
+package = Le360 features
+php = 5.2.4
+version = 7.x-1.0
+project = le_menu_additional_header
+dependencies[] = features
+dependencies[] = menu
+features[features_api][] = api:1
+features[menu_custom][] = menu-additional-header-menu
+features[menu_links][] = menu-additional-header-menu:<front>

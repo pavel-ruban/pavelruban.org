@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pavel Ruban Image Styles feature.
+ */
+
+include_once 'pruban_image_styles.features.inc';

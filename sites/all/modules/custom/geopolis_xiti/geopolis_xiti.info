@@ -1,0 +1,5 @@
+name = Geopolis Xiti
+description = Provides integration with xiti
+core = 7.x
+version = 7.x-1.0
+package = Geopolis

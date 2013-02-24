@@ -1,0 +1,13 @@
+name = "Term Queue"
+description = "Creates ordered lists of Taxonomy Terms"
+core = 7.x
+dependencies[] = taxonomy
+dependencies[] = ctools
+files[] = "term_queue_handler_filter.inc"
+
+; Information added by drupal.org packaging script on 2012-07-23
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "term_queue"
+datestamp = "1343060595"
+

@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Pavel Ruban site main module.
+ */
+
+/**
+ * Implements hook_init().
+ */
+function pavelruban_init() {
+  $arg0 = arg(0);
+  if (!user_access('admin') && (!empty($arg0) && $arg0 !== 'node')) {
+    drupal_not_found();
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function pavelruban_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' || $module == 'panels' || $module == 'page_manager' || $module == 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function pavelruban_ctools_plugin_api($owner, $api) {
+  if ($owner == 'panels') {
+    return array('version' => 2.0);
+  }
+}

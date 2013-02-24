@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Install/update specific hooks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function le_form_layouts_install() {
+  db_update('system')
+    ->fields(array('weight' => 1))
+    ->condition('type', 'module')
+    ->condition('name', 'le_form_layouts')
+    ->execute();
+}
+
+/**
+ * Implements hook_update_N().
+ * Increase the module weight.
+ * @see le_form_layouts_install()
+ */
+function le_form_layouts_update_7300() {
+  db_update('system')
+    ->fields(array('weight' => 1))
+    ->condition('type', 'module')
+    ->condition('name', 'le_form_layouts')
+    ->execute();
+}

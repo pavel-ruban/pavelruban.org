@@ -1,0 +1,4 @@
+name = Le360 Form Layouts
+description = Provides form customization specific for "Le360" website
+core = 7.x
+package = Geopolis
