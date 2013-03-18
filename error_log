@@ -1,0 +1,2 @@
+[24-Feb-2013 13:20:14] PHP Fatal error:  session_start() [<a href='function.session-start'>function.session-start</a>]: Failed to initialize storage module: user (path: /tmp) in /home2/pavelrub/public_html/includes/session.inc on line 287
+[24-Feb-2013 14:08:03] PHP Fatal error:  Call to undefined function le_site_system_site_information_settings_form_submit() in /home2/pavelrub/public_html/includes/form.inc on line 1464

@@ -9,9 +9,9 @@
  */
 function pavelruban_init() {
   $arg0 = arg(0);
-  if (!user_access('admin') && (!empty($arg0) && $arg0 !== 'node')) {
-    drupal_not_found();
-  }
+//  if (!user_access('admin') && (!empty($arg0) && ($arg0 !== 'node' || $arg0 !== '<front>>'  || //$arg0 !== '/' || $arg0 !== 'user'))) {
+//    drupal_not_found();
+//  }
 }
 
 /**
@@ -29,5 +29,25 @@ function pavelruban_ctools_plugin_directory($module, $plugin) {
 function pavelruban_ctools_plugin_api($owner, $api) {
   if ($owner == 'panels') {
     return array('version' => 2.0);
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function pavelruban_entity_info_alter(&$entity_info) {
+  $view_modes = array(
+    'user' => array(
+      'comments',
+    ),
+  );
+
+  foreach ($view_modes as $key => $entity_type) {
+    foreach ($entity_type as $mode) {
+      $entity_info[$key]['view modes'][$mode] = array(
+        'label' => t(drupal_ucfirst(str_replace('_', ' ', $mode))),
+        'custom settings' => TRUE,
+      );
+    }
   }
 }

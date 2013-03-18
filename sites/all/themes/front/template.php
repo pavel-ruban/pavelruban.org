@@ -7,6 +7,36 @@
 /**
  * Override or insert variables into the node template.
  */
+function front_preprocess_comment(&$vars) {
+  $user = user_load($vars['comment']->uid);
+  $user_view = user_view($user, 'comments');
+  $picture = render($user_view['field_user_image']);
+  $vars['picture'] = l(
+    $picture,
+    "user/{$user->uid}",
+    array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => array('reply_image'),
+      ),
+    )
+  );
+  $vars['author'] = l(
+    "<span>{$user->name}</span>",
+    "user/{$user->uid}",
+    array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => array('username'),
+      ),
+    )
+  );
+  $a = 1;
+}
+
+/**
+ * Override or insert variables into the node template.
+ */
 function front_preprocess_node(&$vars, $hook) {
   if ($vars['view_mode'] == 'full' && node_is_page($vars['node'])) {
     $vars['classes_array'][] = 'node-full';
@@ -45,6 +75,24 @@ function front_preprocess_node__article_teaser(&$vars) {
   if (!empty($vars['content']['field_description'])) {
     $vars['description'] = render($vars['content']['field_description']);
   }
+}
+
+/**
+ * Preprocess variables.
+ */
+function front_preprocess_html(&$vars) {
+  $vars['tea_mug'] = theme('image',
+    array(
+      'path' => '/sites/all/themes/front/images/cup.png',
+      'attributes' => array('class' => array('tea-mug')),
+    )
+  );
+  $vars['pencil'] = theme('image',
+    array(
+      'path' => '/sites/all/themes/front/images/pencils.png',
+      'attributes' => array('class' => array('pencil')),
+    )
+  );
 }
 
 /**

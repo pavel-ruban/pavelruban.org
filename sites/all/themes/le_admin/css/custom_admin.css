@@ -14,7 +14,7 @@
 }
 
 .le-add-node {
-  background: #EC5403 url(../../rubik/images/bleeds.png) no-repeat 50% 0;
+  background: #4E4E4E url(../../rubik/images/bleeds.png) no-repeat 50% 0;
   border-radius: 5px;
   border-right: 5px none;
   display: block;
@@ -83,7 +83,7 @@ table input.fluid { width:100%; }
 
 /* admin theme */
 .le-add-node {
-  background: #EC5403;
+  background: #4E4E4E;
   padding: 0 35px;
   height: 40px;
   font-size: 20px;
@@ -144,7 +144,7 @@ input.teaser-button, input.form-submit {
   margin: 0 10px;
 }
 .le-admin-menu-level-1 ul.primary-tabs li {
-  background: #EC5403;
+  background: #4E4E4E;
   height: auto;
   margin: 0 2px;
   -webkit-border-radius: 10px 10px 0 0;
@@ -295,7 +295,7 @@ html.js input.form-autocomplete.throbbing {
 }
 .block-dm-user-name {
   display: inline-block;
-  background: #EC5403;
+  background: #4E4E4E;
   border-radius: 5px;
   margin: 6px 30px 0 30px;
   padding: 5px 10px;

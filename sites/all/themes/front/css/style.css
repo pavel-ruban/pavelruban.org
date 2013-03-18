@@ -10,7 +10,7 @@ ul {
 
 body {
   margin: 0;
-  background: none repeat scroll 0 0 #F5F5F5;
+  background: url("../images/purty_wood.png") repeat fixed 0 0 transparent;
   color: #404040;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -27,15 +27,31 @@ div.header > div {
 }
 
 .header {
-  background: none repeat scroll 0 0 white;
-  border-bottom: 1px solid #DADADA;
+  /*background: none repeat scroll 0 0 white;
+  border-bottom: 1px solid #DADADA;*/
   display: block;
   height: 30px;
   width: 100%;
 }
 
+img.tea-mug {
+  background-attachment: fixed;
+  left: 80%;
+  position: fixed;
+  top: 76%;
+  z-index: 3;
+}
+
+img.pencil {
+  background-attachment: fixed;
+  left: 88%;
+  position: fixed;
+  top: 42%;
+  z-index: 2;
+}
+
 .logo {
-  float: left;
+  position: fixed;
 }
 
 div.menu {
@@ -69,8 +85,8 @@ h2 {
 }
 
 #sidebar {
-  float: right;
-  margin-left: 50px;
+  left: 64%;
+  position: fixed;
   width: 197px;
 }
 
@@ -95,6 +111,12 @@ ul li, ol li {
 #sidebar li {
   list-style: none outside none;
   margin-left: 0;
+}
+
+#sidebar li a {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px #000000;
 }
 
 a {
@@ -151,6 +173,10 @@ h1 {
 }
 
 #wrapper > .main a {
+  color: #3D77B4;
+}
+
+#wrapper > .main h2 a {
   color: #404040;
 }
 
@@ -203,9 +229,14 @@ section {
 
 .footer .footer-body {
   padding-top: 12px;
-  border-top: 1px solid #CCCCCC;
+ /* border-top: 1px solid #CCCCCC;*/
 }
 
 .footer .footer-body a {
   color: #707070;
+}
+
+form#user-register-form,
+form#user-login {
+  padding: 0 58px;
 }
