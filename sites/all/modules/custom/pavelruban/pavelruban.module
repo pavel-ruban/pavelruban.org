@@ -31,23 +31,3 @@ function pavelruban_ctools_plugin_api($owner, $api) {
     return array('version' => 2.0);
   }
 }
-
-/**
- * Implements hook_entity_info_alter().
- */
-function pavelruban_entity_info_alter(&$entity_info) {
-  $view_modes = array(
-    'user' => array(
-      'comments',
-    ),
-  );
-
-  foreach ($view_modes as $key => $entity_type) {
-    foreach ($entity_type as $mode) {
-      $entity_info[$key]['view modes'][$mode] = array(
-        'label' => t(drupal_ucfirst(str_replace('_', ' ', $mode))),
-        'custom settings' => TRUE,
-      );
-    }
-  }
-}

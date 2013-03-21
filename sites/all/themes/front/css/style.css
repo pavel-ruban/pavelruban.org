@@ -51,7 +51,7 @@ img.pencil {
 }
 
 .logo {
-  position: fixed;
+  float: left;
 }
 
 div.menu {
@@ -85,8 +85,8 @@ h2 {
 }
 
 #sidebar {
-  left: 64%;
-  position: fixed;
+  float: right;
+  margin-left: 50px;
   width: 197px;
 }
 
@@ -114,9 +114,7 @@ ul li, ol li {
 }
 
 #sidebar li a {
-  color: #FFFFFF;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px #000000;
+  color: #404040;
 }
 
 a {
@@ -234,9 +232,4 @@ section {
 
 .footer .footer-body a {
   color: #707070;
-}
-
-form#user-register-form,
-form#user-login {
-  padding: 0 58px;
 }
