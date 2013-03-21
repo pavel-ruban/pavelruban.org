@@ -2,3 +2,4 @@ sites/default/*
 redmine*
 projects*
 tags
+error_log
