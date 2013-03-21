@@ -211,13 +211,13 @@
  * @endcode
  */
 $databases = array (
-  'default' =>
+  'default' => 
   array (
-    'default' =>
+    'default' => 
     array (
-      'database' => 'pavelruban',
-      'username' => 'drup',
-      'password' => 'abc',
+      'database' => 'pavelrub_drupal',
+      'username' => 'pavelrub',
+      'password' => 'Qazzaqqweewq1,./,',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
