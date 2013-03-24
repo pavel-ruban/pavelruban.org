@@ -1,4 +1,4 @@
-sites/default*
+/sites/default/*
 /redmine*
 /projects*
 /tags
