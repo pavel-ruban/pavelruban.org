@@ -12,5 +12,6 @@
 <div class="menu">
 <!--  <a href="#">Minds</a>
   <a href="#">Forum</a>
-  <a href="#">About me</a> --!>
+  <a href="#">About me</a> -->
+
 </div>
