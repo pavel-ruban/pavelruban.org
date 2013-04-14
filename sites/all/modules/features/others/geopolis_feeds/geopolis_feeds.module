@@ -1,8 +1,0 @@
-<?php
-
-/**
- * @file
- * Empty module file.
- */
-
-include_once('geopolis_feeds.features.inc');

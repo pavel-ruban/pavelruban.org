@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Flash news Content Type feature.
- */
-
-include_once 'le_content_type_flash_news.features.inc';

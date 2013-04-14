@@ -8,4 +8,7 @@
   <?php echo $media; ?>
 <?php endif; ?>
 <h2><?php echo $title; ?></h2>
-<p class="img"><?php echo preg_replace('/<\s*?\/?p\s*?>/', '', $body); ?></p>
+<p class="img">
+  <?php echo $description; ?><br/><br/>
+  <?php echo preg_replace('/<\s*?\/?p\s*?>/', '', $body); ?>
+</p>

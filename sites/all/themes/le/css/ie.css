@@ -1,5 +1,0 @@
-* +html .top360-list li .text span{display:block;}
-* +html .top360-list li .text span a{
-	display:block;
-	margin-top:expression(this.parentNode.offsetHeight > this.offsetHeight ? ((this.parentNode.offsetHeight-this.offsetHeight)/2 + "px") : "0");
-}

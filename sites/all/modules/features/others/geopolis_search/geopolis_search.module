@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Geopolis search feature.
- */
-
-include_once 'geopolis_search.features.inc';

@@ -43,5 +43,34 @@ function pavelruban_header_theme(&$theme, $plugin) {
  * Preprocess variables.
  */
 function template_preprocess_pavelruban_header(&$vars) {
-  $vars['image'] = theme('image', array('path' => 'sites/all/themes/front/images/logo.png'));
+  global $user;
+  $vars['image'] = theme('image',
+    array('path' => 'sites/all/themes/front/images/logo.png')
+  );
+
+  switch ($user->uid) {
+    case '0':
+      $l = l(
+        "login",
+        "user/login"
+      );
+      $r = l(
+        "register",
+        "user/register"
+      );
+      $vars['user_link'] = sprintf('%s/%s', $l, $r);
+      break;
+
+    default:
+      $vars['user_link'] = l(
+        $user->name,
+        "user/$user->uid"
+      );
+  }
+  if (!empty($user->uid)) {
+    $vars['user_logout'] = l(
+      "logout",
+      "user/logout"
+    );
+  }
 }

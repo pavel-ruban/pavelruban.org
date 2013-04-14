@@ -15,37 +15,25 @@ function pavelruban_update_7001() {
     'pruban_article_content_type',
     'pruban_image_styles',
     'pruban_views',
-    'ckeditor',
-    'jquery_update',
-    'admin_menu',
-    'asset',
-    'ctools',
-    'devel',
-    'entity',
-    'features',
-    'menu_block',
-    'menu_position',
-    'panels_everywhere',
-    'panels',
-    'pathauto',
-    'strongarm',
-    'views',
-    'views_autocomplete_filters',
-    'views_bulk_operations',
-    'le_site',
-    'pavelruban',
-    'le_admin_menu',
-    'le_dashboard_article',
-    'le_dashboard_medialibrary',
-    'le_dashboard_tags',
-    'le_dashboard_users',
-    'le_input_formats',
-    'le_menu_position_rules',
   );
+  db_update('system')
+    ->fields(array('weight' => 101))
+    ->condition('name', 'pavelruban')
+    ->execute();
 
   foreach ($modules as $module) {
     if (!module_exists($module)) {
       module_enable(array($module));
     }
   }
+}
+
+/**
+ * Change module weight.
+ */
+function pavelruban_update_7030() {
+  db_update('system')
+    ->fields(array('weight' => 101))
+    ->condition('name', 'pavelruban')
+    ->execute();
 }

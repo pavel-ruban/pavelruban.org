@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Panels node view feature.
- */
-
-include_once 'le_panels_node_view.features.inc';

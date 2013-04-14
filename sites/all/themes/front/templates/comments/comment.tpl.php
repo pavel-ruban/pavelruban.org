@@ -59,19 +59,29 @@
  * @ingroup themeable
  */
 ?>
-<div class="<?php echo $id == 1 ? 'first ' : ''; ?>reply reply_dived clear reply_replieable">
+<div class="<?php echo $id == 1 ? 'first ' : ''; ?>reply reply_dived clear reply_replieable comment-wrapper">
   <div class="reply_table">
     <?php if (!empty($picture)): ?>
-      <?php print $picture ?>
+      <?php print $picture; ?>
+    <?php else: ?>
+      <?php echo $anonym_picture; ?>
     <?php endif; ?>
     <div class="reply_info">
       <div class="fl_r reply_actions_wrap">
         <div class="reply_actions"><div class="reply_delete_button fl_r" style="opacity: 0;"></div></div>
       </div>
       <div class="reply_text">
-        <?php print $author ?> <div><div class="wall_reply_text comment-body"><?php print render($content['comment_body']); ?></div></div>
+        <?php if (!empty($author)): ?>
+          <?php print $author ?>
+        <?php endif; ?>
+        <div><div class="wall_reply_text comment-body">
+            <?php print render($content['comment_body']); ?>
+        </div></div>
       </div>
-        <a class="wd_lnk"><span class="rel_date">13 янв в 23:26</span></a>
+        <a class="wd_lnk"><span class="rel_date"><?php echo $date; ?></span></a>
       </div>
+      <?php if (!empty($delete)): ?>
+        <?php echo $delete_link; ?>
+      <?php endif; ?>
   </div>
 </div>

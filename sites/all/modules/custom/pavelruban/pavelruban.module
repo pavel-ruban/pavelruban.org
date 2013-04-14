@@ -4,6 +4,10 @@
  * Pavel Ruban site main module.
  */
 
+define('PR_MODULE_PATH', drupal_get_path('module', 'pavelruban'));
+
+require_once PR_MODULE_PATH . '/pavelruban.form.inc';
+
 /**
  * Implements hook_init().
  */
@@ -29,5 +33,78 @@ function pavelruban_ctools_plugin_directory($module, $plugin) {
 function pavelruban_ctools_plugin_api($owner, $api) {
   if ($owner == 'panels') {
     return array('version' => 2.0);
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function pavelruban_entity_info_alter(&$entity_info) {
+  $view_modes = array(
+    'asset' => array(
+      'teaser',
+    ),
+    'user' => array(
+      'comments',
+    ),
+  );
+
+  foreach ($view_modes as $key => $entity_type) {
+    foreach ($entity_type as $mode) {
+      $entity_info[$key]['view modes'][$mode] = array(
+        'label' => t(drupal_ucfirst(str_replace('_', ' ', $mode))),
+        'custom settings' => TRUE,
+      );
+    }
+  }
+}
+
+/**
+ * Comment delete callback.
+ */
+function pavelruban_ajax_comment_delete($cid) {
+  global $user;
+
+  if ($user->uid == 1) {
+    comment_delete($cid);
+    $response = array('status' => 'success');
+  }
+  else {
+    $comment = comment_load($cid);
+    $time = time() - $comment->changed;
+    if ($comment->uid == $user->uid
+      && $time < 300) {
+      comment_delete($cid);
+      $response = array('status' => 'success');
+    }
+    else {
+      $response = array('status' => 'denided');
+    }
+  }
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+/**
+ * Implement hook_menu().
+ */
+function pavelruban_menu() {
+  $items['ajax/comment/%/delete'] = array(
+    'page callback' => 'pavelruban_ajax_comment_delete',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/*
+ * Implement hook_custom_theme().
+ */
+function pavelruban_custom_theme() {
+  $arg = arg(0);
+  $arg2 = arg(2);
+  if ($arg == 'user' && $arg2 == 'edit') {
+    return 'front';
   }
 }

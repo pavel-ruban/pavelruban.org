@@ -1,5 +1,0 @@
-name = "Preferred Formats"
-description = "Adds custom format functionality for text fields"
-core = "7.x"
-dependencies[] = "text"
-package = "Other"
