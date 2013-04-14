@@ -7,36 +7,6 @@
 /**
  * Override or insert variables into the node template.
  */
-function front_preprocess_comment(&$vars) {
-  $user = user_load($vars['comment']->uid);
-  $user_view = user_view($user, 'comments');
-  $picture = render($user_view['field_user_image']);
-  $vars['picture'] = l(
-    $picture,
-    "user/{$user->uid}",
-    array(
-      'html' => TRUE,
-      'attributes' => array(
-        'class' => array('reply_image'),
-      ),
-    )
-  );
-  $vars['author'] = l(
-    "<span>{$user->name}</span>",
-    "user/{$user->uid}",
-    array(
-      'html' => TRUE,
-      'attributes' => array(
-        'class' => array('username'),
-      ),
-    )
-  );
-  $a = 1;
-}
-
-/**
- * Override or insert variables into the node template.
- */
 function front_preprocess_node(&$vars, $hook) {
   if ($vars['view_mode'] == 'full' && node_is_page($vars['node'])) {
     $vars['classes_array'][] = 'node-full';

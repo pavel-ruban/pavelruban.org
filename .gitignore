@@ -1,5 +1,9 @@
+.htaccess
 /sites/default/*
 /redmine*
 /projects*
 /tags
-
+/redmine*
+/projects*
+tags
+error_log
