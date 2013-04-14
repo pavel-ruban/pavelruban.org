@@ -215,9 +215,9 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'pavelrub_drupal',
-      'username' => 'pavelrub',
-      'password' => 'Qazzaqqweewq1,./,',
+      'database' => 'pruban',
+      'username' => 'dev',
+      'password' => 'beyourself',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
