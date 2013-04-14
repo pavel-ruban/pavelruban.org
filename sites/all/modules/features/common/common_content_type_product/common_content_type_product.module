@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Common conten type product feature.
+ */
+
+include_once 'common_content_type_product.features.inc';

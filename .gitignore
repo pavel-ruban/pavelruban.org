@@ -1,6 +1,11 @@
 .htaccess
-sites/default/*
-redmine*
-projects*
+/sites/default/*
+/redmine*
+/projects*
+/tags
+settings.php
+/redmine*
+/projects*
 tags
 error_log
+.idea*

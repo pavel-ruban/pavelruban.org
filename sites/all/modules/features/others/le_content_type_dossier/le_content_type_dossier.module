@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Dossier Content Type feature.
- */
-
-include_once 'le_content_type_dossier.features.inc';

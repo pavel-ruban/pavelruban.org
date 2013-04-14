@@ -1,8 +1,11 @@
 name = Pavel Ruban Image Styles
 core = 7.x
 package = Pavel Ruban Features
+php = 5.2.4
 version = 7.x-1.0
 project = pruban_image_styles
 dependencies[] = image
 features[features_api][] = api:1
+features[image][] = avatar
 features[image][] = teaser
+features[image][] = user_page

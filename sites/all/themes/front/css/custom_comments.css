@@ -1,0 +1,117 @@
+h1.comment-bottom-line {
+  border-top: 1px solid #DADADA;
+}
+
+h1.comment-bottom-line span {
+  color: #3D77B4;
+  float: right;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+h1 span.comment-login {
+  float: right;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+div.reply.reply_dived.clear.reply_replieable {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-top: 1px solid #E9EDF1;
+  padding: 10px 0;
+  position: relative;
+}
+
+div.first.reply.reply_dived.clear.reply_replieable {
+  border-top: none;
+  padding: 6px 0;
+}
+
+.wall_reply_text {
+  margin-top: 5px;
+}
+
+span.rel_date {
+  color: #999999;
+}
+
+.reply_info {
+    margin-left: 68px;
+}
+.reply_text {
+    margin-bottom: 5px;
+}
+
+h1.comments {
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 9px;
+    margin-bottom: 4px;
+}
+
+h1.comment-bottom-line {
+  margin-top: 0;
+}
+
+div.comment-body {
+  text-align: justify;
+}
+
+h1 span.comment-login {
+    float: left;
+    font-size: 13px;
+    margin-bottom: 20px;
+    margin-top: 6px;
+}
+
+textarea {
+  border: 0 none;
+  border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 0 5px -3px inset;
+  -webkit-box-shadow: 0px 0px 2px 0px #9998B7 inset;
+  padding: 7px;
+}
+
+.resizable-textarea .grippie {
+  border: 0;
+  background: none;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+#comment-form {
+  clear: both;
+  display: none;
+}
+
+#comment-form textarea {
+  height: 215px;
+}
+
+#comment-form #edit-actions{
+  float: right;
+}
+
+a.comment-delete-link {
+  top: 10px;
+  left: 600px;
+  position: absolute;
+  display: none;
+  background: url('../images/common.png');
+}
+
+a.comment-delete-link > div {
+  height: 20px;
+  width: 20px;
+}
+
+input {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 0 5px -3px inset;
+  -webkit-box-shadow: 0px 0px 2px 0px #9998B7 inset;
+  cursor: pointer;
+  padding: 7px;
+}

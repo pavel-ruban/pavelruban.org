@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Dashboard Blocks feature.
- */
-
-include_once 'le_dashboard_blocks.features.inc';

@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Geopolis Field Collection feature.
- */
-
-include_once 'geopolis_field_collection.features.inc';

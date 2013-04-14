@@ -8,8 +8,11 @@
   <?php echo $content['header']; ?>
 </div>
 <div id="wrapper">
-  <?php echo $content['content']; ?>
+  <div class="main">
+    <?php echo $content['content']; ?>
+  </div>
+  <?php echo $content['sidebar']; ?>
 </div>
-<footer id="footer" role="contentinfo">
+<footer class="footer" role="contentinfo">
   <?php echo $content['footer']; ?>
 </footer>

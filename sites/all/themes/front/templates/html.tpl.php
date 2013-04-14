@@ -65,7 +65,6 @@
 </script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <?php print $pencil; ?>
   <?php print $tea_mug; ?>
   <?php print $page_top; ?>
   <?php print $page; ?>

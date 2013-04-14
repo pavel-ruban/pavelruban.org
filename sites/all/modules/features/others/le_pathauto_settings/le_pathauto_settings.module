@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 pathauto settings feature.
- */
-
-include_once 'le_pathauto_settings.features.inc';
