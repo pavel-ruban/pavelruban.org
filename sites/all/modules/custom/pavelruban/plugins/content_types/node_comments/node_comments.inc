@@ -114,6 +114,10 @@ function pavelruban_node_comments_theme(&$theme, $plugin) {
  * Preprocess.
  */
 function pavelruban_preprocess_pavelruban_node_comments(&$vars) {
+  global $user;
+  if ($user->uid == 0) {
+    $vars['anonym'] = TRUE;
+  }
   $vars['add_comment_link'] = l(
     t('add comment'),
     '#',

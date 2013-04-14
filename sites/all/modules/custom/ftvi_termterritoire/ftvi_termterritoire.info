@@ -1,8 +1,0 @@
-name = FTVI Territoire d'une localisation
-description = Géopolis : Affiche pour une localisation donnée, une info d'un territoire particulier.
-package = FTVI
-core = 7.x
-
-files[] = ftvi_termterritoire.module
-
-dependencies[] = block

@@ -1,6 +1,0 @@
-name = Pixel node view counter
-description = Replace default node view counting by image pixel counter.
-core = 7.x
-version = "7.x-0.1"
-
-dependinces[] = statistics

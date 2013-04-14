@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Author content type feature.
- */
-
-include_once 'le_content_type_author.features.inc';

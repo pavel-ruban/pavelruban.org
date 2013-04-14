@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Right column blocks view feature.
- */
-
-include_once 'le_right_column_blocks_view.features.inc';

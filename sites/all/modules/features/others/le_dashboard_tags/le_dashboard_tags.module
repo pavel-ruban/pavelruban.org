@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Dashboard Tags feature.
- */
-
-include_once('le_dashboard_tags.features.inc');

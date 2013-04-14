@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Dashboard Dossier feature.
- */
-
-include_once 'le_dashboard_folder.features.inc';

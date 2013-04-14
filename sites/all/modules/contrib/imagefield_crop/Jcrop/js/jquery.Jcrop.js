@@ -113,9 +113,15 @@ $.Jcrop = function(obj,opt)
 		padding: 0,
 		position: 'absolute'
 	};
+	var img_css2 = {
+		border: 'none',
+		margin: 0,
+		padding: 0,
+		position: 'relative'
+	};
 
 	var $origimg = $(obj);
-	var $img = $origimg.clone().removeAttr('id').css(img_css);
+	var $img = $origimg.clone().removeAttr('id').css(img_css2);
 
 	$img.width($origimg.width());
 	$img.height($origimg.height());

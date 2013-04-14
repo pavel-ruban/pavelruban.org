@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Le360 Panels system template feature.
- */
-
-include_once 'le_panels_system_template.features.inc';
