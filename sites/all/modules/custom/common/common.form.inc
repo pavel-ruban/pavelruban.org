@@ -8,7 +8,7 @@
  * Implements hook_form_alter().
  */
 function common_form_alter(&$form, &$form_state, $form_id) {
-  if (preg_match('/^node_.*form$/', $form_id)) {
+  if (preg_match('/^(?!(?:c|C)omment).*node_.*form$/', $form_id)) {
     $form['actions']['cancel']['#access'] = FALSE;
     $form['actions']['delete']['#access'] = FALSE;
     $form['actions']['preview_changes']['#access'] = FALSE;
