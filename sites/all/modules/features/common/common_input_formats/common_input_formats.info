@@ -5,6 +5,7 @@ package = Common features
 php = 5.2.4
 version = 7.x-1.0
 project = common_input_formats
+dependencies[] = asset
 dependencies[] = ckeditor
 dependencies[] = features
 dependencies[] = filter

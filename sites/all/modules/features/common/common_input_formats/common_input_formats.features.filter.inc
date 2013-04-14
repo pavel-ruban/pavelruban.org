@@ -51,24 +51,29 @@ function common_input_formats_filter_default_formats() {
   $formats['full_html'] = array(
     'format' => 'full_html',
     'name' => 'Full HTML',
-    'cache' => '1',
+    'cache' => '0',
     'status' => '1',
     'weight' => '1',
     'filters' => array(
+      'assets_filter' => array(
+        'weight' => '-38',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'filter_url' => array(
-        'weight' => '0',
+        'weight' => '-37',
         'status' => '1',
         'settings' => array(
-          'filter_url_length' => 72,
+          'filter_url_length' => '72',
         ),
       ),
       'filter_autop' => array(
-        'weight' => '1',
+        'weight' => '-36',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
-        'weight' => '10',
+        'weight' => '-35',
         'status' => '1',
         'settings' => array(),
       ),
