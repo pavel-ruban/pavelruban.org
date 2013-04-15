@@ -37,3 +37,18 @@ function pavelruban_update_7030() {
     ->condition('name', 'pavelruban')
     ->execute();
 }
+
+/**
+ * Change module weight.
+ */
+function pavelruban_update_7031() {
+  $modules = array(
+    'pruban_permissions',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}
