@@ -60,12 +60,12 @@ function common_settings_strongarm() {
     'toggle_main_menu' => 1,
     'toggle_secondary_menu' => 1,
     'default_logo' => 0,
-    'logo_path' => 'public://home.png',
-    'default_favicon' => 1,
-    'favicon_path' => '',
-    'favicon_upload' => '',
+    'logo_path' => 'public://home-admin.png',
+    'default_favicon' => 0,
+    'favicon_path' => 'public://hawk_feathers_s.png',
     'common_admin_menu_level_1' => 'common-menu-1',
     'common_admin_menu_level_2' => 'common-menu-2',
+    'favicon_mimetype' => 'image/png',
   );
   $export['theme_common_admin_settings'] = $strongarm;
 
