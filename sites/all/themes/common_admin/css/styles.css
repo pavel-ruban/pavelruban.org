@@ -83,10 +83,3 @@ ul.full-slide {
 ul.full-slide div.full-item {
   margin: 0;
 }
-.jcrop-holder {
-  width: 470px;
-  height: 280px;
-  max-width: 470px;
-  max-height: 280px;
-  overflow: hidden;
-}
