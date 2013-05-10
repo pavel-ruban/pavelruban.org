@@ -51,6 +51,16 @@ window.CKEDITOR_BASEPATH = Drupal.settings.ckeditor.editor_path;
         else {
           CKEDITOR.addCss(ev.editor.config.extraCss);
         }
+        // Let Drupal trigger formUpdated event [#1895278]
+        ev.editor.on('change', function(ev) {
+          $(ev.editor.element.$).trigger('change');
+        });
+        ev.editor.on('blur', function(ev) {
+          $(ev.editor.element.$).trigger('blur');
+        });
+        ev.editor.on('focus', function(ev) {
+          $(ev.editor.element.$).trigger('click');
+        });
       },
       instanceReady : function(ev)
       {
@@ -78,13 +88,20 @@ window.CKEDITOR_BASEPATH = Drupal.settings.ckeditor.editor_path;
           body.attr('id', ev.editor.config.bodyId);
         if (typeof(Drupal.smileysAttach) != 'undefined' && typeof(ev.editor.dataProcessor.writer) != 'undefined')
           ev.editor.dataProcessor.writer.indentationChars = '    ';
+
+        // Let Drupal trigger formUpdated event [#1895278]
+        ((ev.editor.editable && ev.editor.editable()) || ev.editor.document.getBody()).on( 'keyup', function() {
+          $(ev.editor.element.$).trigger('keyup');
+        });
+        ((ev.editor.editable && ev.editor.editable()) || ev.editor.document.getBody()).on( 'keydown', function() {
+          $(ev.editor.element.$).trigger('keydown');
+        });
       },
       focus : function(ev)
       {
         Drupal.ckeditorInstance = ev.editor;
         Drupal.ckeditorActiveId = ev.editor.name;
-      }
-      ,
+      },
       afterCommandExec: function(ev)
       {
         if (ev.data.name != 'maximize') {
@@ -325,6 +342,11 @@ window.CKEDITOR_BASEPATH = Drupal.settings.ckeditor.editor_path;
       });
     }
   };
+
+  // Support CTools detach event.
+  $(document).bind('CToolsDetachBehaviors', function(event, context) {
+    Drupal.behaviors.ckeditor.detach(context, {}, 'unload');
+  });
 })(jQuery);
 
 /**
@@ -342,3 +364,4 @@ var ckeditor_imceSendTo = function (file, win){
   CKEDITOR.tools.callFunction(cfunc[1], file.url);
   win.close();
 }
+

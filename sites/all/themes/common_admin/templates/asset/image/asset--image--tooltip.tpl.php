@@ -15,5 +15,5 @@
     </li>
   </ul>
 <?php else: ?>
-  <?php print render($content); ?>
+  <?php print render($content['field_asset_image']); ?>
 <?php endif; ?>

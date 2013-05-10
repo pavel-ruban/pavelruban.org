@@ -4,6 +4,7 @@
  * Template for diaporama tooltip.
  */
 ?>
+<!-- Empty line -->
 <?php if (!empty($field_asset_gallery_images)): ?>
   <div class="full-slide-holder">
     <?php if (count($field_asset_gallery_images) > 1): ?>

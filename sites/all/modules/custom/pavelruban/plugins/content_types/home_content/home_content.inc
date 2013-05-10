@@ -35,7 +35,7 @@ function pavelruban_home_content_content_type_render($subtype, $conf, $panel_arg
 function pavelruban_home_content_theme(&$theme, $plugin) {
   $theme['pavelruban_home_content'] = array(
     'path'      => $plugin['path'],
-    'template'  => 'home_content',
+    'template'  => 'home-content',
     'variables' => array('views' => NULL),
   );
 }

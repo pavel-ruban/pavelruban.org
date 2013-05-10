@@ -119,15 +119,17 @@ var Assets;
           title: 'Media Assets',
           minWidth: 800,
           minHeight: 600,
+          padding: 0,
           contents: [{
             id: 'asset_frame',
             label: 'Add a media asset',
             expand: true,
+            padding: 0,
             elements: [{
               type: 'iframe',
               src: Drupal.settings.basePath + 'admin/assets/add/' + type + '/?render=popup',
-              width: '100%',
-              height: '100%'
+              width: 800,
+              height: 600
             }]
           }],
           buttons: [CKEDITOR.dialog.cancelButton]
@@ -157,8 +159,8 @@ var Assets;
           elements: [{
             type: 'iframe',
             src: Drupal.settings.basePath + 'admin/assets/search?render=popup',
-            width: '100%',
-            height: '100%',
+            width: 1000,
+            height: 600,
             id: 'asset_frame_iframe',
 
             onContentLoad: function () {

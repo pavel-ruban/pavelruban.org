@@ -2959,3 +2959,61 @@ div.le-pagebreak {
   height: 5px;
   cursor: default;
 }
+
+.asset.editor {
+  height: 295px;
+  margin: 5px 0;
+  padding: 15px 10px;
+}
+.asset-wrapper.asset-image.editor a {
+  display: block;
+  height: 296px;
+  margin: auto;
+  position: relative;
+  width: 296px;
+}
+
+.asset-wrapper.asset-image.editor.in-body a {
+  width: 608px;
+}
+
+.asset-wrapper.asset-gallery.editor a {
+  display: block;
+  float: left;
+  height: 90px;
+  margin: 2.5px;
+  width: 120px;
+}
+
+.asset-wrapper.asset-image.editor img {
+  height: 296px;
+  margin: 0;
+  width: 296px;
+}
+
+.asset-wrapper.asset-image.editor.in-body img {
+  width: 608px;
+}
+
+.asset-wrapper.asset-video.editor > * {
+  display: block;
+  margin: 0 auto;
+  height: 294px;
+}
+
+.asset-wrapper.asset-gallery.editor img {
+  height: 90px;
+  margin: 0;
+  width: 120px;
+  background: black;
+}
+
+.asset-wrapper.asset-gallery.editor div {
+  height: 286px;
+  margin: 0 auto;
+  width: 376px;
+}
+
+.asset-wrapper.asset-gallery.editor {
+  height: 286px;
+}

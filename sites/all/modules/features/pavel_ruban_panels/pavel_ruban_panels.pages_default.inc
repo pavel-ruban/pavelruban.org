@@ -180,8 +180,8 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'content';
-    $pane->type = 'page_messages';
-    $pane->subtype = 'page_messages';
+    $pane->type = 'context_links';
+    $pane->subtype = 'context_links';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -198,6 +198,24 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'content';
+    $pane->type = 'page_messages';
+    $pane->subtype = 'page_messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['content'][1] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
+    $pane->panel = 'content';
     $pane->type = 'page_content';
     $pane->subtype = 'page_content';
     $pane->shown = TRUE;
@@ -213,12 +231,12 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['content'][1] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['content'][2] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'footer';
     $pane->type = 'footer';
     $pane->subtype = 'footer';
@@ -233,10 +251,10 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['footer'][0] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['footer'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'header';
     $pane->type = 'header';
     $pane->subtype = 'header';
@@ -251,10 +269,10 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['header'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['header'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'sidebar';
     $pane->type = 'sidebar';
     $pane->subtype = 'sidebar';
@@ -269,10 +287,10 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['sidebar'][0] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['sidebar'][0] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-5';
+  $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
   $export['site_template_panel_context'] = $handler;
 
@@ -411,6 +429,109 @@ function pavel_ruban_panels_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['home'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'las_comments';
+  $page->task = 'page';
+  $page->admin_title = 'Las Comments';
+  $page->admin_description = 'New comments list';
+  $page->path = 'last-comments';
+  $page->access = array(
+    'plugins' => array(),
+    'logic' => 'and',
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => '',
+    'name' => 'navigation',
+    'weight' => '0',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_las_comments_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'las_comments';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Last Comments',
+    'no_blocks' => 1,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'logic' => 'and',
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 2,
+            ),
+          ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
+        ),
+      ),
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'content' => NULL,
+      'sidebar' => NULL,
+      'footer' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'middle';
+    $pane->type = 'last_comments';
+    $pane->subtype = 'last_comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['middle'][0] = 'new-5';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['las_comments'] = $page;
 
   return $pages;
 

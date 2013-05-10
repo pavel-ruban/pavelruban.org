@@ -33,8 +33,8 @@ function pavelruban_header_content_type_render($subtype, $conf, $panel_args, $co
  */
 function pavelruban_header_theme(&$theme, $plugin) {
   $theme['pavelruban_header'] = array(
-    'path'      => $plugin['path'],
-    'template'  => 'header',
+    'path' => $plugin['path'],
+    'template' => 'header',
     'variables' => array('temp' => NULL),
   );
 }
@@ -47,6 +47,20 @@ function template_preprocess_pavelruban_header(&$vars) {
   $vars['image'] = theme('image',
     array('path' => 'sites/all/themes/front/images/logo.png')
   );
+
+  if ($count = count(pavelruban_get_last_comments())) {
+    $class = $count > 9 ? 'dozens' : 'small';
+    $vars['last_comments'] = l(
+      $count,
+      'last-comments',
+      array(
+        'attributes' => array(
+          'title' => t('Recent comments'),
+          'class' => array($class),
+        ),
+      )
+    );
+  }
 
   switch ($user->uid) {
     case '0':

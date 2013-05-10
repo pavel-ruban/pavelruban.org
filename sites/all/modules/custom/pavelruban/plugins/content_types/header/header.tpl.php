@@ -16,6 +16,11 @@
     ); ?>
   <?php endif; ?>
 </div>
+<?php if (!empty($last_comments)): ?>
+  <div class="last-comment-counter">
+    <?php echo $last_comments; ?>
+  </div>
+<?php endif; ?>
 <div class="menu">
 <!--  <a href="#">Minds</a>-->
 <!--  <a href="#">Forum</a>-->

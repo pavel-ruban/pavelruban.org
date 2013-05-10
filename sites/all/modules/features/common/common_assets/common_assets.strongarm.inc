@@ -30,15 +30,15 @@ function common_assets_strongarm() {
   $strongarm->name = 'assets_wysiwyg_modes';
   $strongarm->value = array(
     'image' => array(
-      'full' => 'full',
       'small' => 'small',
+      'in_body' => 'in_body',
+      'small_right' => 'small_right',
     ),
     'video' => array(
-      'full' => 'full',
-      'small' => 'small',
+      'in_body' => 'in_body',
     ),
     'gallery' => array(
-      'full' => 'full',
+      'in_body' => 'in_body',
     ),
   );
   $export['assets_wysiwyg_modes'] = $strongarm;
@@ -109,6 +109,27 @@ function common_assets_strongarm() {
       'tooltip' => array(
         'custom_settings' => TRUE,
       ),
+      'widget_search' => array(
+        'custom_settings' => TRUE,
+      ),
+      'thumbnail' => array(
+        'custom_settings' => TRUE,
+      ),
+      'in_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'gallery' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -134,9 +155,36 @@ function common_assets_strongarm() {
         'custom_settings' => TRUE,
       ),
       'tooltip' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'gallery' => array(
+        'custom_settings' => TRUE,
+      ),
+      'widget_search' => array(
+        'custom_settings' => TRUE,
+      ),
+      'thumbnail' => array(
+        'custom_settings' => TRUE,
+      ),
+      'in_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'small_right' => array(
+        'custom_settings' => TRUE,
+      ),
+      'slider_thumbnail' => array(
+        'custom_settings' => TRUE,
+      ),
+      'slider_viewport' => array(
         'custom_settings' => TRUE,
       ),
     ),
@@ -222,6 +270,27 @@ function common_assets_strongarm() {
       ),
       'tooltip' => array(
         'custom_settings' => TRUE,
+      ),
+      'widget_search' => array(
+        'custom_settings' => TRUE,
+      ),
+      'thumbnail' => array(
+        'custom_settings' => TRUE,
+      ),
+      'in_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'gallery' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
