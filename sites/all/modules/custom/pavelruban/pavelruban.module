@@ -85,7 +85,7 @@ function pavelruban_get_last_comments() {
     $comments_storage = variable_get('pavelruban_last_comments', array());
     if (!empty($comments_storage)) {
       foreach ($comments_storage as $key => &$comment) {
-        if ($user->uid != $comment['uid'] && array_search($user->uid, $comment['accessed_uids']) === FALSE) {
+        if (($user->uid != $comment['uid'] || empty($user->uid)) && array_search($user->uid, $comment['accessed_uids']) === FALSE) {
           $comments[$user->uid][] = $comment;
         }
         if ((time() -$comment['timestamp']) > 60 * 60 * 24 * 7) {
