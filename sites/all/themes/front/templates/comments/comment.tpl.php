@@ -84,7 +84,7 @@
         <div>
           <div class="wall_reply_text comment-body">
             <?php if (!empty($comment->recent_list)): ?>
-              <?php print l(render($content['comment_body']), "node/$comment->nid", array('fragment' => "comment-$comment->cid")); ?>
+              <?php print l(render($content['comment_body']), "node/$comment->nid", array('html' => TRUE, 'fragment' => "comment-$comment->cid")); ?>
               <?php unset($comment->recent_list); ?>
             <?php else: ?>
               <?php print render($content['comment_body']); ?>
