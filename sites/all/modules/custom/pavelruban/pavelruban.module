@@ -81,7 +81,7 @@ function pavelruban_get_last_comments() {
   global $user;
 
   static $comments = array();
-  if (!empty($user->uid) && empty($comments[$user->uid])) {
+  if (empty($comments[$user->uid])) {
     $comments_storage = variable_get('pavelruban_last_comments', array());
     if (!empty($comments_storage)) {
       foreach ($comments_storage as $key => &$comment) {
