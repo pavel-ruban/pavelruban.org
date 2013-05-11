@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
@@ -7,7 +7,6 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
  WARNING: clear browser's cache after you modify this file.
  If you don't do this, you may notice that browser is ignoring all your changes.
  */
-config.allowedContent = true;
 CKEDITOR.editorConfig = function(config) {
   config.indentClasses = [ 'rteindent1', 'rteindent2', 'rteindent3', 'rteindent4' ];
 
@@ -26,7 +25,7 @@ CKEDITOR.editorConfig = function(config) {
   config.protectedSource.push(/<\?[\s\S]*?\?>/g); // PHP Code
   config.protectedSource.push(/<code>[\s\S]*?<\/code>/gi); // Code tags
   config.extraPlugins = '';
-  config.extraPlugins += (config.extraPlugins ? ',syntaxhighlight' : 'syntaxhighlight' );
+
   /*
     * Append here extra CSS rules that should be applied into the editing area.
     * Example:
@@ -98,5 +97,5 @@ Drupal.settings.cke_toolbar_DrupalFull = [
   ['Format','Font','FontSize'],
   ['TextColor','BGColor'],
   ['Maximize', 'ShowBlocks'],
-  ['DrupalBreak', 'DrupalPageBreak', 'Code']
+  ['DrupalBreak', 'DrupalPageBreak']
 ];

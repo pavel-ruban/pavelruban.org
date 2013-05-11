@@ -13,7 +13,7 @@ function common_input_formats_ckeditor_profile_defaults() {
       'name' => 'CKEditor Global Profile',
       'settings' => array(
         'skin' => 'kama',
-        'ckeditor_path' => '%m/ckeditor',
+        'ckeditor_path' => '%l/ckeditor',
         'ckeditor_local_path' => '',
         'ckeditor_plugins_path' => '%m/plugins',
         'ckeditor_plugins_local_path' => '',
@@ -51,6 +51,8 @@ function common_input_formats_ckeditor_profile_defaults() {
         'lang' => 'en',
         'auto_lang' => 't',
         'language_direction' => 'default',
+        'allowed_content' => 'f',
+        'extraAllowedContent' => 'config.allowedContent = true;',
         'enter_mode' => 'br',
         'shift_enter_mode' => 'br',
         'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
@@ -143,7 +145,9 @@ function common_input_formats_ckeditor_profile_defaults() {
           ),
         ),
       ),
-      'input_formats' => array(),
+      'input_formats' => array(
+        'full_html' => 'Full HTML',
+      ),
     ),
   );
   return $data;
