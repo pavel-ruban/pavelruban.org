@@ -52,6 +52,7 @@ function pavelruban_update_7031() {
     }
   }
 }
+
 /**
  * Change module weight.
  */
@@ -62,6 +63,21 @@ function pavelruban_update_7032() {
     'syntaxhighlighter_insert_wysiwyg',
     'better_formats',
     'wysiwyg_filter',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7033() {
+  $modules = array(
+    'pruban_permissions',
   );
 
   foreach ($modules as $module) {
