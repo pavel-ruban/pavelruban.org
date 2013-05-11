@@ -322,10 +322,9 @@ function common_admin_nodequeue_arrange_subqueue_form_table($variables) {
       // Load asset by aid.
       if (!empty($aid)) {
         $aid = $aid[0]['target_id'];
-
         $asset = asset_load($aid);
         if (!empty($asset)) {
-          $asset = entity_view('asset', array($asset), 'dashboard_article_thumbnail');
+          $asset = entity_view('asset', array($asset), 'thumbnail');
         }
         else {
           $asset = NULL;

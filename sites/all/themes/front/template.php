@@ -217,19 +217,22 @@ function front_preprocess_node__article_teaser(&$vars) {
  * Preprocess variables.
  */
 function front_preprocess_html(&$vars) {
+  global $user;
   $vars['tea_mug'] = '<div class="tea-mug-cloud"></div>' . l('', '',
     array(
       'attributes' => array('class' => array('tea-mug')),
     )
   );
-  if (arg(0) == 'user' && in_array(arg(1), array('login'))) {
+  $arg1 = arg(1);
+  if (arg(0) == 'user' && (in_array(arg(1), array('login'))
+    || (empty($user->uid) && empty($arg1)))) {
     $vars['classes_array'][] = 'mini-wrapper';
   }
   if (arg(0) == 'user' && in_array(arg(1), array('password'))) {
     $vars['classes_array'][] = 'medium-wrapper';
   }
-  $delay = 10 * 60;
-  $date = variable_get('pavelruban_change_environment', time() - ($delay + 1));
+ // $delay = 10 * 60;
+ // $date = variable_get('pavelruban_change_environment', time() - ($delay + 1));
 
 //  if ((time() - $date) > $delay) {
     $id = rand(1, 10);

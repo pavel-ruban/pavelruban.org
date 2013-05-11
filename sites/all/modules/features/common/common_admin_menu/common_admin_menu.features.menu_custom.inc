@@ -22,9 +22,16 @@ function common_admin_menu_menu_default_menu_custom() {
     'title' => 'Common Admin Menu',
     'description' => '',
   );
+  // Exported menu: menu-le-admin-menu.
+  $menus['menu-le-admin-menu'] = array(
+    'menu_name' => 'menu-le-admin-menu',
+    'title' => 'Le360 Admin Menu',
+    'description' => '',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Common Admin Menu');
+  t('Le360 Admin Menu');
   t('Management');
   t('The <em>Management</em> menu contains links for administrative tasks.');
 
