@@ -16,7 +16,7 @@ body {
 }
 
 body.img1 {
-  background: url("../images/space.jpg") repeat fixed 0 0 black;
+  background: url("../images/purple.jpg") repeat fixed 0 0 black;
 }
 
 body.img2 {
@@ -52,7 +52,7 @@ body.img9 {
 }
 
 body.img10 {
-  background: url("../images/outer.jpg") repeat fixed 0 0 black;
+  background: url("../images/jump.jpg") repeat fixed 0 0 black;
 }
 
 /* Header */
@@ -495,11 +495,11 @@ body {
 div[id^="wowslider-container"] a.fullscreen-toggle {
   background: url("../images/common.png") repeat scroll -209px -8px transparent;
   display: none;
-  height: 52px;
+  height: 24px;
   position: absolute;
   right: 15px;
   top: 15px;
-  width: 52px;
+  width: 24px;
   z-index: 10;
 }
 
@@ -514,11 +514,11 @@ div.asset.wrapper {
 a.fullscreen-toggle {
   background: url("../images/common.png") repeat scroll -209px -8px transparent;
   display: none;
-  height: 52px;
+  height: 24px;
   position: absolute;
   right: 15px;
   top: 15px;
-  width: 52px;
+  width: 24px;
   z-index: 10;
 }
 
