@@ -68,20 +68,34 @@
     <?php endif; ?>
     <div class="reply_info">
       <div class="fl_r reply_actions_wrap">
-        <div class="reply_actions"><div class="reply_delete_button fl_r" style="opacity: 0;"></div></div>
+        <div class="reply_actions">
+          <div class="reply_delete_button fl_r" style="opacity: 0;"></div>
+        </div>
       </div>
       <div class="reply_text">
+        <?php if (!empty($comment->recent_list)): ?>
+          <?php $n = node_load($comment->nid); ?>
+          <?php print l(check_plain($n->title), "node/$comment->nid",
+            array('fragment' => "comment-$comment->cid", 'attributes' => array('class' => array('comments-node')))); ?>
+        <?php endif; ?>
         <?php if (!empty($author)): ?>
           <?php print $author ?>
         <?php endif; ?>
-        <div><div class="wall_reply_text comment-body">
-            <?php print render($content['comment_body']); ?>
-        </div></div>
+        <div>
+          <div class="wall_reply_text comment-body">
+            <?php if (!empty($comment->recent_list)): ?>
+              <?php print l(render($content['comment_body']), "node/$comment->nid", array('fragment' => "comment-$comment->cid")); ?>
+              <?php unset($comment->recent_list); ?>
+            <?php else: ?>
+              <?php print render($content['comment_body']); ?>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
-        <a class="wd_lnk"><span class="rel_date"><?php echo $date; ?></span></a>
-      </div>
-      <?php if (!empty($delete)): ?>
-        <?php echo $delete_link; ?>
-      <?php endif; ?>
+      <a class="wd_lnk"><span class="rel_date"><?php echo $date; ?></span></a>
+    </div>
+    <?php if (!empty($delete)): ?>
+      <?php echo $delete_link; ?>
+    <?php endif; ?>
   </div>
 </div>

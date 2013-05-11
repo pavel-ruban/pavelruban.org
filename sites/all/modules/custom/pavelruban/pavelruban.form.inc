@@ -22,6 +22,10 @@ function pavelruban_form_alter(&$form, &$form_state, $form_id) {
       $form['timezone']['#collapsed'] = TRUE;
       break;
 
+    case 'user_login':
+      $form['name']['#description'] = t('Enter your username.');
+      break;
+
     case 'comment_node_article_form':
       $form['actions']['preview']['#access'] = FALSE;
       $form['actions']['submit']['#value'] = t('submit');

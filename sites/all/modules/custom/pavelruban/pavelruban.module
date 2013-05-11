@@ -5,18 +5,11 @@
  */
 
 define('PR_MODULE_PATH', drupal_get_path('module', 'pavelruban'));
+define('SHADOWBOX_DEFAULT_PATH', 'sites/all/libraries/shadowbox');
+define('WOW_SLIDER_DEFAULT_PATH', 'sites/all/libraries/wowslider');
 
 require_once PR_MODULE_PATH . '/pavelruban.form.inc';
-
-/**
- * Implements hook_init().
- */
-function pavelruban_init() {
-  $arg0 = arg(0);
-//  if (!user_access('admin') && (!empty($arg0) && ($arg0 !== 'node' || $arg0 !== '<front>>'  || //$arg0 !== '/' || $arg0 !== 'user'))) {
-//    drupal_not_found();
-//  }
-}
+require_once PR_MODULE_PATH . '/pavelruban.text.inc';
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -25,6 +18,17 @@ function pavelruban_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools' || $module == 'panels' || $module == 'page_manager' || $module == 'entityreference') {
     return 'plugins/' . $plugin;
   }
+}
+
+/**
+ * Is ajax check.
+ */
+function pavelruban_is_ajax() {
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])
+    && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /**
@@ -37,12 +41,86 @@ function pavelruban_ctools_plugin_api($owner, $api) {
 }
 
 /**
+ * Update storage.
+ */
+function pavelruban_comment_delete($comment) {
+  $storage = variable_get('pavelruban_last_comments', array());
+  unset($storage[$comment->cid]);
+  variable_set('pavelruban_last_comments', $storage);
+}
+
+/**
+ * Save new comments.
+ */
+function pavelruban_comment_insert($comment) {
+  $storage = variable_get('pavelruban_last_comments', array());
+  if (date('Y', time()) != ($year = date('Y', $comment->changed)))  {
+    $date = $year;
+  }
+  else {
+    setlocale(LC_ALL, 'ru_RU.UTF8');
+    $date = strftime('%d %b в %H:%M', $comment->changed);
+  }
+  $storage[$comment->cid] = array(
+    'nid' => $comment->nid,
+    'uid' => empty($comment->is_anonymous) ? $comment->uid : 0,
+    'user_name' => empty($comment->is_anonymous) ? $comment->name : t('Аноним'),
+    'text' => $comment->comment_body['und'][0]['value'],
+    'timestamp' => $comment->changed,
+    'date' => $date,
+    'cid' => $comment->cid,
+    'accessed_uids' => array(),
+  );
+  variable_set('pavelruban_last_comments', $storage);
+}
+
+/**
+ * Retrieve comment list.
+ */
+function pavelruban_get_last_comments() {
+  global $user;
+
+  static $comments = array();
+  if (!empty($user->uid) && empty($comments[$user->uid])) {
+    $comments_storage = variable_get('pavelruban_last_comments', array());
+    if (!empty($comments_storage)) {
+      foreach ($comments_storage as $key => &$comment) {
+        if ($user->uid != $comment['uid'] && array_search($user->uid, $comment['accessed_uids']) === FALSE) {
+          $comments[$user->uid][] = $comment;
+        }
+        if ((time() -$comment['timestamp']) > 60 * 60 * 24 * 7) {
+          unset($comments_storage[$key]);
+        }
+      }
+      variable_set('pavelruban_last_comments', $comments_storage);
+    }
+  }
+  return !empty($comments[$user->uid]) ? $comments[$user->uid] : array();
+}
+
+/**
+ * Implements hook_filter_info().
+ */
+function pavelruban_filter_info() {
+  $filters['text_node_wrapper'] = array(
+    'title' => t('The textNode following last asset wrapper'),
+    'description' => t('Wrapp with display block span the text nodes following last small asset to provide clear css rule work'),
+    'process callback' => 'pavelruban_text_following_last_asset_wrapper',
+  );
+  return $filters;
+}
+
+/**
  * Implements hook_entity_info_alter().
  */
 function pavelruban_entity_info_alter(&$entity_info) {
   $view_modes = array(
     'asset' => array(
       'teaser',
+      'small_right',
+      'tooltip',
+      'slider_thumbnail',
+      'slider_viewport',
     ),
     'user' => array(
       'comments',
@@ -57,6 +135,67 @@ function pavelruban_entity_info_alter(&$entity_info) {
       );
     }
   }
+}
+
+/**
+ * Implements hook_library().
+ */
+function pavelruban_library() {
+
+  $shadowbox_location = variable_get('shadowbox_location', SHADOWBOX_DEFAULT_PATH);
+  $wow_slider_location = variable_get('wow_slider_location', WOW_SLIDER_DEFAULT_PATH);
+
+  $libraries['shadowbox'] = array(
+    'title' => 'Shadowbox',
+    'website' => 'http://www.shadowbox-js.com/',
+    'version' => '3.0.3',
+    'js' => array(
+      $shadowbox_location . '/shadowbox.js' => array(),
+      // Make sure to set the shadowbox path so that the language is set properly.
+      array(
+        'type' => 'inline',
+        'scope' => 'header',
+        'group' => JS_THEME,
+        'data' => '
+          Shadowbox.path = "' . base_path() . $shadowbox_location . '/";
+        ',
+      ),
+    ),
+    'css' => array(
+      $shadowbox_location . '/shadowbox.css' => array(
+        'type' => 'file',
+        'media' => 'screen',
+      ),
+      array(
+        'type' => 'inline',
+        'media' => 'print',
+        'data' => '
+          #sb-container { position: relative; }
+          #sb-overlay { display: none; }
+          #sb-wrapper { position: relative; top: 0; left: 0; }
+          #sb-loading { display: none; }
+        ',
+      ),
+    ),
+  );
+
+  $libraries['wow_slider'] = array(
+    'title' => 'Wow slider',
+    'website' => 'http://wowslider.com',
+    'version' => '1',
+    'js' => array(
+      $wow_slider_location . '/wowslider.js' => array(),
+      $wow_slider_location . '/wowsliderinit.js' => array(),
+    ),
+    'css' => array(
+      $wow_slider_location . '/wowslider.css' => array(
+        'type' => 'file',
+        'media' => 'screen',
+      ),
+    ),
+  );
+
+  return $libraries;
 }
 
 /**

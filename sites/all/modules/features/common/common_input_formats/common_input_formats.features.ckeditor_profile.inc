@@ -9,80 +9,6 @@
  */
 function common_input_formats_ckeditor_profile_defaults() {
   $data = array(
-    'Advanced' => array(
-      'name' => 'Advanced',
-      'settings' => array(
-        'ss' => '2',
-        'default' => 't',
-        'show_toggle' => 'f',
-        'uicolor' => 'default',
-        'uicolor_user' => 'default',
-        'toolbar' => '[
-    [\'Source\'],
-    [\'Cut\',\'Copy\',\'Paste\',\'PasteText\',\'PasteFromWord\',\'-\',\'SpellChecker\', \'Scayt\'],
-    [\'Undo\',\'Redo\',\'Find\',\'Replace\',\'-\',\'SelectAll\',\'RemoveFormat\'],
-    [\'Image\',\'Media\',\'Flash\',\'Table\',\'HorizontalRule\',\'Smiley\',\'SpecialChar\'],
-    [\'Maximize\', \'ShowBlocks\'],
-    \'/\',
-    [\'Format\'],
-    [\'Bold\',\'Italic\',\'Underline\',\'Strike\',\'-\',\'Subscript\',\'Superscript\'],
-    [\'NumberedList\',\'BulletedList\',\'-\',\'Outdent\',\'Indent\',\'Blockquote\'],
-    [\'JustifyLeft\',\'JustifyCenter\',\'JustifyRight\',\'JustifyBlock\',\'-\',\'BidiLtr\',\'BidiRtl\'],
-    [\'Link\',\'Unlink\',\'Anchor\', \'Linkit\']
-]
-    ',
-        'expand' => 't',
-        'width' => '100%',
-        'lang' => 'en',
-        'auto_lang' => 't',
-        'language_direction' => 'default',
-        'enter_mode' => 'p',
-        'shift_enter_mode' => 'br',
-        'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
-        'custom_formatting' => 'f',
-        'formatting' => array(
-          'custom_formatting_options' => array(
-            'indent' => 'indent',
-            'breakBeforeOpen' => 'breakBeforeOpen',
-            'breakAfterOpen' => 'breakAfterOpen',
-            'breakAfterClose' => 'breakAfterClose',
-            'breakBeforeClose' => 0,
-            'pre_indent' => 0,
-          ),
-        ),
-        'css_mode' => 'none',
-        'css_path' => '',
-        'css_style' => 'theme',
-        'styles_path' => '',
-        'filebrowser' => 'none',
-        'filebrowser_image' => '',
-        'filebrowser_flash' => '',
-        'UserFilesPath' => '%b%f/',
-        'UserFilesAbsolutePath' => '%d%b%f/',
-        'forcePasteAsPlainText' => 'f',
-        'html_entities' => 'f',
-        'scayt_autoStartup' => 'f',
-        'theme_config_js' => 'f',
-        'js_conf' => '',
-        'loadPlugins' => array(
-          'drupalbreaks' => array(
-            'name' => 'drupalbreaks',
-            'desc' => 'Plugin for inserting Drupal teaser and page breaks.',
-            'path' => '%plugin_dir%drupalbreaks/',
-            'buttons' => array(
-              'DrupalBreak' => array(
-                'label' => 'DrupalBreak',
-                'icon' => 'images/drupalbreak.png',
-              ),
-            ),
-            'default' => 't',
-          ),
-        ),
-      ),
-      'input_formats' => array(
-        'filtered_html' => 'Filtered HTML',
-      ),
-    ),
     'CKEditor Global Profile' => array(
       'name' => 'CKEditor Global Profile',
       'settings' => array(
@@ -118,14 +44,14 @@ function common_input_formats_ckeditor_profile_defaults() {
     [\'Bold\',\'Italic\',\'Underline\',\'Strike\',\'-\',\'Subscript\',\'Superscript\'],
     [\'NumberedList\',\'BulletedList\',\'-\',\'Outdent\',\'Indent\',\'Blockquote\'],
     [\'JustifyLeft\',\'JustifyCenter\',\'JustifyRight\',\'JustifyBlock\',\'-\',\'BidiLtr\',\'BidiRtl\'],
-    [\'Link\',\'Unlink\',\'Anchor\']
+    [\'Link\',\'Unlink\',\'Anchor\',\'Code\',\'asset_image\',\'asset_video\',\'asset_gallery\',\'assetSearch\']
 ]',
         'expand' => 't',
         'width' => '100%',
         'lang' => 'en',
         'auto_lang' => 't',
         'language_direction' => 'default',
-        'enter_mode' => 'p',
+        'enter_mode' => 'br',
         'shift_enter_mode' => 'br',
         'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
         'custom_formatting' => 'f',
@@ -139,8 +65,8 @@ function common_input_formats_ckeditor_profile_defaults() {
             'pre_indent' => 0,
           ),
         ),
-        'css_mode' => 'none',
-        'css_path' => '',
+        'css_mode' => 'self',
+        'css_path' => '/sites/all/themes/common_admin/css/ckeditor_custom.css',
         'css_style' => 'theme',
         'styles_path' => '',
         'filebrowser' => 'none',
@@ -150,10 +76,33 @@ function common_input_formats_ckeditor_profile_defaults() {
         'UserFilesAbsolutePath' => '%d%b%f/',
         'forcePasteAsPlainText' => 'f',
         'html_entities' => 'f',
-        'scayt_autoStartup' => 'f',
+        'scayt_autoStartup' => 't',
         'theme_config_js' => 'f',
         'js_conf' => '',
         'loadPlugins' => array(
+          'asset' => array(
+            'name' => 'asset',
+            'desc' => 'Media assets',
+            'path' => '%base_path%sites/all/modules/contrib/asset/ckeditor/',
+            'buttons' => array(
+              'asset_video' => array(
+                'label' => 'Asset: Video',
+                'icon' => 'buttons/AddVideo.png',
+              ),
+              'asset_image' => array(
+                'label' => 'Asset: Image',
+                'icon' => 'buttons/AddImage.png',
+              ),
+              'asset_gallery' => array(
+                'label' => 'Asset: Gallery',
+                'icon' => 'buttons/AddSlideshow.png',
+              ),
+              'assetSearch' => array(
+                'label' => 'Assets library',
+                'icon' => 'search.png',
+              ),
+            ),
+          ),
           'counter' => array(
             'name' => 'counter',
             'desc' => 'Plugin to count symbols, symbols without blanks and words',
@@ -172,6 +121,25 @@ function common_input_formats_ckeditor_profile_defaults() {
               ),
             ),
             'default' => 't',
+          ),
+          'iframedialog' => array(
+            'name' => 'iframedialog',
+            'desc' => 'Plugin file: iframedialog',
+            'path' => '%plugin_dir%iframedialog/',
+            'buttons' => FALSE,
+            'default' => 'f',
+          ),
+          'syntaxhighlight' => array(
+            'name' => 'syntaxhighlight',
+            'desc' => 'Plugin file: syntaxhighlight',
+            'path' => '%plugin_dir%syntaxhighlight/',
+            'buttons' => array(
+              'Code' => array(
+                'label' => 'Code',
+                'icon' => 'images/syntaxhighlight.gif',
+              ),
+            ),
+            'default' => 'f',
           ),
         ),
       ),

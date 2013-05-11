@@ -52,3 +52,21 @@ function pavelruban_update_7031() {
     }
   }
 }
+/**
+ * Change module weight.
+ */
+function pavelruban_update_7032() {
+  $modules = array(
+    'syntaxhighlighter',
+    'syntaxhighlighter_insert',
+    'syntaxhighlighter_insert_wysiwyg',
+    'better_formats',
+    'wysiwyg_filter',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}

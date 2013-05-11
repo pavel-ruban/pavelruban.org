@@ -31,7 +31,7 @@ function common_form_alter(&$form, &$form_state, $form_id) {
       '#type' => 'submit',
       '#value' => t('Preview'),
       '#weight' => 11,
-      '#submit' => array('common_preview_redirect'),
+      '#submit' => array('common_node_pages_init', 'common_preview_redirect'),
       '#validate' => array(
         'node_form_validate',
       ),
@@ -64,6 +64,14 @@ function common_settings_form_after_build(&$form, &$form_state) {
   $form['setting_tabs']['site_info']['site_information']['format']['#access'] = FALSE;
   $form['setting_tabs']['site_contacts']['site_contacts']['format']['#access'] = FALSE;
   return $form;
+}
+
+/**
+ * Submit to include node.pages.inc for preview node_form_submit.
+ */
+function common_node_pages_init($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_submit($form, $form_state);
 }
 
 /**

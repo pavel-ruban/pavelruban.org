@@ -35,12 +35,14 @@
  */
 ?>
 <div class="profile"<?php print $attributes; ?>>
-  <h3><?php echo drupal_ucfirst($user->name); ?></h3>
+  <h3>
+    <?php echo drupal_ucfirst($target_user->name); ?>
+    <?php if (!empty($access)): ?>
+      <span class="access">последнее посещение: <?php echo $access; ?></span>
+    <?php endif; ?>
+  </h3>
   <?php if (!empty($edit_link)): ?>
     <?php echo $edit_link; ?>
-  <?php endif; ?>
-  <?php if (!empty($access)): ?>
-    <div class="access">последнее посещение: <?php echo $access; ?></div>
   <?php endif; ?>
   <div class="image">
     <?php echo render($user_profile['field_asset_image']); ?>

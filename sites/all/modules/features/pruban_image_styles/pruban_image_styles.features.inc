@@ -32,6 +32,50 @@ function pruban_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: slider_thumbnail.
+  $styles['slider_thumbnail'] = array(
+    'name' => 'slider_thumbnail',
+    'effects' => array(
+      4 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '120',
+          'height' => '90',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: slider_viewport.
+  $styles['slider_viewport'] = array(
+    'name' => 'slider_viewport',
+    'effects' => array(
+      5 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '450',
+          'height' => '405',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: teaser.
   $styles['teaser'] = array(
     'name' => 'teaser',

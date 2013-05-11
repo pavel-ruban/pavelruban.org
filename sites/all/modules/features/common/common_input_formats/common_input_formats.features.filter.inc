@@ -16,7 +16,7 @@ function common_input_formats_filter_default_formats() {
     'name' => 'Filtered HTML',
     'cache' => '1',
     'status' => '1',
-    'weight' => '0',
+    'weight' => '-9',
     'filters' => array(
       'filter_url' => array(
         'weight' => '0',
@@ -53,27 +53,32 @@ function common_input_formats_filter_default_formats() {
     'name' => 'Full HTML',
     'cache' => '0',
     'status' => '1',
-    'weight' => '1',
+    'weight' => '-10',
     'filters' => array(
+      'text_node_wrapper' => array(
+        'weight' => '-50',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'assets_filter' => array(
-        'weight' => '-38',
+        'weight' => '-49',
         'status' => '1',
         'settings' => array(),
       ),
       'filter_url' => array(
-        'weight' => '-37',
+        'weight' => '-48',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
       ),
-      'filter_autop' => array(
-        'weight' => '-36',
+      'syntaxhighlighter' => array(
+        'weight' => '-47',
         'status' => '1',
         'settings' => array(),
       ),
-      'filter_htmlcorrector' => array(
-        'weight' => '-35',
+      'filter_autop' => array(
+        'weight' => '-46',
         'status' => '1',
         'settings' => array(),
       ),
@@ -86,7 +91,7 @@ function common_input_formats_filter_default_formats() {
     'name' => 'PHP code',
     'cache' => '0',
     'status' => '1',
-    'weight' => '11',
+    'weight' => '-7',
     'filters' => array(
       'php_code' => array(
         'weight' => '0',
@@ -102,7 +107,7 @@ function common_input_formats_filter_default_formats() {
     'name' => 'Plain text',
     'cache' => '1',
     'status' => '1',
-    'weight' => '10',
+    'weight' => '-8',
     'filters' => array(
       'filter_html_escape' => array(
         'weight' => '0',

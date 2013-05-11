@@ -7,5 +7,7 @@ project = pruban_image_styles
 dependencies[] = image
 features[features_api][] = api:1
 features[image][] = avatar
+features[image][] = slider_thumbnail
+features[image][] = slider_viewport
 features[image][] = teaser
 features[image][] = user_page

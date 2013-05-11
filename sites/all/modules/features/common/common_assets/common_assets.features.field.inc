@@ -151,6 +151,25 @@ function common_assets_field_default_fields() {
           'type' => 'hidden',
           'weight' => 0,
         ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'slider_viewport' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'small_right' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'taxonomy_list' => array(
           'label' => 'above',
           'settings' => array(),
@@ -309,6 +328,32 @@ function common_assets_field_default_fields() {
           'weight' => '0',
         ),
         'in_body' => array(
+          'label' => 'hidden',
+          'module' => 'entityreference',
+          'settings' => array(
+            'links' => 0,
+            'view_mode' => 'in_body',
+          ),
+          'type' => 'entityreference_entity_view',
+          'weight' => '0',
+        ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'slider_viewport' => array(
+          'label' => 'hidden',
+          'module' => 'entityreference',
+          'settings' => array(
+            'links' => 0,
+            'view_mode' => 'slider_viewport',
+          ),
+          'type' => 'entityreference_entity_view',
+          'weight' => '0',
+        ),
+        'small_right' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -330,8 +375,8 @@ function common_assets_field_default_fields() {
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
-            'links' => TRUE,
-            'view_mode' => 'small',
+            'links' => 0,
+            'view_mode' => 'tooltip',
           ),
           'type' => 'entityreference_entity_view',
           'weight' => '1',
@@ -524,11 +569,33 @@ function common_assets_field_default_fields() {
           'type' => 'hidden',
           'weight' => '0',
         ),
-        'small' => array(
-          'label' => 'above',
+        'slider_thumbnail' => array(
+          'label' => 'hidden',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'slider_viewport' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'small' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'small_right' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
         ),
         'taxonomy_list' => array(
           'label' => 'above',
@@ -552,7 +619,7 @@ function common_assets_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'video360' => array(
           'label' => 'above',
@@ -810,11 +877,45 @@ function common_assets_field_default_fields() {
           'type' => 'image',
           'weight' => '0',
         ),
+        'slider_thumbnail' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'slider_thumbnail',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'slider_viewport' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'slider_viewport',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
         'small' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'asset_image_small',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'small_right' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'asset_image_small',
+          ),
+          'type' => 'image',
+          'weight' => '0',
         ),
         'taxonomy_list' => array(
           'label' => 'hidden',
@@ -958,7 +1059,7 @@ function common_assets_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 5,
+          'weight' => '5',
         ),
         'field_left_article' => array(
           'label' => 'above',
@@ -1063,11 +1164,30 @@ function common_assets_field_default_fields() {
           'type' => 'hidden',
           'weight' => '0',
         ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
+        ),
+        'slider_viewport' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
+        ),
         'small' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '3',
+        ),
+        'small_right' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
         ),
         'taxonomy_list' => array(
           'label' => 'above',
@@ -1091,7 +1211,7 @@ function common_assets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'video360' => array(
           'label' => 'above',
@@ -1208,7 +1328,7 @@ function common_assets_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 6,
+          'weight' => '6',
         ),
         'full' => array(
           'label' => 'above',
@@ -1228,11 +1348,29 @@ function common_assets_field_default_fields() {
           'type' => 'hidden',
           'weight' => 0,
         ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'slider_viewport' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
         'small' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '2',
+        ),
+        'small_right' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1245,6 +1383,12 @@ function common_assets_field_default_fields() {
           'settings' => array(),
           'type' => 'hidden',
           'weight' => 0,
+        ),
+        'tooltip' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'widget_search' => array(
           'label' => 'above',
@@ -1352,8 +1496,8 @@ function common_assets_field_default_fields() {
           'label' => 'hidden',
           'module' => 'emvideo',
           'settings' => array(
-            'height' => '322',
-            'width' => '585',
+            'height' => '288',
+            'width' => '608',
           ),
           'type' => 'emvideo_video',
           'weight' => '0',
@@ -1410,7 +1554,25 @@ function common_assets_field_default_fields() {
           'type' => 'hidden',
           'weight' => 0,
         ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'slider_viewport' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'small' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'small_right' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -1539,6 +1701,18 @@ function common_assets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
+          'weight' => '0',
+        ),
+        'slider_thumbnail' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'slider_viewport' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => 0,
         ),
         'small' => array(
@@ -1547,6 +1721,12 @@ function common_assets_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '1',
+        ),
+        'small_right' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
