@@ -47,6 +47,8 @@ Disallow: /search/
 Disallow: /user/register/
 Disallow: /user/password/
 Disallow: /user/login/
+Disallow: /user/
+Disallow: /users/
 Disallow: /user/logout/
 
 Disallow: /tous-les-liens
