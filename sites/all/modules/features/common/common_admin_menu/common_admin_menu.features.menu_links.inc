@@ -155,25 +155,6 @@ function common_admin_menu_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-46',
   );
-  // Exported menu link: menu-common-admin-menu:admin/structure/nodequeue/2/view/2
-  $menu_links['menu-common-admin-menu:admin/structure/nodequeue/2/view/2'] = array(
-    'menu_name' => 'menu-common-admin-menu',
-    'link_path' => 'admin/structure/nodequeue/2/view/2',
-    'router_path' => 'admin/structure/nodequeue/%/view/%',
-    'link_title' => 'Pages',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-49',
-    'parent_path' => 'admin/structure/nodequeue/1/view/1',
-  );
   // Exported menu link: menu-common-admin-menu:menu-position/1
   $menu_links['menu-common-admin-menu:menu-position/1'] = array(
     'menu_name' => 'menu-common-admin-menu',
@@ -433,6 +414,23 @@ function common_admin_menu_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '0',
+  );
+  // Exported menu link: menu-le-admin-menu:admin/dashboard/articles
+  $menu_links['menu-le-admin-menu:admin/dashboard/articles'] = array(
+    'menu_name' => 'menu-le-admin-menu',
+    'link_path' => 'admin/dashboard/articles',
+    'router_path' => 'admin/dashboard',
+    'link_title' => 'Articles',
+    'options' => array(
+      'attributes' => array(),
+      'alter' => TRUE,
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-49',
   );
   // Translatables
   // Included for use with string extractors like potx.
