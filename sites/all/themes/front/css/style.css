@@ -10,49 +10,50 @@ ul {
 
 body {
   margin: 0;
-  background: url("../images/space.jpg") repeat fixed 0 0 black;
+  background: url("../images/space.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
   color: #404040;
   font-family: Trebuchet MS;
 }
 
 body.img1 {
-  background: url("../images/purple.jpg") repeat fixed 0 0 black;
+  background: url("../images/purple.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img2 {
-  background: url("../images/sunset.jpeg") repeat fixed 0 0 black;
+  background: url("../images/sunset.jpeg") no-repeat fixed 0 0 black;
 }
 
 body.img3 {
-  background: url("../images/sunset2.jpg") repeat fixed 0 0 black;
+  background: url("../images/sunset2.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img4 {
-  background: url("../images/purple.jpg") repeat fixed 0 0 black;
+  background: url("../images/purple.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img5 {
-  background: url("../images/outer.jpg") repeat fixed 0 0 black;
+  background: url("../images/outer.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img6 {
-  background: url("../images/sky.jpg") repeat fixed 0 0 black;
+  background: url("../images/sky.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img7 {
-  background: url("../images/space2.jpg") repeat fixed 0 0 black;
+  background: url("../images/space2.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img8 {
-  background: url("../images/space.jpg") repeat fixed 0 0 black;
+  background: url("../images/space.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img9 {
-  background: url("../images/sky.jpg") repeat fixed 0 0 black;
+  background: url("../images/sky.jpg") no-repeat fixed 0 0 black;
 }
 
 body.img10 {
-  background: url("../images/jump.jpg") repeat fixed 0 0 black;
+  background: url("../images/jump.jpg") no-repeat fixed 0 0 black;
 }
 
 /* Header */
