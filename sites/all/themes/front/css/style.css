@@ -10,49 +10,60 @@ ul {
 
 body {
   margin: 0;
-  background: url("../images/space.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/space.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
   color: #404040;
   font-family: Trebuchet MS;
 }
 
 body.img1 {
-  background: url("../images/purple.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/purple.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img2 {
-  background: url("../images/sunset.jpeg") no-repeat fixed 0 0 cover black;
+  background: url("../images/sunset.jpeg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img3 {
-  background: url("../images/sunset2.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/sunset2.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img4 {
-  background: url("../images/purple.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/purple.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img5 {
-  background: url("../images/outer.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/outer.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img6 {
-  background: url("../images/sky.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/sky.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img7 {
-  background: url("../images/space2.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/space2.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img8 {
-  background: url("../images/space.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/space.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img9 {
-  background: url("../images/sky.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/sky.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 body.img10 {
-  background: url("../images/jump.jpg") no-repeat fixed 0 0 cover black;
+  background: url("../images/jump.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
 }
 
 /* Header */
