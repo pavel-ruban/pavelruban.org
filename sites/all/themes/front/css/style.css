@@ -14,6 +14,7 @@ body {
   background-size: cover;
   color: #404040;
   font-family: Trebuchet MS;
+  word-break: break-all;
 }
 
 body.img1 {
