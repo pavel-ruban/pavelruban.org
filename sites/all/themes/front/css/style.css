@@ -14,7 +14,7 @@ body {
   background-size: cover;
   color: #404040;
   font-family: Trebuchet MS;
-  word-break: break-all;
+  word-wrap: break-word;
 }
 
 body.img1 {
@@ -497,7 +497,7 @@ div.asset.content-small.wrapper.right {
 
 body {
   text-align: justify;
-  line-height: 19.6px;
+  line-height: 25.6px;
 }
 
 .text-node-wrapper {
@@ -576,4 +576,8 @@ a {
   font-weight: bold;
   display: block;
   margin-bottom: 13px;
+}
+
+.wall_reply_text.comment-body {
+  overflow: hidden;
 }
