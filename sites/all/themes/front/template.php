@@ -8,22 +8,42 @@
  * Process variables.
  */
 function front_preprocess_user_profile(&$vars) {
-  $target_user = user_load(arg(1));
-  $vars['target_user'] = $target_user;
-  $vars['edit_link'] = l(
-    t('edit'),
-    "user/$target_user->uid/edit",
-    array(
-      'attributes' => array('class' => array('user-edit-link')),
-    )
-  );
-  if (!empty($target_user->access)) {
-    if (date('Y', time()) != ($year = date('Y', $target_user->access)))  {
-      $vars['access'] = "в $year году";
+  if ($vars['elements']['#view_mode'] == 'full') {
+    $target_user = user_load(arg(1));
+    $vars['target_user'] = $target_user;
+    $vars['edit_link'] = l(
+      t('edit'),
+      "user/$target_user->uid/edit",
+      array(
+        'attributes' => array('class' => array('user-edit-link')),
+      )
+    );
+    if (!empty($target_user->access)) {
+      if (date('Y', time()) != ($year = date('Y', $target_user->access)))  {
+        $vars['access'] = "в $year году";
+      }
+      else {
+        setlocale(LC_ALL, 'ru_RU.UTF8');
+        $vars['access'] = strftime('%d %b в %H:%M', $target_user->access);
+      }
     }
-    else {
-      setlocale(LC_ALL, 'ru_RU.UTF8');
-      $vars['access'] = strftime('%d %b в %H:%M', $target_user->access);
+  }
+
+  $build_mode_for_preprocess = str_replace('-', '_', $vars['elements']['#view_mode']);
+
+  $vars['theme_hook_suggestions'][] = 'user_profile__' . $vars['elements']['#view_mode'];
+
+  // Defines the priority of calling preprocess fuctions for specific usertype & build
+  // modes.
+  // Note: priority is calculated in reverse mode.
+  $preprocess = array(
+    'front_preprocess_user__' . $build_mode_for_preprocess,
+  );
+
+  foreach (array_reverse($preprocess) as $function) {
+    if (function_exists($function)) {
+      $function($vars, $hook);
+      break;
     }
   }
 }
@@ -166,7 +186,7 @@ function front_preprocess_entity(&$vars) {
         }
       }
       break;
-    
+
   }
 }
 
@@ -209,7 +229,29 @@ function front_preprocess_node__article_teaser(&$vars) {
     $vars['media'] = render($vars['content']['field_article_media']);
   }
   if (!empty($vars['content']['field_article_catchline'])) {
-    $vars['description'] = render($vars['content']['field_article_catchline']);
+    $description = render($vars['content']['field_article_catchline']);
+    $vars['description'] = $description;
+  }
+
+  $result = db_select('node_statistic')
+   ->fields('node_statistic', array('access_count'))
+   ->condition('nid', $vars['nid'])
+   ->execute()
+   ->fetchCol();
+  $acess_count = !empty($result[0]) ? $result[0] : 0;
+  $vars['social'] = theme('social',
+    array(
+      'nid' => $vars['nid'],
+      'comment_count' => $vars['comment_count'],
+      'changed' => $vars['changed'],
+      'share_title' => $vars['title'],
+      'share_description' => $description,
+      'access_count' => $acess_count,
+    )
+  );
+  $tags = field_get_items('node', $vars['node'], 'field_tags');
+  if (!empty($tags)) {
+    $vars['tags'] = theme('tags', array('tags' => $tags));
   }
 }
 
@@ -239,6 +281,40 @@ function front_preprocess_html(&$vars) {
     $vars['classes_array'][] = "img$id";
     variable_set('pavelruban_change_environment', time());
 //  }
+
+  // Social js.
+  drupal_add_js('http://vkontakte.ru/js/api/openapi.js', 'external');
+  drupal_add_js('https://platform.twitter.com/widgets.js', 'external');
+  $vk_js_init = <<<init_vk_js
+    VK.init({
+      apiId: 3790252,
+      onlyWidgets: true
+    });
+init_vk_js;
+  drupal_add_js($vk_js_init, 'inline');
+
+  // Statistic.
+  if (preg_match('/^node\/([0-9]+)$/', $_GET['q'], $matches)) {
+    $nid = $matches[1];
+
+    $result = db_select('node_statistic')
+     ->fields('node_statistic', array('access_count'))
+     ->condition('nid', $nid)
+     ->execute()
+     ->fetchCol();
+
+    if (empty($result)) {
+      db_insert('node_statistic')
+        ->fields(array('nid' => $nid, 'access_count' => 1))
+        ->execute();
+    }
+    else {
+      db_update('node_statistic')
+        ->fields(array('nid' => $nid, 'access_count' => ++$result[0]))
+        ->condition('nid', $nid)
+        ->execute();
+    }
+  }
 }
 
 /**
@@ -249,10 +325,16 @@ function front_preprocess_node__article_full(&$vars) {
     $vars['media'] = render($vars['content']['field_article_media']);
   }
   if (!empty($vars['content']['field_article_catchline'])) {
-    $vars['description'] = render($vars['content']['field_article_catchline']);
+    $description = render($vars['content']['field_article_catchline']);
+    $vars['description'] = $description;
   }
   if (!empty($vars['content']['field_body'])) {
     $vars['body'] = render($vars['content']['field_body']);
+  }
+
+  $tags = field_get_items('node', $vars['node'], 'field_tags');
+  if (!empty($tags)) {
+    $vars['tags'] = theme('tags', array('tags' => $tags));
   }
 }
 

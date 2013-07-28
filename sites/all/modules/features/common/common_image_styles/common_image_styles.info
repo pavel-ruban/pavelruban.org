@@ -10,4 +10,6 @@ features[features_api][] = api:1
 features[image][] = asset_image_in_body
 features[image][] = asset_image_tooltip
 features[image][] = asset_list_preview
+features[image][] = like_full-100x100
+features[image][] = like_mini-50x50
 features[image][] = tooltip

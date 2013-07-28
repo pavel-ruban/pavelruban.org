@@ -42,11 +42,24 @@ span.rel_date {
 }
 
 h1.comments {
-  border-bottom: 1px solid #DADADA;
+  margin-bottom: 0px;
+  display: block;
+  float: left;
+  width: 125px;
+}
+
+div.social-right {
+  float: right;
+  margin-top: 16px;
+}
+
+div.comment-header-border {
+  height: 1px;
+  width: 100%;
+  clear: both;
   padding-bottom: 9px;
   margin-bottom: 4px;
-  clear: both;
-  display: block;
+  border-bottom: 1px solid rgb(218, 218, 218);
 }
 
 h1.comment-bottom-line {

@@ -1,0 +1,909 @@
+<html class="js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" version="XHTML+RDFa 1.0" dir="ltr" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">​​​​​<head><style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+/** reset styling **/
+.firebugResetStyles {
+    z-index: 2147483646 !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    border: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: fixed !important;
+    transform: rotate(0deg) !important;
+    transform-origin: 50% 50% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent none !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+}
+
+.firebugBlockBackgroundColor {
+    background-color: transparent !important;
+}
+
+.firebugResetStyles:before, .firebugResetStyles:after {
+    content: "" !important;
+}
+/**actual styling to be modified by firebug theme**/
+.firebugCanvas {
+    display: none !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    width: auto !important;
+    position: static !important;
+}
+
+.firebugLayoutBoxOffset {
+    opacity: 0.8 !important;
+    position: fixed !important;
+}
+
+.firebugLayoutLine {
+    opacity: 0.4 !important;
+    background-color: #000000 !important;
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    width: 1px !important;
+    height: 100% !important;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    width: 100% !important;
+    height: 1px !important;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px !important;
+    border-top: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px !important;
+    border-left: 1px solid #999999 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBoxParent {
+    border-top: 0 none !important;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none !important;
+    position: fixed !important;
+    width: auto !important;
+}
+
+.firebugRuler{
+    position: absolute !important;
+}
+
+.firebugRulerH {
+    top: -15px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 14px !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x !important;
+    border-top: 1px solid #BBBBBB !important;
+    border-right: 1px dashed #BBBBBB !important;
+    border-bottom: 1px solid #000000 !important;
+}
+
+.firebugRulerV {
+    top: 0 !important;
+    left: -15px !important;
+    width: 14px !important;
+    height: 100% !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y !important;
+    border-left: 1px solid #BBBBBB !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px dashed #BBBBBB !important;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0 !important;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.fbProxyElement {
+    position: fixed !important;
+    pointer-events: auto !important;
+}
+</style></head><body style="cursor: auto;" class="html front logged-in no-sidebars page-front img3 admin-menu lightbox-processed magic-mug-processed comment-links-processed"><script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript" charset="windows-1251"></script>
+<script type="text/javascript">
+  VK.init({
+    apiId: 3790252,
+    onlyWidgets: true
+  });
+</script>
+​​​​​<style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+/** reset styling **/
+.firebugResetStyles {
+    z-index: 2147483646 !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    border: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: fixed !important;
+    transform: rotate(0deg) !important;
+    transform-origin: 50% 50% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent none !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+}
+
+.firebugBlockBackgroundColor {
+    background-color: transparent !important;
+}
+
+.firebugResetStyles:before, .firebugResetStyles:after {
+    content: "" !important;
+}
+/**actual styling to be modified by firebug theme**/
+.firebugCanvas {
+    display: none !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    width: auto !important;
+    position: static !important;
+}
+
+.firebugLayoutBoxOffset {
+    opacity: 0.8 !important;
+    position: fixed !important;
+}
+
+.firebugLayoutLine {
+    opacity: 0.4 !important;
+    background-color: #000000 !important;
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    width: 1px !important;
+    height: 100% !important;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    width: 100% !important;
+    height: 1px !important;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px !important;
+    border-top: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px !important;
+    border-left: 1px solid #999999 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBoxParent {
+    border-top: 0 none !important;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none !important;
+    position: fixed !important;
+    width: auto !important;
+}
+
+.firebugRuler{
+    position: absolute !important;
+}
+
+.firebugRulerH {
+    top: -15px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 14px !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x !important;
+    border-top: 1px solid #BBBBBB !important;
+    border-right: 1px dashed #BBBBBB !important;
+    border-bottom: 1px solid #000000 !important;
+}
+
+.firebugRulerV {
+    top: 0 !important;
+    left: -15px !important;
+    width: 14px !important;
+    height: 100% !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y !important;
+    border-left: 1px solid #BBBBBB !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px dashed #BBBBBB !important;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0 !important;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.fbProxyElement {
+    position: fixed !important;
+    pointer-events: auto !important;
+}
+</style>​​​​​<div style="border: 1px solid rgb(149, 145, 145); box-shadow: 0px 0px 11px -7px black; background: none repeat scroll 0px 0px rgb(255, 255, 255); margin: 0px auto; position: fixed; left: 30%; width: 40%; top: 30%; height: 40%; z-index: 6; display: none;" class="people-popup">
+<div style="height: 47px; background: none repeat scroll 0% 0% gray;"><span style="margin-left: 10px; color: rgb(255, 255, 255); font-weight: bold; display: block; padding-top: 8px; float: left;" href="/">Понравилось 3 людям:</span><a style="color: rgb(255, 255, 255); font-weight: bold; display: block; padding-top: 8px; float: right; margin-right: 10px;" href="/">закрыть</a></div>
+<div style="width: 120px; float: left;"><a style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;" title="pavel ruban" href="/"></a><a href="/" style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;">Павел Рубан</a></div><div style="width: 120px; float: left;"><a href="/" title="pavel ruban" style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;"></a><a style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;" href="/">Павел Рубан</a></div><div style="width: 120px; float: left;"><a href="/" title="pavel ruban" style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;"></a><a style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;" href="/">Павел Рубан</a></div><div style="width: 120px; float: left;"><a href="/" title="pavel ruban" style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;"></a><a style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;" href="/">Павел Рубан</a></div><div style="width: 120px; float: left;"><a href="/" title="pavel ruban" style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;"></a><a style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;" href="/">Павел Рубан</a></div><div style="width: 120px; float: left;"><a href="/" title="pavel ruban" style="background: url(&quot;icons/oe0McgIG97Y.jpg&quot;) repeat scroll 0px 0px transparent; width: 100px; display: block; float: left; height: 100px; margin: 10px;"></a><a style="clear: both; margin: 0px 10px; width: 100px; display: block; text-align: center;" href="/">Павел Рубан</a></div>
+</div>
+<style charset="utf-8" type="text/css">/* See license.txt for terms of usage */
+/** reset styling **/
+.firebugResetStyles {
+    z-index: 2147483646 !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    border: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: fixed !important;
+    transform: rotate(0deg) !important;
+    transform-origin: 50% 50% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent none !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+}
+
+.firebugBlockBackgroundColor {
+    background-color: transparent !important;
+}
+
+.firebugResetStyles:before, .firebugResetStyles:after {
+    content: "" !important;
+}
+/**actual styling to be modified by firebug theme**/
+.firebugCanvas {
+    display: none !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    width: auto !important;
+    position: static !important;
+}
+
+.firebugLayoutBoxOffset {
+    opacity: 0.8 !important;
+    position: fixed !important;
+}
+
+.firebugLayoutLine {
+    opacity: 0.4 !important;
+    background-color: #000000 !important;
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    width: 1px !important;
+    height: 100% !important;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    width: 100% !important;
+    height: 1px !important;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px !important;
+    border-top: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px !important;
+    border-left: 1px solid #999999 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBoxParent {
+    border-top: 0 none !important;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none !important;
+    position: fixed !important;
+    width: auto !important;
+}
+
+.firebugRuler{
+    position: absolute !important;
+}
+
+.firebugRulerH {
+    top: -15px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 14px !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x !important;
+    border-top: 1px solid #BBBBBB !important;
+    border-right: 1px dashed #BBBBBB !important;
+    border-bottom: 1px solid #000000 !important;
+}
+
+.firebugRulerV {
+    top: 0 !important;
+    left: -15px !important;
+    width: 14px !important;
+    height: 100% !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y !important;
+    border-left: 1px solid #BBBBBB !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px dashed #BBBBBB !important;
+}
+
+.overflowRulerX &gt; .firebugRulerV {
+    left: 0 !important;
+}
+
+.overflowRulerY &gt; .firebugRulerH {
+    top: 0 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.fbProxyElement {
+    position: fixed !important;
+    pointer-events: auto !important;
+}
+</style><style id="chrome://firebug/default-stylesheet.css" type="text/css" charset="utf-8"></style>​​​​​
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="Recent%20Articles%20%7C%20Pavel%20Ruban_files/Hawk_feathers_1.png" type="image/png">
+<link rel="shortlink" href="http://www.pruban/">
+<meta name="keywords" content="Drupal, C++, Vim, Php, Perl, Apache, Linux">
+<meta name="description" content="This site provides blog, articles about programming, life &amp; another things.">
+<link rel="canonical" href="http://www.pruban/">
+  <meta name="msvalidate.01" content="57D1C6295164F0DEF61F3A9B57D8617D">
+  <title>Recent Articles | Pavel Ruban</title>
+  <style type="text/css" media="all">@import url("http://www.pruban/modules/system/system.base.css?mmnkyx");
+@import url("http://www.pruban/modules/system/system.menus.css?mmnkyx");
+@import url("http://www.pruban/modules/system/system.messages.css?mmnkyx");
+@import url("http://www.pruban/modules/system/system.theme.css?mmnkyx");</style>
+<style type="text/css" media="screen">@import url("http://www.pruban/sites/all/libraries/shadowbox/shadowbox.css?mmnkyx");</style>
+<style type="text/css" media="print">
+<!--/*--><![CDATA[/*><!--*/
+#sb-container{position:relative;}#sb-overlay{display:none;}#sb-wrapper{position:relative;top:0;left:0;}#sb-loading{display:none;}
+
+/*]]>*/-->
+</style>
+<style type="text/css" media="all">@import url("http://www.pruban/modules/contextual/contextual.css?mmnkyx");</style>
+<style type="text/css" media="all">@import url("http://www.pruban/modules/comment/comment.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/date/date_api/date.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/date/date_popup/themes/datepicker.1.7.css?mmnkyx");
+@import url("http://www.pruban/modules/field/theme/field.css?mmnkyx");
+@import url("http://www.pruban/modules/node/node.css?mmnkyx");
+@import url("http://www.pruban/modules/search/search.css?mmnkyx");
+@import url("http://www.pruban/modules/user/user.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/views/css/views.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/admin_menu/admin_menu.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/admin_menu/admin_menu.uid1.css?mmnkyx");</style>
+<style type="text/css" media="all">@import url("http://www.pruban/sites/all/modules/contrib/ckeditor/ckeditor.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/ctools/css/ctools.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/lightbox2/css/lightbox.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/panels/css/panels.css?mmnkyx");
+@import url("http://www.pruban/sites/all/libraries/syntaxhighlighter_3.0.83/styles/shCore.css?mmnkyx");
+@import url("http://www.pruban/sites/all/libraries/syntaxhighlighter_3.0.83/styles/shThemeDefault.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/asset/css/assets.css?mmnkyx");
+@import url("http://www.pruban/sites/all/modules/contrib/nodequeue/nodequeue.css?mmnkyx");</style>
+<style type="text/css" media="all">@import url("http://www.pruban/sites/all/themes/front/css/style.css?mmnkyx");
+@import url("http://www.pruban/sites/all/themes/front/css/custom_comments.css?mmnkyx");</style>
+  <script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/jquery_002.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/jquery.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/drupal.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shadowbox.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/contextual.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shCore.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushBash.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushCss.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushPython.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushSql.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/shBrushXml.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/admin_menu.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/lightbox.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/panels.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/devel_krumo_path.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/nodequeue.js"></script>
+<script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/common.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+          Shadowbox.path = "/sites/all/libraries/shadowbox/";
+        
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"front","theme_token":"xuO8phatzFqE2i3y_uGO9wdwhGPALHHNuyb3ZSIyyqE","js":{"sites\/all\/modules\/contrib\/syntaxhighlighter\/syntaxhighlighter.min.js":1,"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/libraries\/shadowbox\/shadowbox.js":1,"modules\/contextual\/contextual.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shCore.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushBash.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushCpp.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushCss.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushDiff.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushJScript.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushPerl.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushPhp.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushPlain.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushPython.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushSql.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushXml.js":1,"sites\/all\/modules\/contrib\/admin_menu\/admin_menu.js":1,"sites\/all\/modules\/contrib\/lightbox2\/js\/lightbox.js":1,"sites\/all\/modules\/contrib\/panels\/js\/panels.js":1,"sites\/all\/modules\/contrib\/devel\/devel_krumo_path.js":1,"sites\/all\/modules\/contrib\/nodequeue\/nodequeue.js":1,"sites\/all\/themes\/front\/scripts\/common.js":1,"0":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/libraries\/shadowbox\/shadowbox.css":1,"0":1,"modules\/contextual\/contextual.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"sites\/all\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/admin_menu\/admin_menu.css":1,"sites\/all\/modules\/contrib\/admin_menu\/admin_menu.uid1.css":1,"sites\/all\/modules\/contrib\/ckeditor\/ckeditor.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/lightbox2\/css\/lightbox.css":1,"sites\/all\/modules\/contrib\/panels\/css\/panels.css":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/styles\/shCore.css":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/styles\/shThemeDefault.css":1,"sites\/all\/modules\/contrib\/asset\/css\/assets.css":1,"sites\/all\/modules\/contrib\/nodequeue\/nodequeue.css":1,"sites\/all\/themes\/front\/css\/style.css":1,"sites\/all\/themes\/front\/css\/custom_comments.css":1}},"lightbox2":{"rtl":0,"file_path":"\/(\\w\\w\/)public:\/","default_image":"\/sites\/all\/modules\/contrib\/lightbox2\/images\/brokenimage.jpg","border_size":10,"font_color":"000","box_color":"fff","top_position":"","overlay_opacity":"0.8","overlay_color":"000","disable_close_click":true,"resize_sequence":0,"resize_speed":400,"fade_in_speed":400,"slide_down_speed":600,"use_alt_layout":false,"disable_resize":false,"disable_zoom":false,"force_show_nav":false,"show_caption":true,"loop_items":false,"node_link_text":"View Image Details","node_link_target":false,"image_count":"Image !current of !total","video_count":"Video !current of !total","page_count":"Page !current of !total","lite_press_x_close":"press \u003Ca href=\u0022#\u0022 onclick=\u0022hideLightbox(); return FALSE;\u0022\u003E\u003Ckbd\u003Ex\u003C\/kbd\u003E\u003C\/a\u003E to close","download_link_text":"Download Original","enable_login":false,"enable_contact":false,"keys_close":"c x 27","keys_previous":"p 37","keys_next":"n 39","keys_zoom":"z","keys_play_pause":"32","display_image_size":"","image_node_sizes":"()","trigger_lightbox_classes":"","trigger_lightbox_group_classes":"","trigger_slideshow_classes":"","trigger_lightframe_classes":"","trigger_lightframe_group_classes":"","custom_class_handler":0,"custom_trigger_classes":"","disable_for_gallery_lists":true,"disable_for_acidfree_gallery_lists":true,"enable_acidfree_videos":true,"slideshow_interval":5000,"slideshow_automatic_start":true,"slideshow_automatic_exit":true,"show_play_pause":true,"pause_on_next_click":false,"pause_on_previous_click":true,"loop_slides":false,"iframe_width":600,"iframe_height":400,"iframe_border":1,"enable_video":false},"admin_menu":{"destination":"destination=%3Cfront%3E","replacements":{".admin-menu-users a":"0 \/ 1"},"margin_top":1}});
+//--><!]]>
+</script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39832150-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+/** reset styling **/
+.firebugResetStyles {
+    z-index: 2147483646 !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    border: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: fixed !important;
+    transform: rotate(0deg) !important;
+    transform-origin: 50% 50% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent none !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+}
+
+.firebugBlockBackgroundColor {
+    background-color: transparent !important;
+}
+
+.firebugResetStyles:before, .firebugResetStyles:after {
+    content: "" !important;
+}
+/**actual styling to be modified by firebug theme**/
+.firebugCanvas {
+    display: none !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    width: auto !important;
+    position: static !important;
+}
+
+.firebugLayoutBoxOffset {
+    opacity: 0.8 !important;
+    position: fixed !important;
+}
+
+.firebugLayoutLine {
+    opacity: 0.4 !important;
+    background-color: #000000 !important;
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    width: 1px !important;
+    height: 100% !important;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    width: 100% !important;
+    height: 1px !important;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px !important;
+    border-top: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px !important;
+    border-left: 1px solid #999999 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBoxParent {
+    border-top: 0 none !important;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none !important;
+    position: fixed !important;
+    width: auto !important;
+}
+
+.firebugRuler{
+    position: absolute !important;
+}
+
+.firebugRulerH {
+    top: -15px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 14px !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x !important;
+    border-top: 1px solid #BBBBBB !important;
+    border-right: 1px dashed #BBBBBB !important;
+    border-bottom: 1px solid #000000 !important;
+}
+
+.firebugRulerV {
+    top: 0 !important;
+    left: -15px !important;
+    width: 14px !important;
+    height: 100% !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y !important;
+    border-left: 1px solid #BBBBBB !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px dashed #BBBBBB !important;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0 !important;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.fbProxyElement {
+    position: fixed !important;
+    pointer-events: auto !important;
+}
+</style>
+
+  <div style="opacity: 0; filter: none;" class="tea-mug-cloud"></div><a href="http://www.pruban/" class="tea-mug"></a>    <div class="header">
+    
+    
+            
+    
+    <div class="logo">
+      <a href="http://www.pruban/" class="logo-img active"></a>  </div>
+<div class="menu">
+<!--  <a href="#">Minds</a>-->
+<!--  <a href="#">Forum</a>-->
+<!--  <a href="#">About me</a>-->
+  <a href="http://www.pruban/users/root">root</a>      <a href="http://www.pruban/user/logout">logout</a>  </div>
+
+    
+    
+  </div>
+<div id="wrapper">
+  <div class="main">
+      
+    
+                      
+    
+    <div class="contextual-links-region">  
+    
+            
+    
+    <h1 class="entryTitle">Recent Posts</h1>
+  <div class="view view-articles view-id-articles view-display-id-home view-dom-id-3ee7b119b619b9265602f3a44111288d contextual-links-region">
+      <div class="contextual-links-wrapper contextual-links-processed"><a class="contextual-links-trigger" href="#">Configure</a><ul class="contextual-links"><li class="views-ui-edit first last"><a href="http://www.pruban/admin/structure/views/view/articles/edit/home?destination=%3Cfront%3E">Edit view</a></li>
+</ul></div>  
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first">
+      <a href="http://www.pruban/neskolko-poleznyh-tryukov-v-regulyarnyh-vyrazheniyah">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/05/atzadez_gsm.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/atzadez_gsm.jpg" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/neskolko-poleznyh-tryukov-v-regulyarnyh-vyrazheniyah">Несколько полезных трюков в регулярных выражениях</a></h2>
+<p style="margin-bottom: 0px;" class="img">Различные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыРазличные возможности и символьные конструкции, 
+логические елементыvv</p>
+<div class="statistic" style="clear:both">
+<div style="color: gray; margin-right: 5px; background: url(&quot;icons/social.png&quot;) repeat scroll -36px -28px transparent; width: 17px; height: 17px; float: left; margin-top: 5px;" title="Обновлено"></div> <span style="color: gray;">21.03.2013 15:40</span>
+<div style="float: right; position: relative;"><div style="height: 23px; width: 23px; float: left; margin-right: 5px; background-image: url(&quot;icons/social.png&quot;); background-position: -237px -3px;"></div><span>3</span>
+<div class="like-popup" style="position: absolute; bottom: 31px; z-index: 5; left: -161px; height: 88px; border: 1px solid rgb(149, 145, 145); box-shadow: 0px 0px 11px -7px black; border-radius: 5px 5px 5px 5px; width: 240px; background: none repeat scroll 0px 0px rgb(255, 255, 255);">
+<a style="margin-left: 10px; color: black;" href="/">Понравилось 3 людям:</a><br>
+<a href="/" title="pavel ruban" style="background: url(&quot;icons/m_3QjAWycq0.jpg&quot;) repeat scroll 0px 0px transparent; width: 50px; height: 50px; margin: 5px; display: block; float: left;"></a><a href="/" title="pavel ruban" style="background: url(&quot;icons/m_3QjAWycq0.jpg&quot;) repeat scroll 0px 0px transparent; width: 50px; height: 50px; margin: 5px; display: block; float: left;"></a><a href="/" title="pavel ruban" style="background: url(&quot;icons/m_3QjAWycq0.jpg&quot;) repeat scroll 0px 0px transparent; width: 50px; height: 50px; margin: 5px; display: block; float: left;"></a><a href="/" title="pavel ruban" style="background: url(&quot;icons/m_3QjAWycq0.jpg&quot;) repeat scroll 0px 0px transparent; width: 50px; height: 50px; margin: 5px; display: block; float: left;"></a>
+</div>
+<div class="like-popup-angle" style="position: absolute; width: 23px; background: url(&quot;icons/social.png&quot;) repeat scroll 0px -30px transparent; height: 12px; bottom: 21px; z-index: 5; left: -2px;"></div></div>
+<div style="float: right; margin-right: 5px;"><div title="комментариев" style="background-position: -66px -3px; height: 23px; width: 23px; float: left; margin-right: 5px; background-image: url(&quot;icons/social.png&quot;);"></div><span>1046</span></div>
+<div style="float: right; margin-right: 5px;"><div title="просмотров" style="height: 23px; width: 23px; float: left; margin-right: 5px; background-image: url(&quot;icons/social.png&quot;); background-position: -191px -3px;"></div><span>1000046</span></div>
+<div class="social" style="float: right; margin-right: 5px; position: relative;"><div title="social" style="height: 23px; width: 23px; float: left; margin-right: 5px; background-image: url(&quot;icons/social.png&quot;); background-position: -160px -3px;"></div>
+<div class="social-popup" style="height: 85px; position: absolute; left: -33px; bottom: 31px; background: none repeat scroll 0% 0% white; width: 233px; box-shadow: 0px 0px 11px -7px black; border-radius: 5px 5px 5px 5px; border: 1px solid rgb(149, 145, 145); z-index: 5;">
+<div id="vk_like"></div>
+<script type="text/javascript">
+ VK.Widgets.Like('vk_like');
+</script>
+</div>
+<div style="position: absolute; width: 23px; left: -4px; background: url(&quot;icons/social.png&quot;) repeat scroll 0px -30px transparent; height: 12px; bottom: 21px; z-index: 5;" class="social-popup"></div></div>
+</div><div style="clear:both" class="tags">
+<a style="border-radius: 5px 5px 5px 5px; padding: 1px 5px; margin-right: 5px; background: none repeat scroll 0px 0px rgb(239, 239, 239); font-weight: bold; text-shadow: 1px 1px 1px white; color: black;" title="Drupal" href="/">PHP</a><a style="border-radius: 5px 5px 5px 5px; padding: 1px 5px; margin-right: 5px; background: none repeat scroll 0px 0px rgb(239, 239, 239); font-weight: bold; text-shadow: 1px 1px 1px white; color: rgb(23, 23, 23);" title="Drupal" href="/">Drupal</a><a style="border-radius: 5px 5px 5px 5px; padding: 1px 5px; margin-right: 5px; background: none repeat scroll 0px 0px rgb(239, 239, 239); font-weight: bold; text-shadow: 1px 1px 1px white; color: rgb(0, 0, 0);" title="Drupal" href="/">Programming</a><a style="border-radius: 5px 5px 5px 5px; padding: 1px 5px; margin-right: 5px; background: none repeat scroll 0px 0px rgb(239, 239, 239); font-weight: bold; color: rgb(0, 0, 0);" title="Drupal" href="/">Science</a><a style="border-radius: 5px 5px 5px 5px; padding: 1px 5px; margin-right: 5px; background: none repeat scroll 0px 0px rgb(239, 239, 239); font-weight: bold; color: black;" title="Drupal" href="/">Web</a>
+</div>
+
+  </div>
+  <div class="views-row views-row-2 views-row-even">
+      <a href="http://www.pruban/vozmozhnosti-evm">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/05/z_8f763420.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/z_8f763420.jpg" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/vozmozhnosti-evm">Возможности ЭВМ</a></h2>
+<p class="img">daxxxxxxxxxxxxx
+{
+}
+&lt;/pre&gt;</p>
+  </div>
+  <div class="views-row views-row-3 views-row-odd">
+      <a href="http://www.pruban/vim-autocomplete-template-paster-extension">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/05/bjjlohmaemc.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/bjjlohmaemc.jpg" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/vim-autocomplete-template-paster-extension">Vim autocomplete, template paster extension</a></h2>
+<p class="img">Данное расширение позволяет вставлять заготовки кода по 
+хоткеям, также автодополняет кавычки, скобки и преносы фигурных скобок 
+согласно заданному codestyle</p>
+  </div>
+  <div class="views-row views-row-4 views-row-even">
+      <a href="http://www.pruban/neskolko-momentov-kotorye-stoit-pomnit-pri-ustanovke-unix-like-os">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/04/imac-parallels_1.png" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/imac-parallels_1.htm" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/neskolko-momentov-kotorye-stoit-pomnit-pri-ustanovke-unix-like-os">Несколько моментов которые стоит помнить при установке Unix like OS</a></h2>
+<p class="img">При установке системы время от времени появляются разные сложности, которые приходится решать, вот несколько из них</p>
+  </div>
+  <div class="views-row views-row-5 views-row-odd">
+      <a href="http://www.pruban/linux-unknown-host">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/05/blame2.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/blame2.jpg" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/linux-unknown-host">Linux, unknown host</a></h2>
+<p class="img">Не удается обратиться к хосту? Хотя сеть поднята и соединение установлено?</p>
+  </div>
+  <div class="views-row views-row-6 views-row-even">
+      <a href="http://www.pruban/neskolko-prichin-lyubit-linux">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/04/images.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/images.htm" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/neskolko-prichin-lyubit-linux">Несколько причин любить Linux</a></h2>
+<p class="img">Какие вещи радуют при использовании открытой операционной системой GNU/Linux?</p>
+  </div>
+  <div class="views-row views-row-7 views-row-odd">
+      <a href="http://www.pruban/avtomaticheskaya-nastroyka-virtualnogo-hosta">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/04/apache_display.jpg_0.png" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/apache_display.htm" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/avtomaticheskaya-nastroyka-virtualnogo-hosta">Автоматическая настройка виртуального хоста</a></h2>
+<p class="img">Скрипт для автоматической настройки виртуального хоста для сервера apache.</p>
+  </div>
+  <div class="views-row views-row-8 views-row-even">
+      <a href="http://www.pruban/perl-script">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/04/000ayaga.jpg" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/000ayaga.htm" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/perl-script">Perl Script</a></h2>
+<p class="img">Данный скрипт удаляет мусор из css файла по указанным селекторам.</p>
+  </div>
+  <div class="views-row views-row-9 views-row-odd views-row-last">
+      <a href="http://www.pruban/naznachenie-sayta">        </a><a rel="shadowbox" href="http://www.pruban/sites/default/files/assets/images/2013/04/hawk_feathers_1_0.png" class="fullscreen-toggle"></a>      <img typeof="foaf:Image" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/hawk_feathers_1_0.htm" alt="" height="159" width="159">    
+
+<h2><a href="http://www.pruban/naznachenie-sayta">Назначение сайта</a></h2>
+<p class="img">Этот сайт создан для того чтобы поделиться своими мыслями
+ на достаточно разные темы, по мере доводки сайта до ума буду что-нибудь
+ писать и делиться впечатлениями.</p>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>
+    
+    
+  <div class="contextual-links-wrapper contextual-links-processed"><a class="contextual-links-trigger" href="#">Configure</a><ul class="contextual-links"><li class="0 first last"><a href="http://www.pruban/admin/structure/pages/nojs/operation/page-home/handlers/page_home_panel_context/content?destination=%3Cfront%3E">Edit Panel</a></li>
+</ul></div></div>
+    
+    
+    </div>
+    
+    
+            
+    
+    <div id="sidebar">
+      <div class="main">
+      <h3>Recent Posts</h3>
+      <ul class="recent-posts">
+                  <li><a href="http://www.pruban/neskolko-poleznyh-tryukov-v-regulyarnyh-vyrazheniyah">Несколько полезных трюков в регулярных выражениях</a></li>
+                  <li><a href="http://www.pruban/vozmozhnosti-evm">Возможности ЭВМ</a></li>
+                  <li><a href="http://www.pruban/vim-autocomplete-template-paster-extension">Vim autocomplete, template paster extension</a></li>
+                  <li><a href="http://www.pruban/neskolko-momentov-kotorye-stoit-pomnit-pri-ustanovke-unix-like-os">Несколько моментов которые стоит помнить при установке Unix like OS</a></li>
+                  <li><a href="http://www.pruban/linux-unknown-host">Linux, unknown host</a></li>
+                  <li><a href="http://www.pruban/neskolko-prichin-lyubit-linux">Несколько причин любить Linux</a></li>
+                  <li><a href="http://www.pruban/avtomaticheskaya-nastroyka-virtualnogo-hosta">Автоматическая настройка виртуального хоста</a></li>
+                  <li><a href="http://www.pruban/perl-script">Perl Script</a></li>
+                  <li><a href="http://www.pruban/naznachenie-sayta">Назначение сайта</a></li>
+              </ul>
+    </div>
+  </div>
+
+    
+    
+  </div>
+<footer class="footer" role="contentinfo">
+    
+    
+            
+    
+    <section class="footer-body">
+  <ul>
+    <li>© Pavel Ruban</li>
+  </ul>
+</section>
+
+    
+    
+  </footer>
+  <div id="admin-menu" class="admin-menu-site-pruban admin-menu-processed"><div id="admin-menu-wrapper">
+<ul class="dropdown"><li class="admin-menu-icon expandable"><a href="http://www.pruban/" class="active"><img class="admin-menu-icon" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/Hawk_feathers_1.png" alt="Home" height="16" width="16"></a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/index">Index</a></li><li class="expandable"><a href="http://www.pruban/admin_menu/flush-cache?token=JzR_RA3yiq2o3sxNxUbNau3pbM9j7RNZJX7p7-nWZMg&amp;destination=%3Cfront%3E" class="admin-menu-destination">Flush all caches</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin_menu/flush-cache/admin_menu?token=50k2oB4mkau3A0Oj0YkI7aRcLPdwR4hUSD_ahGEIxvs&amp;destination=%3Cfront%3E" class="admin-menu-destination">Administration menu</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/registry?token=NbMqhNKthYi1Cqt_H8Bl6yEe3HH_HiwPKPYWp8id6a0&amp;destination=%3Cfront%3E" class="admin-menu-destination">Class registry</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/assets?token=zWwwPl3KjUvckh3sFpHoBO-IHBR2V9tcf3a-_-yeL8E&amp;destination=%3Cfront%3E" class="admin-menu-destination">CSS and JavaScript</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/menu?token=DLuXFgEIhxlSz1HZ_vwH5Ip5OIJ_REqlX1GZWGncS0w&amp;destination=%3Cfront%3E" class="admin-menu-destination">Menu</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/cache?token=QhMtOLjp9vjXQLvV7kSu0Y3TDQXC-xSsY-desJqTNl8&amp;destination=%3Cfront%3E" class="admin-menu-destination">Page and else</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/theme?token=zXvn2HPK_uKmSFPHRvzQkoMTIMR7u5wyfSCUJG0ARkA&amp;destination=%3Cfront%3E" class="admin-menu-destination">Theme registry</a></li><li><a href="http://www.pruban/token/flush-cache?token=VmmLqXVmElcEWr6spkgvX7KS_TnzyqrmGjV3o-PoHHw&amp;destination=%3Cfront%3E" class="admin-menu-destination">Token registry</a></li><li><a href="http://www.pruban/admin_menu/flush-cache/update?token=q9skDCoa6LWmn9RbTgCqSz_52XoklH0rhnXP-str-ug&amp;destination=%3Cfront%3E" class="admin-menu-destination">Update data</a></li></ul></li><li><a href="http://www.pruban/devel/variable">Variable editor</a></li><li><a href="http://www.pruban/admin/reports/status/run-cron">Run cron</a></li><li><a href="http://www.pruban/update.php">Run updates</a></li><li><a href="http://www.pruban/admin_menu/toggle-modules?token=NbAu2Xd31vavLtf436K-lAeSZ9YG6FzrN2Wbq_u43Ko&amp;destination=%3Cfront%3E" class="admin-menu-destination">Disable developer modules</a></li><li class="expandable"><a href="http://drupal.org/">Drupal.org</a>
+<ul class="dropdown"><li><a href="http://drupal.org/project/issues/drupal?version=7.x">Block issue queue</a></li><li><a href="http://drupal.org/project/issues/admin_menu?version=7.x">Administration menu issue queue</a></li><li><a href="http://drupal.org/project/issues/backup_migrate?version=7.x">Backup and Migrate issue queue</a></li><li><a href="http://drupal.org/project/issues/bean?version=7.x">Bean issue queue</a></li><li><a href="http://drupal.org/project/issues/better_formats?version=7.x">Better Formats issue queue</a></li><li><a href="http://drupal.org/project/issues/ctools?version=7.x">Chaos tools issue queue</a></li><li><a href="http://drupal.org/project/issues/ckeditor?version=7.x">CKEditor issue queue</a></li><li><a href="http://drupal.org/project/issues/common_admin_menu?version=7.x">Common Admin Menu issue queue</a></li><li><a href="http://drupal.org/project/issues/common_asset_library_view?version=7.x">Common asset library view issue queue</a></li><li><a href="http://drupal.org/project/issues/common_assets?version=7.x">Common Assets issue queue</a></li><li><a href="http://drupal.org/project/issues/common_content_type_page?version=7.x">Common Content Type Page issue queue</a></li><li><a href="http://drupal.org/project/issues/common_content_type_article?version=7.x">Common conten type article issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_article?version=7.x">Common Dashboard Article issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_blocks?version=7.x">Common Dashboard Blocks issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_medialibrary?version=7.x">Common Dashboard Multimedia library issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_page?version=7.x">Common Dashboard Pages issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_tags?version=7.x">Common Dashboard Tags issue queue</a></li><li><a href="http://drupal.org/project/issues/common_dashboard_users?version=7.x">Common Dashboard Users issue queue</a></li><li><a href="http://drupal.org/project/issues/common_image_styles?version=7.x">Common image styles issue queue</a></li><li><a href="http://drupal.org/project/issues/common_input_formats?version=7.x">Common input formats issue queue</a></li><li><a href="http://drupal.org/project/issues/common_menu_additional_header?version=7.x">Common Menu Additional header issue queue</a></li><li><a href="http://drupal.org/project/issues/common_menu_position_rules?version=7.x">Common menu position rules issue queue</a></li><li><a href="http://drupal.org/project/issues/common_metatags?version=7.x">Common metatags issue queue</a></li><li><a href="http://drupal.org/project/issues/common_nodequeues?version=7.x">Common nodequeues issue queue</a></li><li><a href="http://drupal.org/project/issues/common_pathauto_settings?version=7.x">Common pathauto settings issue queue</a></li><li><a href="http://drupal.org/project/issues/common_settings?version=7.x">Common Settings issue queue</a></li><li><a href="http://drupal.org/project/issues/content_taxonomy?version=7.x">Content Taxonomy issue queue</a></li><li><a href="http://drupal.org/project/issues/date?version=7.x">Date API issue queue</a></li><li><a href="http://drupal.org/project/issues/datepicker?version=7.x">Date Picker issue queue</a></li><li><a href="http://drupal.org/project/issues/devel?version=7.x">Devel issue queue</a></li><li><a href="http://drupal.org/project/issues/diff?version=7.x">Diff issue queue</a></li><li><a href="http://drupal.org/project/issues/entity?version=7.x">Entity API issue queue</a></li><li><a href="http://drupal.org/project/issues/entityreference?version=7.x">Entity Reference issue queue</a></li><li><a href="http://drupal.org/project/issues/features?version=7.x">Features issue queue</a></li><li><a href="http://drupal.org/project/issues/features_extra?version=7.x">FE block issue queue</a></li><li><a href="http://drupal.org/project/issues/field_group?version=7.x">Fieldgroup issue queue</a></li><li><a href="http://drupal.org/project/issues/filefield_paths?version=7.x">File (Field) Paths issue queue</a></li><li><a href="http://drupal.org/project/issues/imagefield_crop?version=7.x">Image crop issue queue</a></li><li><a href="http://drupal.org/project/issues/asset?version=7.x">Image gallery asset issue queue</a></li><li><a href="http://drupal.org/project/issues/jquery_update?version=7.x">jQuery Update issue queue</a></li><li><a href="http://drupal.org/project/issues/lightbox2?version=7.x">Lightbox2 issue queue</a></li><li><a href="http://drupal.org/project/issues/link?version=7.x">Link issue queue</a></li><li><a href="http://drupal.org/project/issues/menu_block?version=7.x">Menu Block issue queue</a></li><li><a href="http://drupal.org/project/issues/menu_position?version=7.x">Menu position issue queue</a></li><li><a href="http://drupal.org/project/issues/metatag?version=7.x">Meta tags issue queue</a></li><li><a href="http://drupal.org/project/issues/nodequeue?version=7.x">Nodequeue issue queue</a></li><li><a href="http://drupal.org/project/issues/panels_everywhere?version=7.x">Panels everywhere issue queue</a></li><li><a href="http://drupal.org/project/issues/panels?version=7.x">Panels issue queue</a></li><li><a href="http://drupal.org/project/issues/pathauto?version=7.x">Pathauto issue queue</a></li><li><a href="http://drupal.org/project/issues/pruban_image_styles?version=7.x">Pavel Ruban Image Styles issue queue</a></li><li><a href="http://drupal.org/project/issues/pavel_ruban_panels?version=7.x">Pavel Ruban Panels issue queue</a></li><li><a href="http://drupal.org/project/issues/pruban_views?version=7.x">Pavel Ruban Views issue queue</a></li><li><a href="http://drupal.org/project/issues/pruban_permissions?version=7.x">Permissions issue queue</a></li><li><a href="http://drupal.org/project/issues/references_dialog?version=7.x">References dialog issue queue</a></li><li><a href="http://drupal.org/project/issues/strongarm?version=7.x">Strongarm issue queue</a></li><li><a href="http://drupal.org/project/issues/syntaxhighlighter_insert?version=7.x">Syntaxhighlighter Insert issue queue</a></li><li><a href="http://drupal.org/project/issues/syntaxhighlighter?version=7.x">Syntax highlighter issue queue</a></li><li><a href="http://drupal.org/project/issues/taxonomy_menu?version=7.x">Taxonomy menu issue queue</a></li><li><a href="http://drupal.org/project/issues/token?version=7.x">Token issue queue</a></li><li><a href="http://drupal.org/project/issues/transliteration?version=7.x">Transliteration issue queue</a></li><li><a href="http://drupal.org/project/issues/views_autocomplete_filters?version=7.x">Views Autocomplete Filters issue queue</a></li><li><a href="http://drupal.org/project/issues/views_bulk_operations?version=7.x">Views Bulk Operations issue queue</a></li><li><a href="http://drupal.org/project/issues/views?version=7.x">Views UI issue queue</a></li><li><a href="http://drupal.org/project/issues/wysiwyg_filter?version=7.x">WYSIWYG Filter issue queue</a></li></ul></li></ul></li></ul>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/common_settings">Site settings</a></li><li class="expandable"><a href="http://www.pruban/admin/dashboard">Dashboard</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/dashboard/users">Gérer les utilisateurs</a></li><li><a href="http://www.pruban/admin/dashboard/tags">Tags</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/content">Content</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/node/add">Add content</a>
+<ul class="dropdown"><li><a href="http://www.pruban/node/add/article">Article</a></li><li><a href="http://www.pruban/node/add/page">Basic page</a></li><li><a href="http://www.pruban/node/add/panel">Panel</a></li></ul></li><li><a href="http://www.pruban/admin/content/blocks">Blocks</a></li><li class="expandable"><a href="http://www.pruban/admin/content/comment">Comments</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/content/comment/approval">Unapproved comments (0)</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/content/assets">Media assets</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/content/assets/add">Add Media Asset</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/content/assets/add/image">Add Image</a></li><li><a href="http://www.pruban/admin/content/assets/add/gallery">Add Gallery</a></li><li><a href="http://www.pruban/admin/content/assets/add/video">Add Video</a></li></ul></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure">Structure</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/structure/assets">Asset types</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/assets/add">Add asset type</a></li><li><a href="http://www.pruban/admin/structure/assets/import">Import asset type</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/block">Blocks</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/block/add">Add block</a></li><li><a href="http://www.pruban/admin/structure/block/add-menu-block">Add menu block</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/block/list/bartik">Bartik</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/block/list/bartik/add">Add block</a></li><li><a href="http://www.pruban/admin/structure/block/list/bartik/add-menu-block">Add menu block</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/block/list/common_admin">common_admin</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/block/list/common_admin/add">Add block</a></li><li><a href="http://www.pruban/admin/structure/block/list/common_admin/add-menu-block">Add menu block</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/block/list/seven">Seven</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/block/list/seven/add">Add block</a></li><li><a href="http://www.pruban/admin/structure/block/list/seven/add-menu-block">Add menu block</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types">Content types</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/add">Add content type</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article">Article</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/delete">Delete</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields">Manage fields</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_body">Body</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_body/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_body/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_body/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_media">Illustration</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_media/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_media/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_media/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_main_media">Média principal</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_main_media/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_main_media/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_main_media/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_catchline">Teaser</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_catchline/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_catchline/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_article_catchline/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone1">Zone 1</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone1/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone1/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone1/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone2">Zone 2</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone2/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone2/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/fields/field_blocks_zone2/delete">Delete</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/article/display">Manage display</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/article/display/full">Full content</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/display/teaser">Teaser</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/display/rss">RSS</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/display/search_index">Search index</a></li><li><a href="http://www.pruban/admin/structure/types/manage/article/display/search_result">Search result</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page">Basic page</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/delete">Delete</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields">Manage fields</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_body">Body</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_body/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_body/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_body/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_main_media">Main media</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_main_media/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_main_media/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_main_media/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_catchline">Teaser</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_catchline/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_catchline/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_page_catchline/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone1">Zone 1</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone1/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone1/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone1/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone2">Zone 2</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone2/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone2/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/fields/field_blocks_zone2/delete">Delete</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/page/display">Manage display</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/page/display/full">Full content</a></li><li><a href="http://www.pruban/admin/structure/types/manage/page/display/teaser">Teaser</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/panel">Panel</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/panel/delete">Delete</a></li><li><a href="http://www.pruban/admin/structure/types/manage/panel/fields">Manage fields</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/types/manage/panel/display">Manage display</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/types/manage/panel/display/teaser">Teaser</a></li></ul></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/ctools-content">Custom content panes</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/ctools-content/add">Add</a></li><li><a href="http://www.pruban/admin/structure/ctools-content/import">Import</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/features">Features</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/features/create">Create feature</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu-position">Menu position rules</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu-position/add">Add menu position rule</a></li><li><a href="http://www.pruban/admin/structure/menu-position/settings">Settings</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu">Menus</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/add">Add menu</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/menu-additional-header-menu">Additional header menu</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/menu-additional-header-menu/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-additional-header-menu/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-additional-header-menu/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/menu-common-admin-menu">Common Admin Menu</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/menu-common-admin-menu/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-common-admin-menu/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-common-admin-menu/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/devel">Development</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/devel/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/devel/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/devel/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/features">Features</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/features/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/features/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/features/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/menu-le-admin-menu">Le360 Admin Menu</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/menu-le-admin-menu/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-le-admin-menu/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/menu-le-admin-menu/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/main-menu">Main menu</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/main-menu/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/main-menu/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/main-menu/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/management">Management</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/management/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/management/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/management/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/navigation">Navigation</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/navigation/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/navigation/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/navigation/edit">Edit menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/menu/manage/user-menu">User menu</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/menu/manage/user-menu/add">Add link</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/user-menu/delete">Delete menu</a></li><li><a href="http://www.pruban/admin/structure/menu/manage/user-menu/edit">Edit menu</a></li></ul></li><li><a href="http://www.pruban/admin/structure/menu/settings">Settings</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/nodequeue">Nodequeues</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/nodequeue/add/nodequeue">Add simple queue</a></li><li><a href="http://www.pruban/admin/structure/nodequeue/settings">Settings</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/pages">Pages</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/pages/add">Add custom page</a></li><li><a href="http://www.pruban/admin/structure/pages/import">Import page</a></li><li><a href="http://www.pruban/admin/structure/pages/wizard">Wizards</a></li><li><a href="http://www.pruban/admin/structure/pages/site_template">Edit site template</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/panels">Panels</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/structure/panels/layouts">Layouts</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/panels/layouts/add-flexible">Add flexible layout</a></li><li><a href="http://www.pruban/admin/structure/panels/layouts/import">Import</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/panels/settings">Settings</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/panels/settings/panel-page">Panel pages</a></li><li><a href="http://www.pruban/admin/structure/panels/settings/everywhere">Everywhere</a></li><li><a href="http://www.pruban/admin/structure/panels/settings/panel-node">Panel nodes</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/taxonomy">Taxonomy</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/taxonomy/add">Add vocabulary</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/taxonomy/tags">Tags</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/taxonomy/tags/add">Add term</a></li><li><a href="http://www.pruban/admin/structure/taxonomy/tags/edit">Edit</a></li><li><a href="http://www.pruban/admin/structure/taxonomy/tags/fields">Manage fields</a></li><li><a href="http://www.pruban/admin/structure/taxonomy/tags/display">Manage display</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/structure/views">Views</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/views/add">Add new view</a></li><li><a href="http://www.pruban/admin/structure/views/add-template">Add view from template</a></li><li><a href="http://www.pruban/admin/structure/views/import">Import</a></li><li><a href="http://www.pruban/admin/structure/views/view/articles">Articles (Content)</a></li><li><a href="http://www.pruban/admin/structure/views/view/assets_library">Assets library (Media Assets)</a></li><li><a href="http://www.pruban/admin/structure/views/view/asset_widget_search">Asset widget search (Media Assets)</a></li><li><a href="http://www.pruban/admin/structure/views/view/common_assets_library">Common Assets library (Media Assets)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_articles">Dashboard Articles (Content)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_blocks">Dashboard blocks (Block)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_medialibrary">Dashboard Multimedia library (Media Assets)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_static_pages">Dashboard Static pages (Content)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_tags">Dashboard Tags (Term)</a></li><li><a href="http://www.pruban/admin/structure/views/view/dashboard_users">Dashboard Users (User)</a></li><li><a href="http://www.pruban/admin/structure/views/view/gallery_asset_dialog">Gallery asset dialog (Media Assets)</a></li><li><a href="http://www.pruban/admin/structure/views/view/nodequeue_1">nodequeue_1 (Content)</a></li><li class="expandable"><a href="http://www.pruban/admin/structure/views/settings">Settings</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/structure/views/settings/advanced">Advanced</a></li></ul></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/appearance">Appearance</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/appearance/install">Install new theme</a></li><li><a href="http://www.pruban/admin/appearance/update">Update</a></li><li class="expandable"><a href="http://www.pruban/admin/appearance/settings">Settings</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/appearance/settings/bartik">Bartik</a></li><li><a href="http://www.pruban/admin/appearance/settings/common_admin">common_admin</a></li><li><a href="http://www.pruban/admin/appearance/settings/front">Front</a></li><li><a href="http://www.pruban/admin/appearance/settings/seven">Seven</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/people">People</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/people/create">Add user</a></li><li class="expandable"><a href="http://www.pruban/admin/people/permissions">Permissions</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/people/permissions/roles">Roles</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/modules">Modules</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/modules/install">Install new module</a></li><li><a href="http://www.pruban/admin/modules/update">Update</a></li><li><a href="http://www.pruban/admin/modules/uninstall">Uninstall</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config">Configuration</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/administration">Administration</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/administration/admin_menu">Administration menu</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/content">Content authoring</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/ckeditor">CKEditor</a></li><li class="expandable"><a href="http://www.pruban/admin/config/content/diff">Diff</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/diff/entities">Entities</a></li><li><a href="http://www.pruban/admin/config/content/diff/fields">Fields</a></li></ul></li><li><a href="http://www.pruban/admin/config/content/syntaxhighlighter">Syntax highlighter</a></li><li class="expandable"><a href="http://www.pruban/admin/config/content/formats">Text formats</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/formats/add">Add text format</a></li><li class="expandable"><a href="http://www.pruban/admin/config/content/formats/filtered_html">Filtered HTML</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/formats/filtered_html/disable">Disable text format</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/content/formats/full_html">Full HTML</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/formats/full_html/disable">Disable text format</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/content/formats/php_code">PHP code</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/content/formats/php_code/disable">Disable text format</a></li></ul></li><li><a href="http://www.pruban/admin/config/content/formats/plain_text">Plain text</a></li><li><a href="http://www.pruban/admin/config/content/formats/settings">Settings</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/date">Date API</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/date/date_popup">Date Popup</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/development">Development</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/development/performance">Performance</a></li><li><a href="http://www.pruban/admin/config/development/logging">Logging and errors</a></li><li><a href="http://www.pruban/admin/config/development/maintenance">Maintenance mode</a></li><li><a href="http://www.pruban/admin/config/development/devel">Devel settings</a></li><li><a href="http://www.pruban/admin/config/development/strongarm">Strongarm</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/media">Media</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/media/file-system">File system</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/media/file-system/transliteration">Transliteration</a></li></ul></li><li><a href="http://www.pruban/admin/config/media/emvideo_ina">Embedded video INA.fr</a></li><li class="expandable"><a href="http://www.pruban/admin/config/media/image-styles">Image styles</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/media/image-styles/add">Add style</a></li></ul></li><li><a href="http://www.pruban/admin/config/media/image-toolkit">Image toolkit</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/people">People</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts">Account settings</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts/fields">Manage fields</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts/fields/field_about_me">About me</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_about_me/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_about_me/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_about_me/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts/fields/field_user_contacts">Contacts</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_user_contacts/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_user_contacts/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_user_contacts/delete">Delete</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts/fields/field_asset_image">Image</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_asset_image/field-settings">Field settings</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_asset_image/widget-type">Widget type</a></li><li><a href="http://www.pruban/admin/config/people/accounts/fields/field_asset_image/delete">Delete</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/people/accounts/display">Manage display</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/people/accounts/display/comments">Comments</a></li></ul></li></ul></li><li><a href="http://www.pruban/admin/config/people/ip-blocking">IP address blocking</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/regional">Regional and language</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/regional/settings">Regional settings</a></li><li class="expandable"><a href="http://www.pruban/admin/config/regional/date-time">Date and time</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/regional/date-time/formats">Formats</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/regional/date-time/formats/add">Add format</a></li></ul></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/search">Search and metadata</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/search/settings">Search settings</a></li><li class="expandable"><a href="http://www.pruban/admin/config/search/path">URL aliases</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/search/path/add">Add alias</a></li><li><a href="http://www.pruban/admin/config/search/path/patterns">Patterns</a></li><li><a href="http://www.pruban/admin/config/search/path/settings">Settings</a></li><li><a href="http://www.pruban/admin/config/search/path/update_bulk">Bulk update</a></li><li><a href="http://www.pruban/admin/config/search/path/delete_bulk">Delete aliases</a></li></ul></li><li><a href="http://www.pruban/admin/config/search/metatags">Meta tags</a></li><li><a href="http://www.pruban/admin/config/search/clean-urls">Clean URLs</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/system">System</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/system/site-information">Site information</a></li><li><a href="http://www.pruban/admin/config/system/actions">Actions</a></li><li class="expandable"><a href="http://www.pruban/admin/config/system/backup_migrate">Backup and Migrate</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/system/backup_migrate/restore">Restore</a></li><li><a href="http://www.pruban/admin/config/system/backup_migrate/destination">Destinations</a></li><li><a href="http://www.pruban/admin/config/system/backup_migrate/profile">Profiles</a></li><li><a href="http://www.pruban/admin/config/system/backup_migrate/schedule">Schedules</a></li></ul></li><li><a href="http://www.pruban/admin/config/system/cron">Cron</a></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/user-interface">User interface</a>
+<ul class="dropdown"><li class="expandable"><a href="http://www.pruban/admin/config/user-interface/lightbox2">Lightbox2</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/user-interface/lightbox2/slideshow">Slideshow</a></li><li><a href="http://www.pruban/admin/config/user-interface/lightbox2/html_content">HTML Content</a></li><li><a href="http://www.pruban/admin/config/user-interface/lightbox2/automatic">Automatic image handling</a></li></ul></li><li><a href="http://www.pruban/admin/config/user-interface/menu-block">Menu block</a></li><li class="expandable"><a href="http://www.pruban/admin/config/user-interface/shortcut">Shortcuts</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/user-interface/shortcut/add-set">Add shortcut set</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/config/services">Web services</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/config/services/rss-publishing">RSS publishing</a></li></ul></li></ul></li><li class="expandable"><a href="http://www.pruban/admin/reports">Reports</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/reports/status">Status report</a></li><li class="expandable"><a href="http://www.pruban/admin/reports/updates">Available updates</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/reports/updates/install">Install new module or theme</a></li><li><a href="http://www.pruban/admin/reports/updates/update">Update</a></li><li><a href="http://www.pruban/admin/reports/updates/settings">Settings</a></li></ul></li><li><a href="http://www.pruban/admin/reports/dblog">Recent log messages</a></li><li class="expandable"><a href="http://www.pruban/admin/reports/fields">Field list</a>
+<ul class="dropdown"><li><a href="http://www.pruban/admin/reports/fields/views-fields">Used in views</a></li></ul></li><li><a href="http://www.pruban/admin/reports/access-denied">Top 'access denied' errors</a></li><li><a href="http://www.pruban/admin/reports/page-not-found">Top 'page not found' errors</a></li><li><a href="http://www.pruban/admin/reports/search">Top search phrases</a></li><li><a href="http://www.pruban/admin/reports/views-plugins">Views plugins</a></li></ul></li><li><a href="http://www.pruban/admin/help">Help</a></li></ul>
+<ul class="dropdown"><li class="admin-menu-action"><a href="http://www.pruban/user/logout">Log out</a></li><li class="admin-menu-action admin-menu-account expandable"><a href="http://www.pruban/users/root">root</a>
+<ul class="dropdown"><li><a href="http://www.pruban/devel/switch/root?destination=%3Cfront%3E&amp;token=7gKj-hjT39xy19v1N6defSDpLGoj9Gvn6aX-jXzjpWI"><strong><em class="placeholder">root</em></strong></a></li><li><a href="http://www.pruban/devel/switch/guest?destination=%3Cfront%3E&amp;token=5-Nqk4ZK_sVdwhnpuec_9J2RRKJlR3k4iv0mODN0FLw">guest</a></li><li><a href="http://www.pruban/devel/switch/Gusplugh?destination=%3Cfront%3E&amp;token=7E2U29pX_aVlZzVCt4nCWmFzEYKH3nS1cqeNLSZ0QSQ">Gusplugh</a></li><li><a href="http://www.pruban/devel/switch/gy?destination=%3Cfront%3E&amp;token=WwJWJMnQr1PGvzJ6ZBfYQTbRUhqeq5VX9wPRYg8nEsc">gy</a></li><li><a href="http://www.pruban/devel/switch/kirbydoll?destination=%3Cfront%3E&amp;token=9YnZz5j4tDJAlnYjWg--DcP-MioI8xgdk3r4czESLZY">kirbydoll</a></li><li><a href="http://www.pruban/devel/switch/Pavel?destination=%3Cfront%3E&amp;token=XsiaIEWoDNTyN2RgHvVsTVqs1vq-hu8UX0EH0CcGp8A">Pavel</a></li><li><a href="http://www.pruban/devel/switch/Pavelruban?destination=%3Cfront%3E&amp;token=x8_OJoKmvgtV7JarPeMtCCUlUktzp4nxjGzCCy-fee0">Pavelruban</a></li><li><a href="http://www.pruban/devel/switch/Pavel%20Ruban?destination=%3Cfront%3E&amp;token=_QJZsvc8gtTwqBWVDtPaEqNxHrIgHAsHImpztpq04YU">Pavel Ruban</a></li><li><a href="http://www.pruban/devel/switch/polkumne?destination=%3Cfront%3E&amp;token=yHdVwLfSMvoY7qI5T8sqDQcx-qp-gvNEQBO5s1VaoBs">polkumne</a></li><li><a href="http://www.pruban/devel/switch/zuz?destination=%3Cfront%3E&amp;token=Ze8JCtxTn16TBK8Rpl2wd_VVSHXKEcMOxFicRYlkIZk">zuz</a></li></ul></li><li class="admin-menu-action admin-menu-users"><a href="http://www.pruban/admin/people/people">0 / 1</a></li></ul></div></div><script type="text/javascript" src="Recent%20Articles%20%7C%20Pavel%20Ruban_files/syntaxhighlighter.js"></script>
+
+
+<div id="lightbox2-overlay" style="display: none;"></div>      <div id="lightbox" style="display: none;" class="lightbox2-orig-layout">        <div style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" id="outerImageContainer"><div id="modalContainer" style="display: none; padding: 10px;"></div><div id="frameContainer" style="display: none; padding: 10px;"></div><div id="imageContainer" style="display: none; padding: 10px;"><img id="lightboxImage" alt=""><div id="hoverNav"><a style="padding-top: 10px;" id="prevLink" title="Previous" href="#"></a><a style="padding-top: 10px;" id="nextLink" title="Next" href="#"></a></div></div><div id="loading"><a href="#" id="loadingLink"></a></div></div>        <div style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" id="imageDataContainer" class="clearfix">          <div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><div id="frameHoverNav"><a style="padding-top: 10px;" id="framePrevLink" title="Previous" href="#"></a><a style="padding-top: 10px;" id="frameNextLink" title="Next" href="#"></a></div><a style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" id="bottomNavClose" title="Close" href="#"></a><a id="bottomNavZoom" href="#"></a><a id="bottomNavZoomOut" href="#"></a><a id="lightshowPause" title="Pause Slideshow" href="#" style="display: none;"></a><a id="lightshowPlay" title="Play Slideshow" href="#" style="display: none;"></a></div></div>        </div>      </div><div id="sb-container"><div id="sb-overlay"></div><div id="sb-wrapper"><div id="sb-title"><div id="sb-title-inner"></div></div><div id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div><div id="sb-container"><div id="sb-overlay"></div><div id="sb-wrapper"><div id="sb-title"><div id="sb-title-inner"></div></div><div id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div>​​​​​<div id="sb-container"><div id="sb-overlay"></div><div id="sb-wrapper"><div id="sb-title"><div id="sb-title-inner"></div></div><div id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div>​​​​​<div id="sb-container"><div id="sb-overlay"></div><div id="sb-wrapper"><div id="sb-title"><div id="sb-title-inner"></div></div><div id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div>​​​​​<div id="sb-container"><div id="sb-overlay"></div><div id="sb-wrapper"><div id="sb-title"><div id="sb-title-inner"></div></div><div id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div></body>​​​​​</html>

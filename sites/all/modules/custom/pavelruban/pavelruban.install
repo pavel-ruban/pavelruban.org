@@ -5,6 +5,28 @@
  */
 
 /**
+ * Implements hook_schema().
+ */
+function pavelruban_schema() {
+  $schema['node_statistic'] = array(
+    'description' => 'Store node statistic information',
+    'fields' => array(
+      'nid' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+      'type' => array('type' => 'varchar', 'length' => 256, 'not null' => TRUE, 'default' => ''),
+      'access_count'    => array('type' => 'varchar', 'length' => 256, 'not null' => TRUE),
+    ),
+    'indexes' => array(
+      'nid_indexe' => array('nid'),
+    ),
+    'unique keys' => array(
+      'nid_unique' => array('nid'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
  * Implements hook_update_N().
  */
 function pavelruban_update_7001() {
@@ -85,4 +107,22 @@ function pavelruban_update_7033() {
       module_enable(array($module));
     }
   }
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7034() {
+  $modules = array(
+    'votingapi',
+    'fancybox',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+
+  db_create_table('node_statistic', drupal_get_schema_unprocessed('pavelruban', 'node_statistic'));
 }

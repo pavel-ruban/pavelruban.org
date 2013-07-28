@@ -12,3 +12,6 @@
   <?php echo $description; ?><br/><br/>
   <?php echo preg_replace('/<\s*?\/?p\s*?>/', '', $body); ?>
 </p>
+<?php if (!empty($tags)): ?>
+  <?php echo $tags; ?>
+<?php endif; ?>

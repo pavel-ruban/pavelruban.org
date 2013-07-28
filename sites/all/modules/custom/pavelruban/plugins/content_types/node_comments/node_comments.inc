@@ -32,7 +32,7 @@ function pavelruban_node_comments_content_type_render($subtype, $conf, $panel_ar
   }
   else if ($node->comment) {
     $comment_list = pavelruban_comment_render($node, $conf);
-    $block->content = theme('pavelruban_node_comments', array('comment_list' => $comment_list));
+    $block->content = theme('pavelruban_node_comments', array('comment_list' => $comment_list, 'node' => $node));
     // Update the history table, stating that this user viewed this node.
     node_tag_new($node);
   }
@@ -125,6 +125,25 @@ function pavelruban_preprocess_pavelruban_node_comments(&$vars) {
       'attributes' => array(
         'class' => array('add-comment'),
       ),
+    )
+  );
+
+  $result = db_select('node_statistic')
+   ->fields('node_statistic', array('access_count'))
+   ->condition('nid', $vars['node']->nid)
+   ->execute()
+   ->fetchCol();
+  $acess_count = !empty($result[0]) ? $result[0] : 0;
+  $vars['social'] = theme('social',
+    array(
+      'nid' => $vars['node']->nid,
+      'comment_count' => $vars['node']->comment_count,
+      'changed' => $vars['node']->changed,
+      'share_title' => check_plain($vars['node']->title),
+      'share_description' => '',
+      'access_count' => $acess_count,
+      'mode' => 'full',
+      'part' => 'bottom',
     )
   );
 

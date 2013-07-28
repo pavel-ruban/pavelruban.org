@@ -16,5 +16,6 @@ features[field][] = user-user-field_asset_image
 features[field][] = user-user-field_user_contacts
 features[page_manager_handlers][] = node_view_panel_context
 features[page_manager_handlers][] = site_template_panel_context
+features[page_manager_handlers][] = term_view_panel_context
 features[page_manager_pages][] = home
 features[page_manager_pages][] = las_comments

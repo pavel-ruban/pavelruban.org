@@ -124,6 +124,8 @@ function pavelruban_entity_info_alter(&$entity_info) {
     ),
     'user' => array(
       'comments',
+      'like_mini',
+      'like_full',
     ),
   );
 
@@ -234,9 +236,64 @@ function pavelruban_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['ajax/vote/node/%'] = array(
+    'page callback' => 'pavelruban_ajax_node_vote',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
+
+  $items['ajax/full-voted-user-statistic/%'] = array(
+    'page callback' => 'pavelruban_ajax_full_voted_user_statistic',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
   return $items;
 }
 
+/**
+ * Vote node functional.
+ */
+function pavelruban_ajax_full_voted_user_statistic($nid) {
+  $result = pavelruban_get_node_votes_count($nid);
+  $response = array('peoplePopup' => theme('like_popup', array('meta' => $result['meta'], 'mode' => 'full', 'nid' => $nid)));
+
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+/**
+ * Vote node functional.
+ */
+function pavelruban_ajax_node_vote($nid) {
+  if (!empty($nid)) {
+    global $user;
+    $vote = array(
+      'value' => 1,
+      'value_type' => 'points',
+      'entity_id' => $nid,
+      'uid' => $user->uid,
+    );
+    $user_vote = votingapi_select_votes($vote);
+    if (!empty($user_vote[0]['vote_id'])) {
+      votingapi_delete_votes(array(array('vote_id' => $user_vote[0]['vote_id'])));
+      $response = array('vote' => 0);
+    }
+    else {
+      $votes[] = $vote;
+      votingapi_set_votes($votes);
+      $response = array('vote' => 1);
+    }
+  }
+  $result = pavelruban_get_node_votes_count($nid);
+  $response += array('likesCount' => $result['count']);
+
+
+  $response += array('likedUsers' => theme('like_popup', array('meta' => $result['meta'], 'nid' => $nid)));
+
+  drupal_json_output($response);
+  drupal_exit();
+}
 /*
  * Implement hook_custom_theme().
  */
@@ -247,3 +304,42 @@ function pavelruban_custom_theme() {
     return 'front';
   }
 }
+
+/**
+ * Implements hook_theme.
+ */
+function pavelruban_theme() {
+  $items = array();
+  $items['tags'] = array(
+    'file' => 'theme.inc',
+    'path' => PR_MODULE_PATH . '/theme',
+    'template' => 'tags',
+  );
+
+  $items['social'] = array(
+    'file' => 'theme.inc',
+    'path' => PR_MODULE_PATH . '/theme',
+    'template' => 'social',
+  );
+
+  $items['like_popup'] = array(
+    'file' => 'theme.inc',
+    'path' => PR_MODULE_PATH . '/theme',
+    'template' => 'like-popup',
+  );
+  return $items;
+}
+
+/**
+ * Get votes number for node by nid.
+ */
+function pavelruban_get_node_votes_count($nid) {
+  $vote_results = db_select('votingapi_vote')
+    ->fields('votingapi_vote', array('entity_id', 'vote_id', 'uid'))
+    ->condition('entity_id', $nid)
+    ->execute()
+    ->fetchAll();
+
+  return array('count' => count($vote_results), 'meta' => $vote_results);
+}
+

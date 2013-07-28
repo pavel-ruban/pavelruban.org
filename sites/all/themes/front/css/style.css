@@ -227,6 +227,7 @@ h1 {
 
 #wrapper > .main p.img {
   min-height: 120px;
+  margin-bottom: 0;
 }
 
 #wrapper > .main a {
@@ -436,11 +437,10 @@ h1.comment-bottom-line.empty {
   width: 100%;
 }
 
-#wrapper > .main a.admin.edit {
+#wrapper > .main div.admin.edit {
   position: absolute;
-  right: 10px;
-  top: 6px;
-  color: #ffffff;
+  right: 20px;
+  top: 13px;
 }
 
 #wrapper > .main a.admin.edit:hover {
