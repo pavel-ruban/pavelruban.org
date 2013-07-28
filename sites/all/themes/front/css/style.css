@@ -227,7 +227,7 @@ h1 {
 
 #wrapper > .main p.img {
   min-height: 120px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 #wrapper > .main a {
