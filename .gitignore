@@ -6,6 +6,6 @@
 settings.php
 /redmine*
 /projects*
-tags
+/tags
 error_log
 .idea*
