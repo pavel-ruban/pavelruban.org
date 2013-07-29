@@ -53,13 +53,13 @@ function common_content_type_article_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '7',
         ),
         'domain' => array(
           'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '8',
         ),
         'redirect' => array(
           'weight' => '30',

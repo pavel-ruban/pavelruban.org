@@ -44,10 +44,6 @@ function pavelruban_context_links_theme(&$theme, $plugin) {
 function template_preprocess_pavelruban_context_links(&$vars) {
   if (preg_match('/^node\/([0-9]+)/', $_GET['q'], $match) && user_access('administer nodes')) {
     $node = node_load($match[1]);
-    $vars['edit_link'] = l(t('edit'), "node/{$node->nid}/edit",
-      array(
-        'attributes' => array('class' => array('admin', 'edit')),
-      )
-    );
+    $vars['edit_link'] = theme('social', array('mode' => 'full', 'part' => 'top', 'nid' => $node->nid, 'changed' => $node->changed));
   }
 }

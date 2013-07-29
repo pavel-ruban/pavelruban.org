@@ -21,7 +21,7 @@ function common_content_type_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Blocs',
-    'weight' => '10',
+    'weight' => '6',
     'children' => array(
       0 => 'field_blocks_zone1',
       1 => 'field_blocks_zone2',

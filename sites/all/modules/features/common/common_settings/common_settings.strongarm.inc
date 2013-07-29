@@ -27,6 +27,129 @@ function common_settings_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'fancybox_settings';
+  $strongarm->value = array(
+    'settings' => array(
+      'selectors' => '',
+      'deactivated_pages' => 'admin*
+img_assist*
+imce*
+node/add*
+node/*/edit',
+    ),
+    'options' => array(
+      'padding' => 15,
+      'margin' => 20,
+      'width' => 800,
+      'height' => 600,
+      'minWidth' => 100,
+      'minHeight' => 100,
+      'maxWidth' => 9999,
+      'maxHeight' => 9999,
+      'autoSize' => 1,
+      'autoHeight' => 0,
+      'autoWidth' => 0,
+      'autoResize' => 1,
+      'autoCenter' => 1,
+      'fitToView' => 1,
+      'aspectRatio' => 0,
+      'topRatio' => 0.5,
+      'leftRatio' => 0.5,
+      'scrolling' => 'auto',
+      'wrapCSS' => '',
+      'arrows' => 0,
+      'closeBtn' => 0,
+      'closeClick' => 1,
+      'nextClick' => 0,
+      'mouseWheel' => 1,
+      'autoPlay' => 0,
+      'playSpeed' => 3000,
+      'preload' => 3,
+      'modal' => 0,
+      'openEffect' => 'fade',
+      'closeEffect' => 'fade',
+      'nextEffect' => 'elastic',
+      'prevEffect' => 'elastic',
+      'openSpeed' => 250,
+      'closeSpeed' => 250,
+      'nextSpeed' => 250,
+      'prevSpeed' => 250,
+      'openEasing' => 'swing',
+      'closeEasing' => 'swing',
+      'nextEasing' => 'swing',
+      'prevEasing' => 'swing',
+      'openOpacity' => 1,
+      'closeOpacity' => 1,
+      'openMethod' => 'zoomIn',
+      'closeMethod' => 'zoomOut',
+      'nextMethod' => 'changeIn',
+      'prevMethod' => 'changeOut',
+    ),
+    'helpers' => array(
+      'title_enabled' => 0,
+      'title' => array(
+        'type' => 'float',
+        'position' => 'bottom',
+      ),
+      'overlay_enabled' => 0,
+      'overlay' => array(
+        'closeClick' => 1,
+        'speedOut' => 200,
+        'showEarly' => 1,
+        'locked' => 1,
+        'fixed' => 1,
+      ),
+      'thumbs_enabled' => 0,
+      'thumbs' => array(
+        'width' => 50,
+        'height' => 50,
+        'position' => 'bottom',
+      ),
+      'media_enabled' => 0,
+      'buttons_enabled' => 0,
+      'buttons' => array(
+        'position' => 'top',
+      ),
+    ),
+    'callbacks' => array(
+      'onCancel' => '',
+      'beforeLoad' => '',
+      'afterLoad' => '',
+      'beforeShow' => '',
+      'afterShow' => '',
+      'beforeClose' => '',
+      'afterClose' => '',
+      'onUpdate' => '',
+      'onPlayStart' => '',
+      'onPlayEnd' => '',
+    ),
+  );
+  $export['fancybox_settings'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'jquery_update_compression_type';
+  $strongarm->value = 'min';
+  $export['jquery_update_compression_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'jquery_update_jquery_cdn';
+  $strongarm->value = 'none';
+  $export['jquery_update_jquery_cdn'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'jquery_update_jquery_version';
+  $strongarm->value = '1.7';
+  $export['jquery_update_jquery_version'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'logo_path';
   $strongarm->value = 'home.png';
   $export['logo_path'] = $strongarm;
@@ -41,9 +164,46 @@ function common_settings_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'page_manager_term_view_disabled';
+  $strongarm->value = FALSE;
+  $export['page_manager_term_view_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'panels_everywhere_site_template_enabled';
   $strongarm->value = TRUE;
   $export['panels_everywhere_site_template_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pavelruban_last_comments';
+  $strongarm->value = array(
+    70 => array(
+      'nid' => '15',
+      'uid' => '1',
+      'user_name' => 'root',
+      'text' => 'l',
+      'timestamp' => 1375023332,
+      'date' => '28 июл в 21:55',
+      'cid' => '70',
+      'accessed_uids' => array(
+        0 => 0,
+      ),
+    ),
+    71 => array(
+      'nid' => '15',
+      'uid' => '1',
+      'user_name' => 'root',
+      'text' => 'a',
+      'timestamp' => 1375074404,
+      'date' => '29 июл в 12:06',
+      'cid' => '71',
+      'accessed_uids' => array(),
+    ),
+  );
+  $export['pavelruban_last_comments'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

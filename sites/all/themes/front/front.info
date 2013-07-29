@@ -5,6 +5,8 @@ version = VERSION
 core = 7.x
 
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/social.css
+stylesheets[all][] = css/tags.css
 stylesheets[all][] = css/custom_comments.css
 
 scripts[] = scripts/common.js

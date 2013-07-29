@@ -80,6 +80,75 @@ counter = 0;
     }
   }
 
+  Drupal.behaviors.peoplePopup = {
+    attach: function () {
+      $('a.like-quantity').click(function(e){
+        var $this = $(this);
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          global: false,
+          context: {
+            element: this,
+            event: e
+          },
+          url: $this.attr('href'),
+          success: function ($response) {
+            if ($response.peoplePopup != undefined) {
+              $.fancybox({content: $response.peoplePopup, closeBtn: false, helpers: {
+                  overlay: {
+                    css: {
+                      'background': 'rgba(1, 1, 1, 0.1)'
+                    }
+                  }
+                }
+              });
+
+              $('a.fancybox-close-link').once(function(){
+                $(this).click(function(e){
+                  e.preventDefault();
+                  $.fancybox.close();
+                });
+              });
+            }
+          }
+        });
+      });
+    }
+  }
+
+  Drupal.behaviors.likes = {
+    attach: function () {
+      $('a.like-ajax-img').click(function(e){
+        var $this = $(this);
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          global: false,
+          context: {
+            element: this,
+            event: e
+          },
+          url: $this.attr('href'),
+          success: function ($response) {
+            if ($response.vote != undefined && $response.vote == 0) {
+              $(this.element).removeClass('voted').attr('title', 'мне нравится');
+            }
+            else if ($response.vote != undefined && $response.vote == 1) {
+              $(this.element).addClass('voted').attr('title', 'вы уже оставили свой голос');
+            }
+
+            $(this.element).find('~ span').html($response.likesCount);
+            $(this.element).find('~ div.like-popup').html($response.likedUsers);
+            Drupal.behaviors.peoplePopup.attach();
+          }
+        });
+      });
+    }
+  }
+
   Drupal.behaviors.prComments = {
     attach: function () {
       $('div.comment-wrapper:not(:first)').removeClass('first');

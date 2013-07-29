@@ -1,0 +1,229 @@
+div.updated-text {
+  color: gray;
+}
+
+a.updated-info,
+div.updated-info {
+  color: gray;
+  margin-right: 5px;
+  background: url("../images/social.png") repeat scroll -36px -28px transparent;
+  width: 17px;
+  height: 17px;
+  float: left;
+  margin-top: 5px;
+}
+
+div.like-info {
+  float: right;
+  position: relative;
+}
+
+div.like-popup {
+  position: absolute;
+  bottom: 31px;
+  z-index: 5;
+  left: -161px;
+  height: 88px;
+  border: 1px solid rgb(149, 145, 145);
+  box-shadow: 0px 0px 11px -7px black;
+  border-radius: 5px 5px 5px 5px;
+  width: 240px;
+  background: none repeat scroll 0px 0px rgb(255, 255, 255);
+  display:none;
+  padding: 5px;
+}
+
+div.like-popup-angle {
+position: absolute;
+  width: 23px;
+  background: url("../images/social.png") repeat scroll 0px -30px transparent;
+  height: 12px;
+  bottom: 21px;
+  z-index: 6;
+  left: -2px;
+  display:none;
+}
+
+div.like-popup-angle:hover,
+div.like-popup:hover {
+  display: block;
+}
+
+.like-ajax-img:hover ~ div.like-popup-angle,
+div.like-popup:hover ~ div.like-popup-angle,
+div.like-popup-angle:hover ~ div.like-popup,
+.like-ajax-img:hover ~ div.like-popup {
+  display: block;
+}
+
+a.likes-man {
+  background: url("../images/m_3QjAWycq0.jpg") repeat scroll 0px 0px transparent;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  display: block;
+  float: left;
+}
+
+div.comments-info {
+  float: right;
+  margin-right: 5px;
+}
+
+a.comments-img {
+  background-position: -66px -3px;
+  display: block;
+  height: 23px;
+  width: 23px;
+  float: left;
+  margin-right: 5px;
+  background-image: url("../images/social.png");
+}
+
+
+div.like-quantit {
+  margin-left: 10px;
+  color: black;
+}
+
+a.like-ajax-img {
+  height: 23px;
+  width: 23px;
+  float: left;
+  margin-right: 5px;
+  background-image: url("../images/social.png");
+  background-position: -237px -3px;
+}
+
+a.like-ajax-img.voted {
+  background-position: -217px -3px;
+}
+
+div.views-quantity-img {
+  height: 23px;
+  width: 23px;
+  float: left;
+  margin-right: 5px;
+  background-image: url("../images/social.png");
+  background-position: -191px -3px;
+}
+
+div.views-quantity {
+  float: right;
+  margin-right: 5px;
+}
+
+div.social-popup-angle {
+  position: absolute;
+  width: 23px;
+  left: -4px;
+  background: url("../images/social.png") repeat scroll 0px -30px transparent;
+  height: 12px;
+  bottom: 21px;
+  z-index: 7;
+  display:none;
+}
+
+div.social-popup {
+  height: 34px;
+  position: absolute;
+  left: -180px;
+  bottom: 31px;
+  background: none repeat scroll 0% 0% white;
+  width: 385px;
+  box-shadow: 0px 0px 11px -7px black;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid rgb(149, 145, 145);
+  z-index: 6;
+  display:none;
+  padding: 5px;
+}
+
+div.social-popup-angle:hover,
+div.social-popup:hover {
+  display: block;
+}
+
+.social-img:hover ~ div.social-popup-angle,
+div.social-popup:hover ~ div.social-popup-angle,
+div.social-popup-angle:hover ~ div.social-popup,
+.social-img:hover ~ div.social-popup {
+  display: block;
+}
+
+div.social-img {
+  height: 23px;
+  width: 23px;
+  float: left;
+  margin-right: 5px;
+  background-image: url("../images/social.png");
+  background-position: -160px -3px;
+}
+
+div.social {
+  float: right;
+  margin-right: 5px;
+  position: relative;
+}
+
+div.statistic {
+  clear:both;
+}
+
+a.user-name {
+  clear: both;
+  margin: 0px 10px;
+  width: 100px;
+  display: block;
+  text-align: center;
+}
+
+a.usr-img-full {
+  width: 100px;
+  display: block;
+  float: left;
+  height: 100px;
+  margin: 10px;
+}
+
+div.usr-full-wrapper {
+  width: 120px;
+  float: left;
+}
+
+div.people-popup-header {
+  height: 47px;
+  background: none repeat scroll 0% 0% gray;
+}
+
+span.people-popup-title {
+  margin-left: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  display: block;
+  padding-top: 8px;
+  float: left;
+}
+
+a.fancybox-close-link {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  display: block;
+  padding-top: 8px;
+  float: right;
+  margin-right: 10px;
+}
+
+div.people-popup {
+  border: 1px solid rgb(149, 145, 145);
+  box-shadow: 0px 0px 11px -7px black;
+  background: none repeat scroll 0px 0px rgb(255, 255, 255);
+  margin: 0px auto;
+  position: fixed;
+  left: 30%;
+  width: 40%;
+  top: 30%;
+  height: 40%;
+  z-index: 6;
+}
+
