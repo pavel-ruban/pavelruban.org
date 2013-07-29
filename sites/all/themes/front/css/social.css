@@ -141,14 +141,14 @@ div.social-popup {
 
 div.social-popup-angle:hover,
 div.social-popup:hover {
-  display: block;
+  display: none;
 }
 
 .social-img:hover ~ div.social-popup-angle,
 div.social-popup:hover ~ div.social-popup-angle,
 div.social-popup-angle:hover ~ div.social-popup,
 .social-img:hover ~ div.social-popup {
-  display: block;
+  display: none;
 }
 
 div.social-img {
