@@ -105,4 +105,31 @@ function pavelruban_preprocess_social(&$vars) {
   $result = pavelruban_get_node_votes_count($vars['nid']);
   $vars['votes_count'] = $result['count'];
   $vars['like_popup'] = theme('like_popup', array('meta' => $result['meta'], 'nid' => $vars['nid']));
+
+  $node = node_load($vars['nid']);
+  $social_meta = array();
+  $title = check_plain($node->title);
+  $title = truncate_utf8($title, 140, TRUE, TRUE);
+  $description = field_get_items('node', $node, 'field_article_catchline');
+  $description = !empty($description[0]['safe_value']) ? $description[0]['safe_value'] : '';
+  $description = preg_replace('/\r|\n/', '', $description);
+  $title_desc = truncate_utf8("$title | $description", 140, TRUE, TRUE);
+  $description = truncate_utf8($description, 140 - strlen($title), TRUE, TRUE);
+
+  $image = field_get_items('node', $node, 'field_article_media');
+
+  if (!empty($image[0]['entity']->field_asset_image)) {
+    $asset = field_get_items('asset', $image[0]['entity'], 'field_asset_image');
+    if (!empty($asset[0]['uri'])) {
+      $image_url = file_create_url($asset[0]['uri']);
+    }
+  }
+
+  $social_meta['title'] = $title;
+  $social_meta['description'] = $description;
+  $social_meta['title_desc'] = $title_desc;
+  $social_meta['url'] = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
+  $social_meta['image'] = !empty($image_url) ? $image_url : '';
+
+  $vars['social_meta'] = $social_meta;
 }
