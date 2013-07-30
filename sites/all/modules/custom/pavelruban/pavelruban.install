@@ -142,3 +142,21 @@ function pavelruban_update_7035() {
     }
   }
 }
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7036() {
+  $modules = array(
+    'captcha',
+    'recaptcha',
+    'textcaptcha',
+    'image_captcha_refresh',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}
