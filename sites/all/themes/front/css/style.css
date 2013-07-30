@@ -581,3 +581,28 @@ a {
 .wall_reply_text.comment-body {
   overflow: hidden;
 }
+
+#wrapper ul.tag-cloud a {
+  color: white;
+  display: inline;
+}
+
+#wrapper ul.tag-cloud {
+  display: block;
+  max-width: 197px;
+}
+
+ul.recent-posts {
+  display: block;
+  height: 0px;
+  overflow: hidden;
+}
+
+span.prefix {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h3.recent-posts {
+  display: block;
+}

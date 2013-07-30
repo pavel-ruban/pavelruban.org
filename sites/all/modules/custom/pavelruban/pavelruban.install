@@ -126,3 +126,19 @@ function pavelruban_update_7034() {
 
   db_create_table('node_statistic', drupal_get_schema_unprocessed('pavelruban', 'node_statistic'));
 }
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7035() {
+  $modules = array(
+    'tagadelic',
+    'tagadelic_taxonomy',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}

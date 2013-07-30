@@ -5,6 +5,42 @@
 counter = 0;
 
 (function ($) {
+  Drupal.behaviors.prSidebar = {
+    attach: function () {
+      $('h3.recent-posts').click(function(){
+        var $this = $(this), $ul = $this.parent().find('ul.recent-posts');
+        if ($ul.hasClass('expanded')) {
+          $ul.removeClass('expanded').addClass('minimized').animate(
+            {height: '0px'},
+            {
+              duration: 1000,
+              complete: function() {
+                $ul.siblings('h3.recent-posts').find('span.prefix').html('+');
+              }
+            }
+          );
+        }
+        else {
+          var height = 0;
+          $('ul.recent-posts > *').each(function(a, b) {
+            height += jQuery(b).outerHeight();
+          });
+
+          $ul.removeClass('minimized').addClass('expanded')
+            .animate(
+              {height: height + 'px'},
+              {
+                duration: 1000,
+                complete: function() {
+                  $ul.siblings('h3.recent-posts').find('span.prefix').html('-');
+                }
+              }
+          );
+        }
+      });
+    }
+  }
+
   Drupal.behaviors.assetFrontWrappers = {
     attach: function () {
       $('.content-small + .content-small').once(function () {

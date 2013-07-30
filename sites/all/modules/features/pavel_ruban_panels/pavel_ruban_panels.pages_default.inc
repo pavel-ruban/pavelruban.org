@@ -289,6 +289,27 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-9'] = $pane;
     $display->panels['sidebar'][0] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'sidebar';
+    $pane->type = 'block';
+    $pane->subtype = 'tagadelic_taxonomy-tagadelic_taxonomy';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['sidebar'][1] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
@@ -330,7 +351,7 @@ function pavel_ruban_panels_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'content';
     $pane->type = 'views_panes';
     $pane->subtype = 'terms-tags';
@@ -349,8 +370,8 @@ function pavel_ruban_panels_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['content'][0] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['content'][0] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
