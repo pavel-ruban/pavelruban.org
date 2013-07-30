@@ -608,6 +608,10 @@ span.prefix {
   font-weight: bold;
 }
 
+h3.tagadelic {
+  margin: 5px 0 5px 0;
+}
+
 h3.recent-posts {
   display: block;
   margin-bottom: 0;
@@ -616,4 +620,9 @@ h3.recent-posts {
 #sidebar {
   position: fixed;
   display: inline;
+}
+
+.header .menu {
+  position: fixed;
+  right: 12px;
 }
