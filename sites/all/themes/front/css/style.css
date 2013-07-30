@@ -676,3 +676,8 @@ div.captcha ~ div.form-actions {
 body {
   font-size: 15px;
 }
+
+body .syntaxhighlighter {
+  font-size: 1em !important;
+  font-family: tahmonospace !important;
+}
