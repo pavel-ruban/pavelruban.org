@@ -291,6 +291,8 @@ function pavelruban_ajax_node_vote($nid) {
 
   $response += array('likedUsers' => theme('like_popup', array('meta' => $result['meta'], 'nid' => $nid)));
 
+  $response += array('userLikesCount' => pavelruban_current_like_count());
+
   drupal_json_output($response);
   drupal_exit();
 }
