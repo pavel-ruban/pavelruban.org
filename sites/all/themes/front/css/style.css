@@ -678,6 +678,6 @@ body {
 }
 
 body .syntaxhighlighter {
-  font-size: 1em !important;
-  font-family: tahmonospace !important;
+  font-size: 13px !important;
+  font-family: monospace !important;
 }
