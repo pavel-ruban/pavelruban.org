@@ -108,12 +108,14 @@ function pavelruban_preprocess_social(&$vars) {
 
   $node = node_load($vars['nid']);
   $social_meta = array();
-  $title = check_plain($node->title);
+  $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
+
+  $title = $node->title;
   $title = truncate_utf8($title, 140, TRUE, TRUE);
   $description = field_get_items('node', $node, 'field_article_catchline');
-  $description = !empty($description[0]['safe_value']) ? $description[0]['safe_value'] : '';
+  $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
   $description = preg_replace('/\r|\n/', '', $description);
-  $title_desc = truncate_utf8("$title | $description", 140, TRUE, TRUE);
+  $tweeter_text = truncate_utf8("$title | $description", 140 - strlen($url) - 1, TRUE, TRUE);
   $description = truncate_utf8($description, 140 - strlen($title), TRUE, TRUE);
 
   $image = field_get_items('node', $node, 'field_article_media');
@@ -127,8 +129,8 @@ function pavelruban_preprocess_social(&$vars) {
 
   $social_meta['title'] = $title;
   $social_meta['description'] = $description;
-  $social_meta['title_desc'] = $title_desc;
-  $social_meta['url'] = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
+  $social_meta['tweeter_text'] = $tweeter_text;
+  $social_meta['url'] = $url;
   $social_meta['image'] = !empty($image_url) ? $image_url : '';
 
   $vars['social_meta'] = $social_meta;
