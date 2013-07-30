@@ -58,6 +58,24 @@ function pavelruban_preprocess_like_popup(&$vars) {
       $vars['likedCount'] = 0;
       $vars['likedUsers'] = '';
     }
+
+  }
+  // Save count data within static variable to allow above theming to use this data.
+  pavelruban_current_like_count($vars['likedCount'], 'write');
+}
+
+/**
+ * Static storage for link data within two themings.
+ */
+function pavelruban_current_like_count($value = 0, $mode = 'get') {
+  static $likesCount = 0;
+
+  switch ($mode) {
+    case 'get':
+      return $likesCount;
+
+    case 'write':
+      $likesCount = $value;
   }
 }
 
@@ -104,7 +122,11 @@ function pavelruban_preprocess_social(&$vars) {
   }
   $result = pavelruban_get_node_votes_count($vars['nid']);
   $vars['votes_count'] = $result['count'];
-  $vars['like_popup'] = theme('like_popup', array('meta' => $result['meta'], 'nid' => $vars['nid']));
+  $vars['like_popup'] = theme('like_popup', array('meta' => $result['meta'], 'nid' => $vars['nid'], 'vars' => $vars));
+
+  $likes_count = pavelruban_current_like_count();
+  $vars['empty_likes_count'] = empty($likes_count) ? TRUE : FALSE;
+
 
   $node = node_load($vars['nid']);
   $social_meta = array();
