@@ -38,10 +38,18 @@
       <div class="social-popup">
         <div id="vk-like-<?php echo $nid; ?>"></div>
         <script type="text/javascript">
-          VK.Widgets.Like('vk-like-<?php echo $nid; ?>', {pageUrl: '<?php echo url("node/$nid", array('absolute' => TRUE, 'alias' => FALSE)); ?>', height: 20, type: 'button'});
+          VK.Widgets.Like('vk-like-<?php echo $nid; ?>', {pageImage: '<?php echo $social_meta['image']; ?>', pageTitle: '<?php echo $social_meta['title']; ?>', pageDescription: '<?php  echo $social_meta['description']; ?>',  pageUrl: '<?php echo $social_meta['url']; ?>', height: 20, type: 'button'});
         </script>
-        <a href="https://twitter.com/share" data-text="<?php echo truncate_utf8("$share_title | $share_description", 90, TRUE, TRUE); ?>" data-url="<?php echo url("node/$nid", array('absolute' => TRUE, 'alias' => TRUE)); ?>" data-counturl="<?php echo url("node/$nid", array('absolute' => TRUE, 'alias' => TRUE)); ?>"class="twitter-share-button" data-lang="en">Tweet</a>
-        <div class="fb-like" data-href="<?php echo url("node/$nid", array('absolute' => TRUE, 'alias' => FALSE)); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+        <a href="https://twitter.com/share"
+          data-text="<?php echo $social_meta['title_desc']; ?>"
+          data-url="<?php echo $social_meta['url']; ?>"
+          data-counturl="<?php echo $social_meta['url']; ?>"
+          class="twitter-share-button"
+          data-lang="en"
+        >
+          Tweet
+        </a>
+        <div class="fb-like" data-href="<?php echo $social_meta['url']; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
       </div>
     </div>
   </div>
