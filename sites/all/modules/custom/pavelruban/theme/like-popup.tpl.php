@@ -7,7 +7,7 @@
 <?php if (empty($mode) || $mode == 'teaser'): ?>
   <?php if (empty($likedCount)): ?>
     <a class="like-quantity">
-      Зарегестрированные пользователи еще не оценили эту статью
+      Зарегестрированных нет
     </a>
   <?php elseif ($likedCount == 1): ?>
     <a href="<?php echo url("ajax/full-voted-user-statistic/$nid"); ?>" class="like-quantity">
@@ -21,7 +21,6 @@
   <br>
   <?php echo $likedUsers; ?>
 <?php else: ?>
-fsfsdfsdfsdfsdf
   <div class="people-popup">
   <div class="people-popup-header">
     <?php if ($likedCount == 1): ?>

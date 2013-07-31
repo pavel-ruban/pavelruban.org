@@ -34,6 +34,12 @@ div.like-popup {
   padding: 5px;
 }
 
+div.like-popup.empty {
+  height: 27px;
+  left: -103px;
+  width: 167px;
+}
+
 #wrapper .main .like-popup a,
 #wrapper .main .like-popup span {
   color: white;
@@ -137,7 +143,7 @@ div.social-popup > div,
 div.social-popup > iframe {
   width: 100%;
   clear: both;
-  padding: 2.5px;
+  padding: 3px;
 }
 
 div.social-popup > .fb-like {
@@ -155,7 +161,7 @@ div.social-popup {
   border-radius: 1px 1px 1px 1px;
   border: 1px solid black;
   visibility: hidden;
-  padding: 2.5px 5px;
+  padding: 3px;
   margin: 0px;
 }
 
