@@ -11,7 +11,11 @@
   <div class="main">
     <?php echo $content['content']; ?>
   </div>
-  <?php echo $content['sidebar']; ?>
+  <div id="sidebar">
+    <div class="main">
+      <?php echo $content['sidebar']; ?>
+    </div>
+  </div>
 </div>
 <footer class="footer" role="contentinfo">
   <?php echo $content['footer']; ?>
