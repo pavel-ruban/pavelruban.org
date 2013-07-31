@@ -23,7 +23,7 @@ counter = 0;
         else {
           var height = 0;
           $('ul.recent-posts > *').each(function(a, b) {
-            height += jQuery(b).outerHeight();
+            height += jQuery(b).outerHeight(true);
           });
 
           $ul.removeClass('minimized').addClass('expanded')

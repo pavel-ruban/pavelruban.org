@@ -582,6 +582,10 @@ a {
   overflow: hidden;
 }
 
+#wrapper .main a.like-quantity {
+  font-size: 14px;
+}
+
 #wrapper ul.tag-cloud a {
   color: white;
   display: inline;
@@ -590,6 +594,7 @@ a {
 #wrapper ul.tag-cloud {
   display: block;
   max-width: 197px;
+  margin-top: 5px;
 }
 
 ul.recent-posts {
@@ -605,4 +610,10 @@ span.prefix {
 
 h3.recent-posts {
   display: block;
+  margin-bottom: 0;
+}
+
+#sidebar {
+  position: fixed;
+  display: inline;
 }
