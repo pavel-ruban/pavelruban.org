@@ -283,7 +283,7 @@ function front_preprocess_html(&$vars) {
 //  }
 
   // Social js.
-  drupal_add_js('http://vkontakte.ru/js/api/openapi.js', 'external');
+  drupal_add_js('http://vkontakte.ru/js/api/openapi.js?98', 'external');
   drupal_add_js('https://platform.twitter.com/widgets.js', 'external');
   $vk_js_init = <<<init_vk_js
     VK.init({
