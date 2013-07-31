@@ -121,7 +121,7 @@ div.social-popup-angle {
   height: 12px;
   bottom: 21px;
   z-index: 7;
-  display:none;
+  visibility: hidden;
 }
 
 div.social-popup {
@@ -135,20 +135,20 @@ div.social-popup {
   border-radius: 5px 5px 5px 5px;
   border: 1px solid rgb(149, 145, 145);
   z-index: 6;
-  display:none;
+  visibility: hidden;
   padding: 5px;
 }
 
 div.social-popup-angle:hover,
 div.social-popup:hover {
-  display: block;
+  visibility: visible;
 }
 
 .social-img:hover ~ div.social-popup-angle,
 div.social-popup:hover ~ div.social-popup-angle,
 div.social-popup-angle:hover ~ div.social-popup,
 .social-img:hover ~ div.social-popup {
-  display: block;
+  visibility: visible;
 }
 
 div.social-img {
