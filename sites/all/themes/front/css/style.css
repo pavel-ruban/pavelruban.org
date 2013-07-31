@@ -636,7 +636,7 @@ div.reload-captcha-wrapper {
   position: absolute;
   float: left;
   margin-top: 32px;
-  margin-left: 142px;
+  margin-left: 167px;
 }
 
 div.captcha img {
@@ -651,16 +651,24 @@ div.captcha {
 
 div.form-item-captcha-response {
   width: 285px;
-  margin-top: 0;
+  margin-top: 0;  
+}
+
+input#edit-captcha-response {
+  float: right;
+  padding-right: 7px;
+  width: 120px;
 }
 
 div.form-item-captcha-response > label {
   float: right;
   position: absolute;
+  margin-left: 238px;
   margin-top: 32px;
-  margin-left: 214px;
 }
 
 div.captcha ~ div.form-actions {
   clear: both;
+  float: right;
+  margin-top: 35px;
 }
