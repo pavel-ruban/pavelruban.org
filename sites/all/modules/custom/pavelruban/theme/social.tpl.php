@@ -41,7 +41,7 @@
           VK.Widgets.Like('vk-like-<?php echo $nid; ?>', {pageImage: '<?php echo $social_meta['image']; ?>', pageTitle: '<?php echo $social_meta['title']; ?>', pageDescription: '<?php  echo $social_meta['description']; ?>',  pageUrl: '<?php echo $social_meta['url']; ?>', height: 20, type: 'button'});
         </script>
         <a href="https://twitter.com/share"
-          data-text="<?php echo $social_meta['title_desc']; ?>"
+          data-text="<?php echo $social_meta['tweeter_text']; ?>"
           data-url="<?php echo $social_meta['url']; ?>"
           data-counturl="<?php echo $social_meta['url']; ?>"
           class="twitter-share-button"
