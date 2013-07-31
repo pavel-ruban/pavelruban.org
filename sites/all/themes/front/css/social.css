@@ -151,7 +151,7 @@ div.social-popup > .fb-like {
 }
 
 div.social-popup {
-  min-height: 30px;
+  min-height: 20px;
   position: absolute;
   left: -72px;
   bottom: 31px;
@@ -161,8 +161,12 @@ div.social-popup {
   border-radius: 1px 1px 1px 1px;
   border: 1px solid black;
   visibility: hidden;
-  padding: 3px;
+  padding: 4px 3px 3px 3px;
   margin: 0px;
+}
+
+.social-popup > div:first-child.social-popup > div:first-child {
+  padding-bottom: 10px;
 }
 
 div.social-popup-angle:hover,
