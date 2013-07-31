@@ -165,7 +165,7 @@ div.social-popup {
   margin: 0px;
 }
 
-.social-popup > div:first-child.social-popup > div:first-child {
+.social-popup > div:first-child {
   padding-bottom: 10px;
 }
 

@@ -183,9 +183,15 @@ counter = 0;
               $(this.element).removeClass('voted').attr('title', 'мне нравится');
             }
             else if ($response.vote != undefined && $response.vote == 1) {
-              $(this.element).addClass('voted').attr('title', 'вы уже оставили свой голос');
+              $(this.element).addClass('voted').attr('title', 'оценено');
             }
 
+            if ($response.userLikesCount != undefined && $response.userLikesCount == 0) {
+              $(this.element).find('~ div.like-popup').addClass('empty');
+            }
+            else if ($response.userLikesCount != undefined) {
+              $(this.element).find('~ div.like-popup').removeClass('empty');
+            }
             $(this.element).find('~ span').html($response.likesCount);
             $(this.element).find('~ div.like-popup').html($response.likedUsers);
             Drupal.behaviors.peoplePopup.attach();
