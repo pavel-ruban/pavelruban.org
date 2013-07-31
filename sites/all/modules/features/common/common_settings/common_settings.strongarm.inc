@@ -202,6 +202,26 @@ node/*/edit',
       'cid' => '71',
       'accessed_uids' => array(),
     ),
+    72 => array(
+      'nid' => '16',
+      'uid' => 0,
+      'user_name' => 'Аноним',
+      'text' => 'dsada',
+      'timestamp' => 1375283882,
+      'date' => '31 июл в 15:18',
+      'cid' => '72',
+      'accessed_uids' => array(),
+    ),
+    73 => array(
+      'nid' => '16',
+      'uid' => 0,
+      'user_name' => 'Аноним',
+      'text' => 'dada',
+      'timestamp' => 1375288586,
+      'date' => '31 июл в 16:36',
+      'cid' => '73',
+      'accessed_uids' => array(),
+    ),
   );
   $export['pavelruban_last_comments'] = $strongarm;
 

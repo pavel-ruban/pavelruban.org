@@ -399,3 +399,13 @@ function front_preprocess_comment(&$vars) {
     $vars['delete'] = $delete;
   }
 }
+
+/**
+ * Redefine captcha theming.
+ */
+function front_image_captcha_refresh_link($variables) {
+  $output = '<div class="reload-captcha-wrapper">';
+  $output .= l(t('refresh'), $variables['url'], array('attributes' => array('class' => array('reload-captcha'))));
+  $output .= '</div>';
+  return $output;
+}
