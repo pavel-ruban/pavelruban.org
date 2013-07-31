@@ -120,6 +120,52 @@ counter = 0;
 
   Drupal.behaviors.likes = {
     attach: function () {
+      $('div.like-info').once(function(){
+        var $this = $(this);
+        $this.bind({
+          mouseenter: function(e) {
+            $this.find('.like-popup-angle').show();
+          },
+          mouseleave: function(e) {
+            $this.find('.like-popup-angle').hide();
+          },
+        });
+      });
+
+      $('div.like-popup').once(function(){
+        var $this = $(this);
+        $this.bind({
+          mouseenter: function(e) {
+            $this.siblings('.like-popup-angle').show();
+          },
+          mouseleave: function(e) {
+            $this.siblings('.like-popup-angle').hide();
+          },
+        });
+      });
+      $('div.social').once(function(){
+        var $this = $(this);
+        $this.bind({
+          mouseenter: function(e) {
+            $this.find('.social-popup-angle').show();
+          },
+          mouseleave: function(e) {
+            $this.find('.social-popup-angle').hide();
+          },
+        });
+      });
+
+      $('div.social-popup').once(function(){
+        var $this = $(this);
+        $this.bind({
+          mouseenter: function(e) {
+            $this.siblings('.social-popup-angle').show();
+          },
+          mouseleave: function(e) {
+            $this.siblings('.social-popup-angle').hide();
+          },
+        });
+      });
       $('a.like-ajax-img').click(function(e){
         var $this = $(this);
         e.preventDefault();

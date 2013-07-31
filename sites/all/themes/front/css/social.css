@@ -19,18 +19,24 @@ div.like-info {
 }
 
 div.like-popup {
+  font-weight: bold;
   position: absolute;
   bottom: 31px;
   z-index: 5;
   left: -161px;
   height: 88px;
-  border: 1px solid rgb(149, 145, 145);
+  border: 1px solid black;
   box-shadow: 0px 0px 11px -7px black;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 1px 1px 1px 1px;
   width: 240px;
-  background: none repeat scroll 0px 0px rgb(255, 255, 255);
+  background: rgba(7, 7, 7, 0.68);
   display:none;
   padding: 5px;
+}
+
+#wrapper .main .like-popup a,
+#wrapper .main .like-popup span {
+  color: white;
 }
 
 div.like-popup-angle {
@@ -46,13 +52,15 @@ position: absolute;
 
 div.like-popup-angle:hover,
 div.like-popup:hover {
+  visibility: visible;
   display: block;
 }
 
-.like-ajax-img:hover ~ div.like-popup-angle,
+.like-info:hover > div.like-popup-angle,
 div.like-popup:hover ~ div.like-popup-angle,
 div.like-popup-angle:hover ~ div.like-popup,
-.like-ajax-img:hover ~ div.like-popup {
+.like-info:hover > div.like-popup {
+  visibility: visible;
   display: block;
 }
 
@@ -120,35 +128,49 @@ div.social-popup-angle {
   background: url("../images/social.png") repeat scroll 0px -30px transparent;
   height: 12px;
   bottom: 21px;
-  z-index: 7;
-  visibility: hidden;
+  z-index: 1;
+  display: none;
+  padding: 0;
+}
+
+div.social-popup > div,
+div.social-popup > iframe {
+  width: 100%;
+  clear: both;
+  padding: 2.5px;
+}
+
+div.social-popup > .fb-like {
+  height: 20px;
 }
 
 div.social-popup {
-  height: 34px;
+  min-height: 30px;
   position: absolute;
-  left: -180px;
+  left: -72px;
   bottom: 31px;
-  background: none repeat scroll 0% 0% white;
-  width: 385px;
+  background: rgba(7, 7, 7, 0.68);
+  min-width: 20px;
   box-shadow: 0px 0px 11px -7px black;
-  border-radius: 5px 5px 5px 5px;
-  border: 1px solid rgb(149, 145, 145);
-  z-index: 6;
+  border-radius: 1px 1px 1px 1px;
+  border: 1px solid black;
   visibility: hidden;
-  padding: 5px;
+  padding: 2.5px 5px;
+  margin: 0px;
 }
 
 div.social-popup-angle:hover,
 div.social-popup:hover {
   visibility: visible;
+  display: block;
 }
 
-.social-img:hover ~ div.social-popup-angle,
+.social:hover > div.social-popup-angle,
 div.social-popup:hover ~ div.social-popup-angle,
 div.social-popup-angle:hover ~ div.social-popup,
-.social-img:hover ~ div.social-popup {
+.social:hover > div.social-popup {
   visibility: visible;
+  display: block;
 }
 
 div.social-img {
