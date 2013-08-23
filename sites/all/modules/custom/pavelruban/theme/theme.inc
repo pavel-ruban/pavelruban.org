@@ -12,7 +12,7 @@ function pavelruban_preprocess_like_popup(&$vars) {
     if (!empty($vars['meta'])) {
       $meta = array();
       foreach ($vars['meta'] as $item) {
-        if ($item->uid > 0) {
+        if ($item['uid'] > 0) {
           $meta[] = $item;
         }
       }
@@ -20,8 +20,8 @@ function pavelruban_preprocess_like_popup(&$vars) {
       $likedCount = count($meta);
       $meta = array_slice($meta, 0, 4);
       $liked_users = '';
-      foreach ($meta as $user) {
-        $account = user_load($user->uid);
+      foreach ($meta as $vote) {
+        $account = user_load($vote['uid']);
         $user_view = user_view($account, 'like_mini');
         $liked_users .= render($user_view);
       }
@@ -38,15 +38,15 @@ function pavelruban_preprocess_like_popup(&$vars) {
     if (!empty($vars['meta'])) {
       $meta = array();
       foreach ($vars['meta'] as $item) {
-        if ($item->uid > 0) {
+        if ($item['uid'] > 0) {
           $meta[] = $item;
         }
       }
 
       $likedCount = count($meta);
       $liked_users = '';
-      foreach ($meta as $user) {
-        $account = user_load($user->uid);
+      foreach ($meta as $vote) {
+        $account = user_load($vote['uid']);
         $user_view = user_view($account, 'like_full');
         $liked_users .= render($user_view);
       }
@@ -115,14 +115,28 @@ function pavelruban_preprocess_social(&$vars) {
     'entity_id' => $vars['nid'],
     'uid' => $user->uid,
   );
-  $user_vote = votingapi_select_votes($vote);
 
-  if (!empty($user_vote[0]['vote_id'])) {
+  $criteria = array(
+    'uid' => $user->uid,
+  );
+  if (!$user->uid) {
+    $criteria += array(
+      'vote_source' => ip_address(),
+    );
+  }
+  $user_votes = votingapi_select_votes($criteria);
+  $node_votes = votingapi_select_votes(
+    array(
+      'entity_id' => $vars['nid'],
+      'entity_type' => 'node',
+    )
+  );
+
+  if (!empty($user_votes)) {
     $vars['voted'] = TRUE;
   }
-  $result = pavelruban_get_node_votes_count($vars['nid']);
-  $vars['votes_count'] = $result['count'];
-  $vars['like_popup'] = theme('like_popup', array('meta' => $result['meta'], 'nid' => $vars['nid'], 'vars' => $vars));
+  $vars['votes_count'] = count($node_votes);
+  $vars['like_popup'] = theme('like_popup', array('meta' => $node_votes, 'nid' => $vars['nid'], 'vars' => $vars));
 
   $likes_count = pavelruban_current_like_count();
   $vars['empty_likes_count'] = empty($likes_count) ? TRUE : FALSE;

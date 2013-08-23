@@ -15,7 +15,12 @@
       <span class="updated-text"><?php echo $last_changed; ?></span>
     <?php endif; ?>
     <div class="like-info">
-      <a href="<?php echo url("ajax/vote/node/$nid"); ?>" title="<?php echo !empty($voted) ? 'оценено' : 'мне нравится'; ?>" class="like-ajax-img<?php echo !empty($voted) ? ' voted' : ''; ?>"></a>
+      <?php if (!empty($voted)): ?>
+        <?php $uri = "ajax/vote/node/$nid/delete"; ?>
+      <?php else: ?>
+        <?php $uri = "ajax/vote/node/$nid"; ?>
+      <?php endif; ?>
+      <a href="<?php echo url($uri); ?>" title="<?php echo !empty($voted) ? 'оценено' : 'мне нравится'; ?>" class="like-ajax-img<?php echo !empty($voted) ? ' voted' : ''; ?>"></a>
       <span><?php echo $votes_count; ?></span>
       <div class="like-popup-angle"></div>
       <div class="like-popup<?php echo $empty_likes_count ? ' empty' : ''; ?>">

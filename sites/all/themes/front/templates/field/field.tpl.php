@@ -42,4 +42,10 @@
  * @see theme_field()
  */
 ?>
-<?php foreach ($items as $delta => $item): ?><?php print render($item); ?><?php endforeach; ?>
+<?php foreach ($items as $delta => $item): ?>
+  <?php if (!empty($element['#disable_shadowbox']) && !empty($item['asset'])): ?>
+    <?php $key = array_keys($item['asset']); ?>
+    <?php $item['asset'][$key[0]]['#disable_shadowbox'] = TRUE; ?>
+  <?php endif; ?>
+  <?php print render($item); ?>
+<?php endforeach; ?>

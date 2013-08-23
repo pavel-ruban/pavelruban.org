@@ -92,7 +92,10 @@ function front_preprocess_asset__image(&$vars) {
     $shadowbox_init = TRUE;
   }
 
-  if (empty($vars['asset']->gallery_item) && !empty($vars['content']['field_asset_image']) && $vars['view_mode'] != 'teaser') {
+  if (!empty($vars['elements']['#disable_shadowbox'])) {
+    $vars['image'] = render($vars['content']['field_asset_image']);
+  }
+  elseif (empty($vars['asset']->gallery_item) && !empty($vars['content']['field_asset_image']) && $vars['view_mode'] != 'teaser') {
     if (!empty($vars['field_asset_image'][0]['uri'])) {
       $url = file_create_url($vars['field_asset_image'][0]['uri']);
     }
@@ -226,6 +229,7 @@ function front_preprocess_node(&$vars, $hook) {
  */
 function front_preprocess_node__article_teaser(&$vars) {
   if (!empty($vars['content']['field_article_media'])) {
+    $vars['content']['field_article_media']['#disable_shadowbox'] = TRUE;
     $vars['media'] = render($vars['content']['field_article_media']);
   }
   if (!empty($vars['content']['field_article_catchline'])) {
