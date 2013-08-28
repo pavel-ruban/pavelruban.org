@@ -242,6 +242,12 @@ function pavelruban_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['ajax/vote/node/%/delete'] = array(
+    'page callback' => 'pavelruban_ajax_node_dislike',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
+
   $items['ajax/full-voted-user-statistic/%'] = array(
     'page callback' => 'pavelruban_ajax_full_voted_user_statistic',
     'page arguments' => array(2),
@@ -255,8 +261,14 @@ function pavelruban_menu() {
  * Vote node functional.
  */
 function pavelruban_ajax_full_voted_user_statistic($nid) {
-  $result = pavelruban_get_node_votes_count($nid);
-  $response = array('peoplePopup' => theme('like_popup', array('meta' => $result['meta'], 'mode' => 'full', 'nid' => $nid)));
+  $node_votes = votingapi_select_votes(
+    array(
+      'entity_id' => $nid,
+      'entity_type' => 'node',
+    )
+  );
+
+  $response = array('peoplePopup' => theme('like_popup', array('meta' => $node_votes, 'mode' => 'full', 'nid' => $nid)));
 
   drupal_json_output($response);
   drupal_exit();
@@ -274,28 +286,68 @@ function pavelruban_ajax_node_vote($nid) {
       'entity_id' => $nid,
       'uid' => $user->uid,
     );
-    $user_vote = votingapi_select_votes($vote);
-    if (!empty($user_vote[0]['vote_id'])) {
-      votingapi_delete_votes(array(array('vote_id' => $user_vote[0]['vote_id'])));
-      $response = array('vote' => 0);
+
+    $criteria = array(
+      'uid' => $user->uid,
+    );
+    if (!$user->uid) {
+      $criteria += array(
+        'vote_source' => ip_address(),
+      );
     }
-    else {
-      $votes[] = $vote;
-      votingapi_set_votes($votes);
-      $response = array('vote' => 1);
-    }
+    $votes[] = $vote;
+    $criterias[] = $criteria;
+
+    votingapi_set_votes($votes, $criterias);
+    $response = array('vote' => 1);
+
+    $node_votes = votingapi_select_votes(
+      array(
+        'entity_id' => $nid,
+        'entity_type' => 'node',
+      )
+    );
   }
-  $result = pavelruban_get_node_votes_count($nid);
-  $response += array('likesCount' => $result['count']);
-
-
-  $response += array('likedUsers' => theme('like_popup', array('meta' => $result['meta'], 'nid' => $nid)));
-
+  $response += array('likesCount' => count($node_votes));
+  $response += array('likedUsers' => theme('like_popup', array('meta' => $node_votes, 'nid' => $nid)));
   $response += array('userLikesCount' => pavelruban_current_like_count());
 
   drupal_json_output($response);
   drupal_exit();
 }
+
+/**
+ * Dislike node functional.
+ */
+function pavelruban_ajax_node_dislike($nid) {
+  if (!empty($nid)) {
+    global $user;
+    $criteria = array(
+      'uid' => $user->uid,
+    );
+    if (!$user->uid) {
+      $criteria += array(
+        'vote_source' => ip_address(),
+      );
+    }
+    votingapi_delete_votes(votingapi_select_votes($criteria));
+    $response = array('vote' => 0);
+
+    $node_votes = votingapi_select_votes(
+      array(
+        'entity_id' => $nid,
+        'entity_type' => 'node',
+      )
+    );
+  }
+  $response += array('likesCount' => count($node_votes));
+  $response += array('likedUsers' => theme('like_popup', array('meta' => $node_votes, 'nid' => $nid)));
+  $response += array('userLikesCount' => pavelruban_current_like_count());
+
+  drupal_json_output($response);
+  drupal_exit();
+}
+
 /*
  * Implement hook_custom_theme().
  */
@@ -331,17 +383,3 @@ function pavelruban_theme() {
   );
   return $items;
 }
-
-/**
- * Get votes number for node by nid.
- */
-function pavelruban_get_node_votes_count($nid) {
-  $vote_results = db_select('votingapi_vote')
-    ->fields('votingapi_vote', array('entity_id', 'vote_id', 'uid'))
-    ->condition('entity_id', $nid)
-    ->execute()
-    ->fetchAll();
-
-  return array('count' => count($vote_results), 'meta' => $vote_results);
-}
-

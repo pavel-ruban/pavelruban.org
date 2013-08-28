@@ -615,6 +615,7 @@ h3.tagadelic {
 h3.recent-posts {
   display: block;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 #sidebar {

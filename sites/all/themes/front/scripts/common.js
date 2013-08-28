@@ -164,7 +164,7 @@ counter = 0;
           },
           mouseleave: function(e) {
             $this.find('.like-popup-angle').hide();
-          },
+          }
         });
       });
 
@@ -176,7 +176,7 @@ counter = 0;
           },
           mouseleave: function(e) {
             $this.siblings('.like-popup-angle').hide();
-          },
+          }
         });
       });
       $('div.social').once(function(){
@@ -187,7 +187,7 @@ counter = 0;
           },
           mouseleave: function(e) {
             $this.find('.social-popup-angle').hide();
-          },
+          }
         });
       });
 
@@ -199,7 +199,7 @@ counter = 0;
           },
           mouseleave: function(e) {
             $this.siblings('.social-popup-angle').hide();
-          },
+          }
         });
       });
       $('a.like-ajax-img').click(function(e){
@@ -215,21 +215,23 @@ counter = 0;
           },
           url: $this.attr('href'),
           success: function ($response) {
+            var $link = $(this.element), href = $link.attr('href');
             if ($response.vote != undefined && $response.vote == 0) {
-              $(this.element).removeClass('voted').attr('title', 'мне нравится');
+              $link.removeClass('voted').attr('title', 'мне нравится').attr('href', href.replace(/(^.*?)\/delete/, '$1'));
+
             }
             else if ($response.vote != undefined && $response.vote == 1) {
-              $(this.element).addClass('voted').attr('title', 'оценено');
+              $link.addClass('voted').attr('title', 'оценено').attr('href', href + '/delete');
             }
 
             if ($response.userLikesCount != undefined && $response.userLikesCount == 0) {
-              $(this.element).find('~ div.like-popup').addClass('empty');
+              $link.find('~ div.like-popup').addClass('empty');
             }
             else if ($response.userLikesCount != undefined) {
-              $(this.element).find('~ div.like-popup').removeClass('empty');
+              $link.find('~ div.like-popup').removeClass('empty');
             }
-            $(this.element).find('~ span').html($response.likesCount);
-            $(this.element).find('~ div.like-popup').html($response.likedUsers);
+            $link.find('~ span').html($response.likesCount);
+            $link.find('~ div.like-popup').html($response.likedUsers);
             Drupal.behaviors.peoplePopup.attach();
           }
         });
