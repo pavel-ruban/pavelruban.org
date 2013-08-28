@@ -8,18 +8,21 @@
  * Process variables.
  */
 function front_preprocess_user_profile(&$vars) {
+  global $user;
   if ($vars['elements']['#view_mode'] == 'full') {
     $target_user = user_load(arg(1));
     $vars['target_user'] = $target_user;
-    $vars['edit_link'] = l(
-      t('edit'),
-      "user/$target_user->uid/edit",
-      array(
-        'attributes' => array('class' => array('user-edit-link')),
-      )
-    );
+    if ($user->uid == 1 || $user->uid == $target_user->uid) {
+      $vars['edit_link'] = l(
+        t('edit'),
+        "user/$target_user->uid/edit",
+        array(
+          'attributes' => array('class' => array('user-edit-link')),
+        )
+      );
+    }
     if (!empty($target_user->access)) {
-      if (date('Y', time()) != ($year = date('Y', $target_user->access)))  {
+      if (date('Y', time()) != ($year = date('Y', $target_user->access))) {
         $vars['access'] = "в $year году";
       }
       else {
@@ -117,7 +120,7 @@ function front_preprocess_asset__image(&$vars) {
         static $units = 0;
 
         if (!empty($vars['content']['field_asset_image'][0]['#item'])) {
-          $image = &$vars['content']['field_asset_image'][0]['#item'];
+          $image = & $vars['content']['field_asset_image'][0]['#item'];
           $image['attributes']['id'] = array("wows${wowid}_${units}");
           $image['attributes']['title'] = array($vars['title']);
           $image['alt'] = array($vars['title']);
@@ -142,7 +145,7 @@ function front_preprocess_asset__image(&$vars) {
       }
       elseif ($vars['view_mode'] == 'slider_thumbnail') {
         if (!empty($vars['content']['field_asset_image'][0]['#item'])) {
-          $image = &$vars['content']['field_asset_image'][0]['#item'];
+          $image = & $vars['content']['field_asset_image'][0]['#item'];
           $image['attributes']['title'] = array($vars['title']);
           $image['alt'] = array('');
         }
@@ -238,10 +241,10 @@ function front_preprocess_node__article_teaser(&$vars) {
   }
 
   $result = db_select('node_statistic')
-   ->fields('node_statistic', array('access_count'))
-   ->condition('nid', $vars['nid'])
-   ->execute()
-   ->fetchCol();
+    ->fields('node_statistic', array('access_count'))
+    ->condition('nid', $vars['nid'])
+    ->execute()
+    ->fetchCol();
   $acess_count = !empty($result[0]) ? $result[0] : 0;
   $vars['social'] = theme('social',
     array(
@@ -265,25 +268,26 @@ function front_preprocess_node__article_teaser(&$vars) {
 function front_preprocess_html(&$vars) {
   global $user;
   $vars['tea_mug'] = '<div class="tea-mug-cloud"></div>' . l('', '',
-    array(
-      'attributes' => array('class' => array('tea-mug')),
-    )
-  );
+      array(
+        'attributes' => array('class' => array('tea-mug')),
+      )
+    );
   $arg1 = arg(1);
   if (arg(0) == 'user' && (in_array(arg(1), array('login'))
-    || (empty($user->uid) && empty($arg1)))) {
+      || (empty($user->uid) && empty($arg1)))
+  ) {
     $vars['classes_array'][] = 'mini-wrapper';
   }
   if (arg(0) == 'user' && in_array(arg(1), array('password'))) {
     $vars['classes_array'][] = 'medium-wrapper';
   }
- // $delay = 10 * 60;
- // $date = variable_get('pavelruban_change_environment', time() - ($delay + 1));
+  // $delay = 10 * 60;
+  // $date = variable_get('pavelruban_change_environment', time() - ($delay + 1));
 
 //  if ((time() - $date) > $delay) {
-    $id = rand(1, 10);
-    $vars['classes_array'][] = "img$id";
-    variable_set('pavelruban_change_environment', time());
+  $id = rand(1, 10);
+  $vars['classes_array'][] = "img$id";
+  variable_set('pavelruban_change_environment', time());
 //  }
 
   // Social js.
@@ -302,10 +306,10 @@ init_vk_js;
     $nid = $matches[1];
 
     $result = db_select('node_statistic')
-     ->fields('node_statistic', array('access_count'))
-     ->condition('nid', $nid)
-     ->execute()
-     ->fetchCol();
+      ->fields('node_statistic', array('access_count'))
+      ->condition('nid', $nid)
+      ->execute()
+      ->fetchCol();
 
     if (empty($result)) {
       db_insert('node_statistic')
@@ -379,7 +383,7 @@ function front_preprocess_comment(&$vars) {
   }
 
 
-  if (date('Y', time()) != ($year = date('Y', $vars['comment']->changed)))  {
+  if (date('Y', time()) != ($year = date('Y', $vars['comment']->changed))) {
     $vars['date'] = $year;
   }
   else {
@@ -388,7 +392,7 @@ function front_preprocess_comment(&$vars) {
   }
 
   $delete = $user->uid == 1 || ($user->uid == $comment_owner->uid
-    && ((time() - $vars['comment']->changed) < 300));
+      && ((time() - $vars['comment']->changed) < 300));
   if ($delete) {
     $vars['delete_link'] = l(
       "<div class\"=comment-delete-img\"></div>",
