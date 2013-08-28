@@ -116,7 +116,7 @@ function pavelruban_preprocess_social(&$vars) {
       array(
         'attributes' => array(
           'class' => array('updated-info'),
-          'title' => array('Обновлено'),
+          'title' => 'Обновлено',
         ),
       )
     );
@@ -158,7 +158,7 @@ function pavelruban_preprocess_social(&$vars) {
     $href,
     array(
       'attributes' => array(
-        'title' => array($link_title),
+        'title' => $link_title,
         'class' => array($link_class),
       ),
     )
