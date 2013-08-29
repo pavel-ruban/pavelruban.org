@@ -107,17 +107,34 @@ function pavelruban_preprocess_social(&$vars) {
   if (!empty($vars['changed'])) {
     $vars['last_changed'] = date('d M Y H:i:s', $vars['changed']);
   }
+  $nid = $vars['nid'];
 
-  // Is user already liked node.
-  $vote = array(
-    'value' => 1,
-    'value_type' => 'points',
-    'entity_id' => $vars['nid'],
-    'uid' => $user->uid,
+  if (user_access('edit any article content')) {
+    $vars['edit_info_link'] = l(
+      '',
+      "node/$nid/edit",
+      array(
+        'attributes' => array(
+          'class' => array('updated-info'),
+          'title' => array('Обновлено'),
+        ),
+      )
+    );
+  }
+  $vars['comment_link'] = l(
+    '',
+    "node/$nid",
+    array(
+      'html' => TRUE,
+      'fragment' => 'comment-end',
+      'attributes' => array('class' => array("comments-img"))
+    )
   );
 
   $criteria = array(
     'uid' => $user->uid,
+    'entity_id' => $nid,
+    'value_type' => 'points',
   );
   if (!$user->uid) {
     $criteria += array(
@@ -132,9 +149,20 @@ function pavelruban_preprocess_social(&$vars) {
     )
   );
 
-  if (!empty($user_votes)) {
-    $vars['voted'] = TRUE;
-  }
+  $href = "ajax/vote/node/$nid" . (empty($user_votes) ? '' : '/delete');
+  $link_title = empty($user_votes) ? 'мне нравится' : 'оценено';
+  $link_class = 'like-ajax-img' . (empty($user_votes) ? '' : ' voted');
+
+  $vars['like_link'] = l(
+    '',
+    $href,
+    array(
+      'attributes' => array(
+        'title' => array($link_title),
+        'class' => array($link_class),
+      ),
+    )
+  );
   $vars['votes_count'] = count($node_votes);
   $vars['like_popup'] = theme('like_popup', array('meta' => $node_votes, 'nid' => $vars['nid'], 'vars' => $vars));
 

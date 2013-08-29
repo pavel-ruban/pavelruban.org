@@ -150,6 +150,20 @@ div.first.reply.reply_dived.clear.reply_replieable {
   z-index: 999;
 }
 
+.last-comments .reply_text > span {
+  display: block;
+  float: left;
+}
+.last-comments .reply_text > div {
+  clear: both;
+  float: left;
+}
+
+.last-comments .reply_info .wd_lnk {
+  clear: both;
+  float: left;
+}
+
 .last-comment-counter a.small {
   left: 29px;
 }

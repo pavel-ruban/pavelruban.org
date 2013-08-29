@@ -289,6 +289,8 @@ function pavelruban_ajax_node_vote($nid) {
 
     $criteria = array(
       'uid' => $user->uid,
+      'entity_id' => $nid,
+      'value_type' => 'points',
     );
     if (!$user->uid) {
       $criteria += array(
@@ -324,6 +326,8 @@ function pavelruban_ajax_node_dislike($nid) {
     global $user;
     $criteria = array(
       'uid' => $user->uid,
+      'entity_id' => $nid,
+      'value_type' => 'points',
     );
     if (!$user->uid) {
       $criteria += array(
