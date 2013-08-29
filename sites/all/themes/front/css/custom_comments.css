@@ -164,6 +164,10 @@ div.first.reply.reply_dived.clear.reply_replieable {
   float: left;
 }
 
+.last-comments div.reply_dived {
+  clear: both;
+}
+
 .last-comment-counter a.small {
   left: 29px;
 }
