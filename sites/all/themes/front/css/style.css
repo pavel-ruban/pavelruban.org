@@ -686,3 +686,7 @@ body .syntaxhighlighter {
 div.syntaxhighlighter {
   overflow: hidden !important;
 }
+
+.panel-separator {
+  clear: both;
+}
