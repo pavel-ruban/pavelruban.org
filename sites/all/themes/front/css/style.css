@@ -690,7 +690,3 @@ div.syntaxhighlighter {
 .panel-separator {
   clear: both;
 }
-
-div.like-popup {
-  z-index: 10;
-}
