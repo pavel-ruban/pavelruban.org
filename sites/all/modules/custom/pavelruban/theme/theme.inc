@@ -83,19 +83,8 @@ function pavelruban_current_like_count($value = 0, $mode = 'get') {
  * Preprocess variables.
  */
 function pavelruban_preprocess_tags(&$vars) {
-  if (!empty($vars['tags'])) {
-    $tids = array();
-    foreach ($vars['tags'] as $tag) {
-      $tids[] = $tag['tid'];
-    }
-
-    $terms = taxonomy_term_load_multiple($tids);
-    foreach ($vars['tags'] as $tag) {
-      $vars['tags_info'][] = array(
-        'name' => $terms[$tag['tid']]->name,
-        'tid' => $tag['tid'],
-      );
-    }
+  if (!empty($vars['nid'])) {
+    $vars['tags_info'] = pavelruban_tags_context($vars['nid']);
   }
 }
 
@@ -190,7 +179,17 @@ function pavelruban_preprocess_social(&$vars) {
       $image_url = file_create_url($asset[0]['uri']);
     }
   }
+  // Build Tweetter hashtags.
+  $tag_info = pavelruban_tags_context($nid);
+  $hashtags = array();
 
+  foreach ($tag_info as $tag) {
+    if (!empty($tag['name'])) {
+      $hashtags[] = $tag['name'];
+    }
+  }
+
+  $social_meta['hashtags'] = implode($hashtags, ',');
   $social_meta['title'] = $title;
   $social_meta['description'] = $description;
   $social_meta['tweeter_text'] = $tweeter_text;

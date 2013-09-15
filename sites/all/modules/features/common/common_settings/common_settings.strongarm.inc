@@ -144,7 +144,7 @@ node/*/edit',
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'jquery_update_jquery_version';
-  $strongarm->value = '1.7';
+  $strongarm->value = '1.5';
   $export['jquery_update_jquery_version'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -179,50 +179,7 @@ node/*/edit',
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pavelruban_last_comments';
-  $strongarm->value = array(
-    70 => array(
-      'nid' => '15',
-      'uid' => '1',
-      'user_name' => 'root',
-      'text' => 'l',
-      'timestamp' => 1375023332,
-      'date' => '28 июл в 21:55',
-      'cid' => '70',
-      'accessed_uids' => array(
-        0 => 0,
-      ),
-    ),
-    71 => array(
-      'nid' => '15',
-      'uid' => '1',
-      'user_name' => 'root',
-      'text' => 'a',
-      'timestamp' => 1375074404,
-      'date' => '29 июл в 12:06',
-      'cid' => '71',
-      'accessed_uids' => array(),
-    ),
-    72 => array(
-      'nid' => '16',
-      'uid' => 0,
-      'user_name' => 'Аноним',
-      'text' => 'dsada',
-      'timestamp' => 1375283882,
-      'date' => '31 июл в 15:18',
-      'cid' => '72',
-      'accessed_uids' => array(),
-    ),
-    73 => array(
-      'nid' => '16',
-      'uid' => 0,
-      'user_name' => 'Аноним',
-      'text' => 'dada',
-      'timestamp' => 1375288586,
-      'date' => '31 июл в 16:36',
-      'cid' => '73',
-      'accessed_uids' => array(),
-    ),
-  );
+  $strongarm->value = array();
   $export['pavelruban_last_comments'] = $strongarm;
 
   $strongarm = new stdClass();

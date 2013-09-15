@@ -8,10 +8,9 @@
   <?php echo $media; ?>
 <?php endif; ?>
 <h2><?php echo $title; ?></h2>
-<p class="img">
-  <?php echo $description; ?><br/><br/>
-  <?php echo preg_replace('/<\s*?\/?p\s*?>/', '', $body); ?>
-</p>
+<?php echo $description; ?>
+<br/>
+<?php echo $body; ?>
 <?php if (!empty($tags)): ?>
   <?php echo $tags; ?>
 <?php endif; ?>
