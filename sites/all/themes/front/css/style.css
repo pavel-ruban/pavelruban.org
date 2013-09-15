@@ -684,5 +684,5 @@ body .syntaxhighlighter {
 }
 
 div.syntaxhighlighter {
-  overflow: auto !important;
+  overflow: hidden !important;
 }
