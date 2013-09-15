@@ -675,10 +675,14 @@ div.captcha ~ div.form-actions {
 }
 
 body {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 body .syntaxhighlighter {
   font-size: 13px !important;
   font-family: monospace !important;
+}
+
+div.syntaxhighlighter {
+  overflow: auto !important;
 }

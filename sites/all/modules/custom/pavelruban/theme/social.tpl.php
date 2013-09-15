@@ -46,6 +46,9 @@
            data-text="<?php echo $social_meta['tweeter_text']; ?>"
            data-url="<?php echo $social_meta['url']; ?>"
            data-counturl="<?php echo $social_meta['url']; ?>"
+           <?php if (!empty($social_meta['hashtags'])): ?>
+             data-hashtags="<?php echo $social_meta['hashtags']; ?>"
+           <?php endif; ?>
            class="twitter-share-button"
            data-lang="en"
           >

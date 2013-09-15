@@ -51,10 +51,8 @@ function common_input_formats_ckeditor_profile_defaults() {
         'lang' => 'en',
         'auto_lang' => 't',
         'language_direction' => 'default',
-        'allowed_content' => 'f',
-        'extraAllowedContent' => 'config.allowedContent = true;',
         'enter_mode' => 'br',
-        'shift_enter_mode' => 'br',
+        'shift_enter_mode' => 'p',
         'font_format' => 'p;div;pre;address;h1;h2;h3;h4;h5;h6',
         'custom_formatting' => 'f',
         'formatting' => array(

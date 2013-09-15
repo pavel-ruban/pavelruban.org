@@ -246,6 +246,9 @@ function front_preprocess_node__article_teaser(&$vars) {
     ->execute()
     ->fetchCol();
   $acess_count = !empty($result[0]) ? $result[0] : 0;
+
+  $vars['tags'] = theme('tags', array('nid' => $vars['nid']));
+
   $vars['social'] = theme('social',
     array(
       'nid' => $vars['nid'],
@@ -256,10 +259,6 @@ function front_preprocess_node__article_teaser(&$vars) {
       'access_count' => $acess_count,
     )
   );
-  $tags = field_get_items('node', $vars['node'], 'field_tags');
-  if (!empty($tags)) {
-    $vars['tags'] = theme('tags', array('tags' => $tags));
-  }
 }
 
 /**

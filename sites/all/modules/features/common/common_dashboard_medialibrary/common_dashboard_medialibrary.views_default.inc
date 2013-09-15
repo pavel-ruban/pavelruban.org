@@ -432,11 +432,6 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['attach'] = array(
-    0 => 'node:field_article_media:article',
-    1 => 'asset:field_asset_diaporama:gallery',
-    2 => 'node:field_folder_illustration:folder',
-  );
 
   /* Display: Search all assets */
   $handler = $view->new_display('references_dialog', 'Search all assets', 'references_dialog_4');
@@ -484,12 +479,6 @@ function common_dashboard_medialibrary_views_default_views() {
     'video' => 'video',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['field_asset_free_crop_value_1']['id'] = 'field_asset_free_crop_value_1';
-  $handler->display->display_options['filters']['field_asset_free_crop_value_1']['table'] = 'field_data_field_asset_free_crop';
-  $handler->display->display_options['filters']['field_asset_free_crop_value_1']['field'] = 'field_asset_free_crop_value';
-  $handler->display->display_options['filters']['field_asset_free_crop_value_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_asset_free_crop_value_1']['group'] = 2;
   $handler->display->display_options['attach'] = array(
     0 => 'node:field_factual_media:factual',
   );
@@ -745,14 +734,6 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['attach'] = array(
-    0 => 'node:field_article_media:article',
-    1 => 'taxonomy_term:field_banner:place',
-    2 => 'taxonomy_term:field_banner:institution',
-    3 => 'taxonomy_term:field_picture:personality',
-    4 => 'taxonomy_term:field_illustration:event',
-    5 => 'node:field_article_main_media:article',
-  );
 
   /* Display: Search Illustration */
   $handler = $view->new_display('references_dialog', 'Search Illustration', 'references_dialog_6');
@@ -822,10 +803,6 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['attach'] = array(
-    0 => 'node:field_article_media:article',
-    1 => 'field_collection_item:field_bloc_image_asset:field_bloc_item_collection',
-  );
 
   /* Display: Search Diaporama Media */
   $handler = $view->new_display('references_dialog', 'Search Diaporama Media', 'references_dialog_7');

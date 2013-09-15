@@ -77,11 +77,6 @@ function common_input_formats_filter_default_formats() {
         'status' => '1',
         'settings' => array(),
       ),
-      'filter_autop' => array(
-        'weight' => '-46',
-        'status' => '1',
-        'settings' => array(),
-      ),
     ),
   );
 
