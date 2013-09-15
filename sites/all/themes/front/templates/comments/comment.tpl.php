@@ -73,13 +73,13 @@
         </div>
       </div>
       <div class="reply_text">
+        <?php if (!empty($author)): ?>
+          <?php print $author ?>
+        <?php endif; ?>
         <?php if (!empty($comment->recent_list)): ?>
           <?php $n = node_load($comment->nid); ?>
           <?php print l(check_plain($n->title), "node/$comment->nid",
             array('fragment' => "comment-$comment->cid", 'attributes' => array('class' => array('comments-node')))); ?>
-        <?php endif; ?>
-        <?php if (!empty($author)): ?>
-          <?php print $author ?>
         <?php endif; ?>
         <div>
           <div class="wall_reply_text comment-body">
