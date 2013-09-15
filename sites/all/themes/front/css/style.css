@@ -502,6 +502,7 @@ body {
 
 .text-node-wrapper {
   display: block;
+  clear: both;
 }
 
 div[id^="wowslider-container"] a.fullscreen-toggle {
