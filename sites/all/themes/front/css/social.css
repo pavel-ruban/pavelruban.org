@@ -22,7 +22,7 @@ div.like-popup {
   font-weight: bold;
   position: absolute;
   bottom: 31px;
-  z-index: 5;
+  z-index: 10;
   left: -161px;
   height: 88px;
   border: 1px solid black;
