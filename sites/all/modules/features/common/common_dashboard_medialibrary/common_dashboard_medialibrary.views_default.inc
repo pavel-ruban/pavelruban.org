@@ -379,6 +379,8 @@ function common_dashboard_medialibrary_views_default_views() {
 
   /* Display: Search Image */
   $handler = $view->new_display('references_dialog', 'Search Image', 'references_dialog_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Images';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -432,6 +434,9 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['attach'] = array(
+    0 => 'node:field_article_media:article',
+  );
 
   /* Display: Search all assets */
   $handler = $view->new_display('references_dialog', 'Search all assets', 'references_dialog_4');
@@ -687,6 +692,7 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'asset';
   $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = 'Type';
   /* Field: Global: Reference button */
   $handler->display->display_options['fields']['ref_dialog_button']['id'] = 'ref_dialog_button';
   $handler->display->display_options['fields']['ref_dialog_button']['table'] = 'views';
@@ -703,24 +709,19 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'all' => 'all',
     'gallery' => 'gallery',
-    'free_html' => 'free_html',
     'image' => 'image',
-    'poll' => 'poll',
     'video' => 'video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
-  $handler->display->display_options['filters']['type']['expose']['label'] = 'Asset type';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Media Asset: Title */
@@ -731,9 +732,17 @@ function common_dashboard_medialibrary_views_default_views() {
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['attach'] = array(
+    0 => 'node:field_article_main_media:article',
+  );
 
   /* Display: Search Illustration */
   $handler = $view->new_display('references_dialog', 'Search Illustration', 'references_dialog_6');

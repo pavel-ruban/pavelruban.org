@@ -27,7 +27,6 @@
   ?>
 <?php endif; ?>
 <div class="views-exposed-form">
-  <h3><?php print t('Search  asset'); ?> <i>(<?php print t('content filter'); ?>)</i></h3>
   <div class="views-exposed-widgets clearfix">
     <?php foreach ($widgets as $id => $widget): ?>
       <div id="<?php print $widget->id; ?>-wrapper" class="views-exposed-widget views-widget-<?php print $id; ?>">
