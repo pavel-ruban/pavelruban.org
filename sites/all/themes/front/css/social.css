@@ -51,7 +51,7 @@ position: absolute;
   background: url("../images/social.png") repeat scroll 0px -30px transparent;
   height: 12px;
   bottom: 21px;
-  z-index: 6;
+  z-index: 11;
   left: -2px;
   display:none;
 }
