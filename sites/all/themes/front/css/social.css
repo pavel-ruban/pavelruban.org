@@ -46,7 +46,7 @@ div.like-popup.empty {
 }
 
 div.like-popup-angle {
-position: absolute;
+  position: absolute;
   width: 23px;
   background: url("../images/social.png") repeat scroll 0px -30px transparent;
   height: 12px;
