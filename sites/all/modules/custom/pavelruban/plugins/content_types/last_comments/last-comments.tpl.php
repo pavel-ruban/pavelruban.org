@@ -11,7 +11,8 @@
       <?php if (!empty($comment['cid'])): ?>
         <?php $c = comment_load($comment['cid']); ?>
         <?php $c->recent_list = TRUE; ?>
-        <?php echo render(comment_view($c, node_load($comment['nid']))); ?>
+        <?php $view = comment_view($c, node_load($comment['nid'])); ?>
+        <?php echo render($view); ?>
       <?php endif; ?>
     <?php endforeach; ?>
   <?php else: ?>
