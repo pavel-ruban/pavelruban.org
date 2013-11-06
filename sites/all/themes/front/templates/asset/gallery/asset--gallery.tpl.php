@@ -15,7 +15,8 @@
             <li>
               <?php $item['entity']->gallery_item = TRUE; ?>
               <?php $item['entity']->gallery_name = $title; ?>
-              <?php print render(entity_view('asset', array($item['entity']), 'slider_viewport')); ?>
+              <?php $view = entity_view('asset', array($item['entity']), 'slider_viewport'); ?>
+              <?php print render($view); ?>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -36,7 +37,8 @@
       <?php for($i = 0; $i < 9; $i++): ?>
         <?php if (!empty($field_asset_gallery_images[$i])): ?>
           <?php $item['entity']->gallery_item = TRUE; ?>
-          <?php print render(entity_view('asset', array($field_asset_gallery_images[$i]['entity']), 'slider_thumbnail')); ?>
+              <?php $view = entity_view('asset', array($field_asset_gallery_images[$i]['entity']), 'slider_thumbnail'); ?>
+          <?php print render($view); ?>
         <?php else: ?>
           <a><img></a>
         <?php endif; ?>
