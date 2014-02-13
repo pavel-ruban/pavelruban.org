@@ -25,7 +25,8 @@
         <div>
           <?php foreach ($field_asset_gallery_images as $item): ?>
             <?php $item['entity']->gallery_item = TRUE; ?>
-            <?php print render(entity_view('asset', array($item['entity']), 'slider_thumbnail')); ?>
+            <?php $view = entity_view('asset', array($item['entity']), 'slider_thumbnail'); ?>
+            <?php print render($view); ?>
           <?php endforeach; ?>
         </div>
       </div>

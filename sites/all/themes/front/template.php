@@ -290,15 +290,15 @@ function front_preprocess_html(&$vars) {
 //  }
 
   // Social js.
-  drupal_add_js('http://vkontakte.ru/js/api/openapi.js?98', 'external');
-  drupal_add_js('https://platform.twitter.com/widgets.js', 'external');
-  $vk_js_init = <<<init_vk_js
-    VK.init({
-      apiId: 3790252,
-      onlyWidgets: true
-    });
-init_vk_js;
-  drupal_add_js($vk_js_init, 'inline');
+  //drupal_add_js('http://vkontakte.ru/js/api/openapi.js?98', 'external');
+  //drupal_add_js('https://platform.twitter.com/widgets.js', 'external');
+//  $vk_js_init = <<<init_vk_js
+//    VK.init({
+//      apiId: 3790252,
+//      onlyWidgets: true
+//    });
+//init_vk_js;
+//  drupal_add_js($vk_js_init, 'inline');
 
   // Statistic.
   if (preg_match('/^node\/([0-9]+)$/', $_GET['q'], $matches)) {

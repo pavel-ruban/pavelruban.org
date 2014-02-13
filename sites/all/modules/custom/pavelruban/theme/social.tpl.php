@@ -34,31 +34,6 @@
       <div class="views-quantity-img" title="просмотров"></div>
       <span><?php echo $access_count; ?></span>
     </div>
-    <div class="social">
-      <div class="social-img" title="социальные сети"></div>
-      <div class="social-popup-angle" style=""></div>
-      <div class="social-popup">
-        <div id="vk-like-<?php echo $nid; ?>"></div>
-        <script type="text/javascript">
-          VK.Widgets.Like('vk-like-<?php echo $nid; ?>', {pageImage: '<?php echo $social_meta['image']; ?>', pageTitle: '<?php echo $social_meta['title']; ?>', pageDescription: '<?php  echo $social_meta['description']; ?>', pageUrl: '<?php echo $social_meta['url']; ?>', height: 20, type: 'button'});
-        </script>
-        <a href="https://twitter.com/share"
-           data-text="<?php echo $social_meta['tweeter_text']; ?>"
-           data-url="<?php echo $social_meta['url']; ?>"
-           data-counturl="<?php echo $social_meta['url']; ?>"
-           <?php if (!empty($social_meta['hashtags'])): ?>
-             data-hashtags="<?php echo $social_meta['hashtags']; ?>"
-           <?php endif; ?>
-           class="twitter-share-button"
-           data-lang="en"
-          >
-          Tweet
-        </a>
-
-        <div class="fb-like" data-href="<?php echo $social_meta['url']; ?>" data-send="false" data-layout="button_count"
-             data-width="450" data-show-faces="true"></div>
-      </div>
-    </div>
   </div>
 <?php else: ?>
   <div class="admin edit">
