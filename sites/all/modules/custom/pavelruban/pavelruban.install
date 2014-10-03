@@ -160,3 +160,19 @@ function pavelruban_update_7036() {
     }
   }
 }
+
+/**
+ * Implements hook_update_N().
+ */
+function pavelruban_update_7037() {
+  $modules = array(
+    'entitycache',
+    'redis',
+  );
+
+  foreach ($modules as $module) {
+    if (!module_exists($module)) {
+      module_enable(array($module));
+    }
+  }
+}
