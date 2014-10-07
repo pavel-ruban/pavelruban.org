@@ -59,7 +59,7 @@
          <a href="https://twitter.com/share"
             data-text="<?php echo $social_meta['tweeter_text']; ?>"
             data-url="<?php echo $social_meta['url']; ?>"
-            data-counturl="<?php echo $social_meta['url']; ?>"
+            data-counturl="<?php echo $social_meta['raw_url']; ?>"
             <?php if (!empty($social_meta['hashtags'])): ?>
               data-hashtags="<?php echo $social_meta['hashtags']; ?>"
             <?php endif; ?>
