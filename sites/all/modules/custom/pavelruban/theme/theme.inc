@@ -93,9 +93,11 @@ function pavelruban_preprocess_tags(&$vars) {
  */
 function pavelruban_preprocess_social(&$vars) {
   global $user;
+
   if (!empty($vars['changed'])) {
     $vars['last_changed'] = date('d M Y H:i:s', $vars['changed']);
   }
+
   $nid = $vars['nid'];
 
   if (user_access('edit any article content')) {
@@ -110,6 +112,12 @@ function pavelruban_preprocess_social(&$vars) {
       )
     );
   }
+
+  $node = node_load($vars['nid']);
+
+  if ($node->type !== 'article')
+     return;
+
   $vars['comment_link'] = l(
     '',
     "node/$nid",
@@ -125,11 +133,13 @@ function pavelruban_preprocess_social(&$vars) {
     'entity_id' => $nid,
     'value_type' => 'points',
   );
+
   if (!$user->uid) {
     $criteria += array(
       'vote_source' => ip_address(),
     );
   }
+
   $user_votes = votingapi_select_votes($criteria);
   $node_votes = votingapi_select_votes(
     array(
@@ -152,24 +162,15 @@ function pavelruban_preprocess_social(&$vars) {
       ),
     )
   );
+
   $vars['votes_count'] = count($node_votes);
   $vars['like_popup'] = theme('like_popup', array('meta' => $node_votes, 'nid' => $vars['nid'], 'vars' => $vars));
 
   $likes_count = pavelruban_current_like_count();
   $vars['empty_likes_count'] = empty($likes_count) ? TRUE : FALSE;
 
-
-  $node = node_load($vars['nid']);
   $social_meta = array();
   $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
-
-  $title = $node->title;
-  $title = truncate_utf8($title, 140, TRUE, TRUE);
-  $description = field_get_items('node', $node, 'field_article_catchline');
-  $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
-  $description = preg_replace('/\r|\n/', '', $description);
-  $tweeter_text = truncate_utf8("$title | $description", 140 - strlen($url) - 1, TRUE, TRUE);
-  $description = truncate_utf8($description, 140 - strlen($title), TRUE, TRUE);
 
   $image = field_get_items('node', $node, 'field_article_media');
 
@@ -179,6 +180,7 @@ function pavelruban_preprocess_social(&$vars) {
       $image_url = file_create_url($asset[0]['uri']);
     }
   }
+
   // Build Tweetter hashtags.
   $tag_info = pavelruban_tags_context($nid);
   $hashtags = array();
@@ -189,7 +191,32 @@ function pavelruban_preprocess_social(&$vars) {
     }
   }
 
+  $hash_count = count($hashtags);
   $social_meta['hashtags'] = implode($hashtags, ',');
+  $hash_strlen = strlen($social_meta['hashtags']) + $hash_count + 1; // hash per tag.
+  $url_strlen = strlen($url);
+
+  $title = $node->title;
+
+  $description = field_get_items('node', $node, 'field_article_catchline');
+  $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
+  $description = preg_replace('/\r|\n/', '', $description);
+
+  if ($url_strlen > 140) {
+    $url = url('', array('absolute' => TRUE));
+    $url_strlen = strlen($url);
+  }
+
+  if ($url_strlen + $hash_strlen > 140) {
+    $social_meta['hashtags'] = '';
+    $tweeter_text = '';
+  }
+  else {
+    $tweet_title = truncate_utf8($title, 140 - $url_strlen - $hash_strlen - 1, TRUE, TRUE);
+
+    $tweeter_text = $tweet_title;
+  }
+
   $social_meta['title'] = $title;
   $social_meta['description'] = $description;
   $social_meta['tweeter_text'] = $tweeter_text;

@@ -64,7 +64,7 @@ function common_content_type_article_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '30',
+          'weight' => '1',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -320,12 +320,9 @@ function common_content_type_article_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'link' => FALSE,
-          ),
-          'type' => 'entityreference_label',
-          'weight' => '32',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -616,11 +613,11 @@ function common_content_type_article_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'links' => TRUE,
+            'links' => 0,
             'view_mode' => 'full',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '17',
+          'weight' => '0',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -932,7 +929,7 @@ function common_content_type_article_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '4',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -1197,7 +1194,7 @@ function common_content_type_article_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '6',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -1442,7 +1439,7 @@ function common_content_type_article_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'diaporama' => array(
           'label' => 'above',
@@ -1703,7 +1700,7 @@ function common_content_type_article_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 33,
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'above',

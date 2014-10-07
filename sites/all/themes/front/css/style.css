@@ -417,16 +417,50 @@ span.anonym {
   color: #999999;
 }
 
-a.logo-img {
-  background-image: url("../images/common.png");
-  background-position: -66px -1px;
+a[class$="logo-img"] {
   display: block;
   height: 46px;
   left: 3px;
   position: fixed;
-  top: 64px;
   width: 52px;
   z-index: 100;
+}
+
+a.home-logo-img {
+  background-image: url("../images/common.png?cache=1");
+  background-position: -66px -1px;
+  top: 64px;
+  display: block;
+  height: 46px;
+  left: 3px;
+  position: fixed;
+  width: 52px;
+  z-index: 100;
+
+}
+
+a.git-logo-img {
+  display: block;
+  height: 46px;
+  left: 3px;
+  position: fixed;
+  width: 52px;
+  z-index: 100;
+  background-image: url('/sites/all/themes/front/images/common.png?cache=1');
+  background-position: -120px 0px;
+  top: 115px;
+}
+
+a.admin-logo-img {
+  display: block;
+  height: 46px;
+  left: 3px;
+  position: fixed;
+  width: 52px;
+  z-index: 100;
+  top: 169px;
+  background-image: url('/sites/all/themes/front/images/common.png?cache=1');
+  background-position: -252px -5px;
 }
 
 h1.comment-bottom-line.empty {
@@ -689,4 +723,81 @@ div.syntaxhighlighter {
 
 .panel-separator {
   clear: both;
+}
+
+div.page-403,
+div.page-404 {
+  background-image: url('/sites/all/themes/front/images/common.png?cache=2');
+  background-position: -255px -56px;
+  width: 357px;
+  height: 345px;
+  float: right;
+}
+
+body.page-403 div.main,
+body.page-404 div.main {
+  padding: 0;
+}
+
+body.page-404 span.page-404 {
+  font-size: 20px;
+  position: absolute;
+  right: 19px;
+  top: 61px;
+}
+
+body.page-404 span.page-404-code {
+  font-size: 189px;
+  position: absolute;
+  top: 118px;
+  left: 28px;
+}
+
+body.page-403 span.page-403 {
+  font-size: 34px;
+  position: absolute;
+  right: 63px;
+  top: 77px;
+}
+
+body.page-403 span.page-403-code {
+  font-size: 189px;
+  position: absolute;
+  top: 118px;
+  left: 28px;
+}
+
+#wrapper > .main ul.pagination li,
+#wrapper > .main ul.pagination a {
+  color: #000000;
+
+}
+
+#wrapper > .main ul.pagination li {
+  float: left;
+}
+
+#wrapper > .main ul.pagination li.pager-current {
+  color: #3D77B4;
+}
+
+ul.pagination {
+  list-style: none;
+  margin: 11px auto 0 auto;
+  width: auto;
+  display: block;
+  font-size: 135px;
+  font-weight: bold;
+  font-family: Arial;
+  height: 34px;
+  float: right;
+}
+
+div.view.view-articles div.view-content {
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 11px;
+}
+
+body.page-front div.main {
+  padding-bottom: 0;
 }

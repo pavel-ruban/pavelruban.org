@@ -22,7 +22,7 @@ function common_nodequeues_fe_nodequeue_export_fields() {
     'name' => 'articles',
     'title' => 'Articles',
     'subqueue_title' => '',
-    'size' => '6',
+    'size' => '15',
     'link' => 'Add article to queue',
     'link_remove' => 'Remove article from queue',
     'owner' => 'nodequeue',

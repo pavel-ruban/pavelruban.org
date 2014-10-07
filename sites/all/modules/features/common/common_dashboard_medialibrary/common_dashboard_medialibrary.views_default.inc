@@ -380,7 +380,7 @@ function common_dashboard_medialibrary_views_default_views() {
   /* Display: Search Image */
   $handler = $view->new_display('references_dialog', 'Search Image', 'references_dialog_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Images';
+  $handler->display->display_options['title'] = 'Search';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;

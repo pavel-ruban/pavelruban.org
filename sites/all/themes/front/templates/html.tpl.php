@@ -64,7 +64,7 @@
 </script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <!--<div id="fb-root"></div>
+  <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -83,7 +83,7 @@
        js.src = "//connect.facebook.net/en_US/all.js";
        d.getElementsByTagName('head')[0].appendChild(js);
      }(document));
-  </script> -->
+  </script>
   <?php print $tea_mug; ?>
   <?php print $page_top; ?>
   <?php print $page; ?>
