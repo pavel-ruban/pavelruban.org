@@ -67,6 +67,42 @@ body.img10 {
   background-size: cover;
 }
 
+body.img11 {
+  background: url("../images/lake.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+body.img12 {
+  background: url("../images/high_mountain.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+body.img13 {
+  background: url("../images/grass.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+body.img14 {
+  background: url("../images/evening_mountain.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+body.img15 {
+  background: url("../images/circles.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+body.img16 {
+  background: url("../images/blue.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
+
+body.img17 {
+  background: url("../images/yellow.jpg") no-repeat fixed 0 0 black;
+  background-size: cover;
+}
+
 /* Header */
 div.header > div {
   margin: 7px 0 4px;

@@ -234,7 +234,7 @@ function front_preprocess_html(&$vars) {
   // $date = variable_get('pavelruban_change_environment', time() - ($delay + 1));
 
 //  if ((time() - $date) > $delay) {
-  $id = rand(1, 10);
+  $id = rand(1, 17);
   $vars['classes_array'][] = "img$id";
   variable_set('pavelruban_change_environment', time());
 //  }
