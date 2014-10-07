@@ -10,7 +10,7 @@ ul {
 
 body {
   margin: 0;
-  background: url("../images/space.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/space.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
   color: #404040;
   font-family: Trebuchet MS;
@@ -18,87 +18,87 @@ body {
 }
 
 body.img1 {
-  background: url("../images/purple.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/purple.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img2 {
-  background: url("../images/sunset.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/sunset.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img3 {
-  background: url("../images/circles.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/circles.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img4 {
-  background: url("../images/purple.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/purple.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img5 {
-  background: url("../images/circles.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/circles.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img6 {
-  background: url("../images/purple.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/purple.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img7 {
-  background: url("../images/space.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/space.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img8 {
-  background: url("../images/space.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/space.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img9 {
-  background: url("../images/purple.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/purple.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img10 {
-  background: url("../images/jump.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/jump.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img11 {
-  background: url("../images/lake.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/lake.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img12 {
-  background: url("../images/high_mountain.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/high_mountain.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img13 {
-  background: url("../images/circles.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/circles.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img14 {
-  background: url("../images/evening_mountain.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/evening_mountain.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img15 {
-  background: url("../images/circles.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/circles.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img16 {
-  background: url("../images/blue.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/blue.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
 body.img17 {
-  background: url("../images/yellow-mountain.jpeg") no-repeat fixed 0 0 black;
+  background: url("../images/yellow-mountain.jpeg?cache=1") no-repeat fixed 0 0 black;
   background-size: cover;
 }
 
