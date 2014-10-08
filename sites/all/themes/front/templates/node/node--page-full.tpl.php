@@ -5,11 +5,18 @@
  */
 
 ?>
-<div class="_block page-misc last">
-  <h1 class="_head"><?php print $title; ?></h1>
-  <div class="ftv_text last">
-  <?php if (!empty($body)): ?>
-    <?php print $body; ?>
+
+<?php if (empty($is_404) && empty($is_403)): ?>
+  <?php if (!empty($media)): ?>
+    <?php echo $media; ?>
   <?php endif; ?>
-  </div>
-</div>    
+
+  <h2><?php echo $title; ?></h2>
+
+  <?php if (!empty($description)): ?>
+    <?php echo $description; ?>
+    <br/>
+  <?php endif; ?>
+<?php endif; ?>
+
+<?php echo $body; ?>

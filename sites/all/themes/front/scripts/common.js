@@ -4,7 +4,30 @@
 
 counter = 0;
 
+function initVK() {
+  VK.init({
+    apiId: 3790252,
+    onlyWidgets: true
+  });
+}
+
 (function ($) {
+  // Load scripts asynchronously
+  $.loadAsync = function(url, callback) {
+    // Don't use $.getScript since it disables caching
+    jQuery.ajax({
+      'url': url,
+      'dataType': 'script',
+      'cache': true,
+      'success': callback || jQuery.noop
+    });
+  };
+
+  $(document).ready(function () {
+    $.loadAsync('http://vkontakte.ru/js/api/openapi.js?98', initVK);
+    $.loadAsync('https://platform.twitter.com/widgets.js');
+  });
+
   Drupal.behaviors.prSidebar = {
     attach: function () {
       $('h3.recent-posts').click(function(){

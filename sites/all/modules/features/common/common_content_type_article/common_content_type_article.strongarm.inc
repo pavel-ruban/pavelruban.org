@@ -46,6 +46,9 @@ function common_content_type_article_strongarm() {
       'block' => array(
         'custom_settings' => TRUE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

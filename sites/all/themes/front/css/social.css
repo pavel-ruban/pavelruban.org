@@ -165,6 +165,10 @@ div.social-popup {
   margin: 0px;
 }
 
+div.social-popup iframe {
+  visibility: hidden !important;
+}
+
 .social-popup > div:first-child {
   padding-bottom: 10px;
 }
@@ -175,11 +179,20 @@ div.social-popup:hover {
   display: block;
 }
 
+div.social-popup-angle:hover iframe,
+div.social-popup:hover iframe {
+  visibility: visible !important;
+}
+
 .social:hover > div.social-popup-angle,
 div.social-popup:hover ~ div.social-popup-angle,
 div.social-popup-angle:hover ~ div.social-popup,
-.social:hover > div.social-popup {
-  visibility: visible;
+.social:hover > div.social-popup,
+.social:hover > div.social-popup-angle iframe,
+div.social-popup:hover ~ div.social-popup-angle iframe,
+div.social-popup-angle:hover ~ div.social-popup iframe,
+.social:hover > div.social-popup iframe {
+  visibility: visible !important;
   display: block;
 }
 

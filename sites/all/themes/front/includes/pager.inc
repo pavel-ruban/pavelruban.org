@@ -7,7 +7,7 @@
 /**
  * Pager theming.
  */
-function le_pager($variables) {
+function front_pager($variables) {
   $tags = $variables['tags'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
@@ -152,7 +152,7 @@ function le_pager($variables) {
 /**
  * Pager next link theming.
  */
-function le_pager_next($variables) {
+function front_pager_next($variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $interval = $variables['interval'];
@@ -185,7 +185,7 @@ function le_pager_next($variables) {
 /**
  * Pager previous link theming.
  */
-function le_pager_previous($variables) {
+function front_pager_previous($variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $interval = $variables['interval'];
@@ -218,7 +218,7 @@ function le_pager_previous($variables) {
 /**
  * Pager link theming.
  */
-function le_pager_link($variables) {
+function front_pager_link($variables) {
   $text = $variables['text'];
   $page_new = $variables['page_new'];
   $element = $variables['element'];
@@ -258,6 +258,24 @@ function le_pager_link($variables) {
     }
   }
 
+  switch ($text) {
+    case '« first':
+      $text = '«';
+      break;
+
+    case '‹ previous':
+      $text = '‹';
+      break;
+
+    case 'next ›':
+      $text = '›';
+      break;
+
+    case 'last »':
+      $text = '»';
+      break;
+  }
+
   if (!empty($next_le_pager_links)) {
     $attributes['class'][] = 'next';
   }
@@ -277,7 +295,7 @@ function le_pager_link($variables) {
 /**
  * Pager last link theming.
  */
-function le_pager_last($variables) {
+function front_pager_last($variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
@@ -295,7 +313,7 @@ function le_pager_last($variables) {
 /**
  * Pager first link theming.
  */
-function le_pager_first($variables) {
+function front_pager_first($variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];

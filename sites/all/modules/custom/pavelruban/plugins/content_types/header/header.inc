@@ -44,10 +44,52 @@ function pavelruban_header_theme(&$theme, $plugin) {
  */
 function template_preprocess_pavelruban_header(&$vars) {
   global $user;
-  $vars['image'] = theme('image',
-    array('path' => 'sites/all/themes/front/images/logo.png')
+
+  // Left Sidebar.
+  $vars['home_img_link'] = l(
+    '',
+    '<front>',
+    array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => array('home-logo-img'),
+        'title' => t('На главную'),
+      ),
+    )
   );
 
+  $vars['git_img_link'] = l(
+    '',
+    'https://github.com/pavelruban-org',
+    array(
+      'absolute' => TRUE,
+      'external' => TRUE,
+      'html' => TRUE,
+      'attributes' => array(
+        'target' => array('blank'),
+        'class' => array('git-logo-img'),
+        'title' => t('Проекты разрабатываемые мною на github.com'),
+      ),
+    )
+  );
+
+  if (user_access('View the administrative dashboard')) {
+    $admin_margin = TRUE;
+
+    $vars['admin_img_link'] = l(
+      '',
+      'admin/dashboard/articles',
+      array(
+        'html' => TRUE,
+        'attributes' => array(
+          'title' => t('Настройки'),
+          'class' => array('admin-logo-img'),
+        ),
+      )
+    );
+  }
+
+  // Show last comments link if any.
   if ($count = count(pavelruban_get_last_comments())) {
     $class = $count > 9 ? 'dozens' : 'small';
     $vars['last_comments'] = l(
@@ -56,11 +98,13 @@ function template_preprocess_pavelruban_header(&$vars) {
       array(
         'attributes' => array(
           'title' => t('Recent comments'),
-          'class' => array($class),
+          'class' => empty($admin_margin) ? array($class) : array($class, 'admin-margin'),
         ),
       )
     );
   }
+
+  // Top right login menu.
 
   switch ($user->uid) {
     case '0':
@@ -68,10 +112,12 @@ function template_preprocess_pavelruban_header(&$vars) {
         "login",
         "user/login"
       );
+
       $r = l(
         "register",
         "user/register"
       );
+
       $vars['user_link'] = sprintf('%s/%s', $l, $r);
       break;
 
@@ -81,6 +127,12 @@ function template_preprocess_pavelruban_header(&$vars) {
         "user/$user->uid"
       );
   }
+
+  $vars['aboutme_link'] = l(
+    "about me",
+    variable_get('about_me_page_uri', 'node/37')
+  );
+
   if (!empty($user->uid)) {
     $vars['user_logout'] = l(
       "logout",

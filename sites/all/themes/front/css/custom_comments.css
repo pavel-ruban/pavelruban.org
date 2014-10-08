@@ -141,13 +141,17 @@ div.first.reply.reply_dived.clear.reply_replieable {
   font-size: 24px;
   font-weight: bold;
   height: 30px;
-  left: 23px;
+  left: 11px;
   letter-spacing: 3px;
   position: fixed;
   text-shadow: 0 0 9px #39B2F2, 0 0 9px #39B2F2;
-  top: 127px;
+  top: 179px;
   width: 45px;
   z-index: 999;
+}
+
+.last-comment-counter a.admin-margin {
+  top: 221px;
 }
 
 .last-comments .reply_text > span {
@@ -169,7 +173,7 @@ div.first.reply.reply_dived.clear.reply_replieable {
 }
 
 .last-comment-counter a.small {
-  left: 29px;
+  left: 20px;
 }
 
 a.comments-node {
