@@ -312,13 +312,13 @@ function front_preprocess_comment(&$vars) {
   }
 
 
-  if (date('Y', time()) != ($year = date('Y', $vars['comment']->changed))) {
-    $vars['date'] = $year;
-  }
-  else {
-    setlocale(LC_ALL, 'ru_RU.UTF8');
-    $vars['date'] = strftime('%d %b в %H:%M', $vars['comment']->changed);
-  }
+//  if (date('Y', time()) != ($year = date('Y', $vars['comment']->changed))) {
+//    $vars['date'] = $year;
+//  }
+//  else {
+  setlocale(LC_ALL, 'ru_RU.UTF8');
+  $vars['date'] = strftime('%d %b в %H:%M', $vars['comment']->changed);
+  //}
 
   $delete = $user->uid == 1 || ($user->uid == $comment_owner->uid
       && ((time() - $vars['comment']->changed) < 300));

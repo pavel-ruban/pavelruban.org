@@ -222,7 +222,7 @@ function pavelruban_preprocess_social(&$vars) {
   $social_meta['description'] = $description;
   $social_meta['tweeter_text'] = $tweeter_text;
   $social_meta['url'] = $url;
-  $social_meta['raw_url'] = $raw_url;
+  $social_meta['raw_url'] = $url;
   $social_meta['image'] = !empty($image_url) ? $image_url : '';
 
   $vars['social_meta'] = $social_meta;
