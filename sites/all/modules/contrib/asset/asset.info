@@ -19,12 +19,16 @@ files[] = "views/handlers/asset_views_handler_field_asset_link_edit.inc"
 files[] = "views/handlers/asset_views_handler_field_asset_link_delete.inc"
 files[] = "views/handlers/asset_views_handler_field_asset_link_insert.inc"
 files[] = "views/handlers/asset_views_handler_argument_asset_aid.inc"
+; Normally we need to move plugins into separate folder.
 files[] = "views/handlers/asset_views_plugin_row_asset_view.inc"
+files[] = "views/handlers/asset_views_plugin_access_asset_insert_in_wysiwyg.inc"
 files[] = "theme/theme.inc"
 
-; Information added by drupal.org packaging script on 2013-02-20
-version = "7.x-1.0-beta4"
+stylesheets[all][] = css/assets.css
+
+; Information added by Drupal.org packaging script on 2015-10-24
+version = "7.x-1.0-beta4+42-dev"
 core = "7.x"
 project = "asset"
-datestamp = "1361391239"
+datestamp = "1445693943"
 

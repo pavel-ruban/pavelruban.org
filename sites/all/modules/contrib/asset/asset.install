@@ -59,6 +59,8 @@ function asset_schema() {
     'indexes' => array(
       'asset_type' => array(array('type', 4)),
       'asset_title_type' => array('title', array('type', 4)),
+      'asset_changed' => array('changed'),
+      'asset_created' => array('created'),
     ),
     'foreign keys' => array(
       'uid' => array('users' => 'uid'),
@@ -130,7 +132,22 @@ function asset_schema() {
         'default' => '',
         'description' => 'The Universally Unique Identifier.',
       ),
-    ) + entity_exportable_schema_fields(),
+      'status' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        // Set the default to ENTITY_CUSTOM without using the constant as it is
+        // not safe to use it at this point.
+        'default' => 0x01,
+        'size' => 'tiny',
+        'description' => 'The exportable status of the entity.',
+      ),
+      'module' => array(
+        'description' => 'The name of the providing module if the entity has been defined in code.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+    ),
     'primary key' => array('id'),
     'unique keys' => array(
       'type' => array('type'),
@@ -150,6 +167,9 @@ function asset_install() {
     ->condition('type', 'module')
     ->condition('name', 'asset')
     ->execute();
+
+  // Try to add support for entitycache by default.
+  asset_update_7102();
 }
 
 /**
@@ -171,4 +191,21 @@ function asset_update_7100() {
     }
   }
   return FALSE;
+}
+
+/**
+ * Add indexes for table `asset`.
+ */
+function asset_update_7101() {
+  db_add_index('asset', 'asset_changed', array('changed'));
+  db_add_index('asset', 'asset_created', array('created'));
+}
+
+/**
+ * If entitycache module exists enable asset_entitycache module.
+ */
+function asset_update_7102() {
+  if (module_exists('entitycache')) {
+    module_enable(array('asset_entitycache'));
+  }
 }

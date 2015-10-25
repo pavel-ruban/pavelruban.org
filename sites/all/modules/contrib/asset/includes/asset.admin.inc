@@ -60,9 +60,11 @@ function asset_type_form($form, &$form_state, $asset_type, $op = 'edit') {
     $icons_options = $icons_options + $module_icons;
   }
 
+  $icons_options_keys = array_keys($icons_options);
+
   $form['icons']['icon'] = array(
     '#type' => 'radios',
-    '#default_value' => $asset_type->icon ? $asset_type->icon : reset(array_keys($icons_options)),
+    '#default_value' => $asset_type->icon ? $asset_type->icon : reset($icons_options_keys),
     '#options' => $icons_options,
     '#title' => t('Button icon'),
   );
@@ -150,7 +152,7 @@ function asset_base_form($form, &$form_state, $asset, $op = 'edit') {
     '#weight' => 5,
   );
 
-  if (!empty($asset->aid) && user_access('administer assets')) {
+  if (!empty($asset->aid) && asset_delete_access($asset->type)) {
     $form['actions']['delete'] = array(
       '#type' => 'submit',
       '#value' => t('Delete'),
@@ -163,13 +165,22 @@ function asset_base_form($form, &$form_state, $asset, $op = 'edit') {
 }
 
 /**
+ * Form API validate callback for the asset form.
+ */
+function asset_base_form_validate($form, &$form_state) {
+  field_attach_form_validate('asset', $form_state['asset'], $form, $form_state);
+}
+
+/**
  * Form API submit callback for the asset form.
  */
 function asset_base_form_submit($form, &$form_state) {
   $asset = entity_ui_form_submit_build_entity($form, $form_state);
   $asset->save();
   $form_state['asset'] = $asset;
-  $form_state['redirect'] = 'admin/content/assets';
+  // @TODO: Normally we need to ensure that redirect page accessible to avoid 403 redirects within frame forms i.e.
+  // Better to redirect to same page with Get param and not to HP or etc. See assetWidget.getTabAsyncContent() in asset-widget.js
+  $form_state['redirect'] = user_access('administer assets') ? 'admin/content/assets' : '';
 }
 
 /**
@@ -221,6 +232,7 @@ function assets_add_page() {
  * Returns an asset submission form.
  */
 function assets_add($type) {
+  // @todo: We need to remove any direct creation of Asset class instances and use entity_create() instead.
   $asset = new Asset(array('type' => $type));
   $form = entity_ui_get_form('asset', $asset, 'add');
 
@@ -236,7 +248,7 @@ function assets_add($type) {
  */
 function _assets_wysiwyg_fields(&$form, $asset, $options) {
   $entity_info = $asset->entityInfo();
-  $align = isset($options['align']) && in_array($options['align'], array('left', 'right', ''), TRUE)
+  $align = isset($options['align']) && in_array($options['align'], array('center', 'left', 'right', ''), TRUE)
     ? $options['align']
     : '';
   $mode = isset($options['mode']) ? $options['mode'] : '';
@@ -255,8 +267,10 @@ function _assets_wysiwyg_fields(&$form, $asset, $options) {
 
     $modes_count = count($modes);
 
+    // If default mode is empty or non-existed, use first as default.
     if (!array_key_exists($mode, $modes) && $modes_count) {
-      $mode = reset(array_keys($modes));
+      reset($modes);
+      $mode = key($modes);
     }
 
     if ($modes_count > 1) {
@@ -291,6 +305,7 @@ function _assets_wysiwyg_fields(&$form, $asset, $options) {
       '#default_value' => $align,
       '#options' => array(
         '' => t('None'),
+        'center' => t('Center'),
         'left' => t('Left'),
         'right' => t('Right'),
       ),
@@ -313,9 +328,9 @@ function _assets_wysiwyg_fields(&$form, $asset, $options) {
  * Page callback for wysiwyg form.
  */
 function assets_wysiwyg_form($form, &$form_state, $op, $asset, $mode = ASSET_DEFAULT_MODE, $align = '') {
+  // In case of add operation we have only type name, but on edit we will have whole entity.
   if ($op == 'add') {
-    $type = drupal_substr($asset, 6);
-    $asset = new Asset(array('type' => $type));
+    $asset = new Asset(array('type' => $asset));
   }
 
   $form_state['entity_type'] = 'asset';
@@ -402,7 +417,7 @@ function _assets_clean_fields(&$form, $options = array()) {
   foreach ($containers as $key) {
     if (isset($form[$key]) && $form[$key]) {
       $elements = $form[$key][$form[$key]['#language']];
-      $multiple = isset($elements['#cardinality']) && ($elements['#cardinality'] > 1 || $elements['#cardinality']) == FIELD_CARDINALITY_UNLIMITED;
+      $multiple = isset($elements['#cardinality']) && ($elements['#cardinality'] > 1 || $elements['#cardinality'] == FIELD_CARDINALITY_UNLIMITED);
       $children = element_children($elements);
 
       if (!empty($children)) {
@@ -416,6 +431,8 @@ function _assets_clean_fields(&$form, $options = array()) {
               switch ($info['type']) {
                 case 'text':
                 case 'text_long':
+                case 'list_boolean':
+                case 'list_text':
                   $field = &$form[$key][$form[$key]['#language']][$delta];
                   if ($multiple) {
                     $field = &$form[$key][$form[$key]['#language']][$delta]['value'];
@@ -428,11 +445,9 @@ function _assets_clean_fields(&$form, $options = array()) {
                   $value = (array) $options[$key];
 
                   if (!empty($value[$delta])) {
-                    continue;
+                    $field['#default_value'] = $value[$delta];
                   }
                 }
-
-                $field['#default_value'] = '';
                 continue;
               }
             }
@@ -447,6 +462,7 @@ function _assets_clean_fields(&$form, $options = array()) {
           unset($field);
 
           switch ($info['type']) {
+            case 'list_text':
             case 'text':
               $field = &$form[$key][$form[$key]['#language']];
               if ($multiple) {
@@ -460,11 +476,9 @@ function _assets_clean_fields(&$form, $options = array()) {
               $value = (array) $options[$key];
 
               if (!empty($value[$delta])) {
-                continue;
+                $field['#default_value'] = $value[$delta];
               }
             }
-
-            $field['#default_value'] = '';
             continue;
           }
         }
@@ -480,10 +494,11 @@ function _assets_clean_fields(&$form, $options = array()) {
  */
 function assets_override_form_submit(&$form, &$form_state) {
   $values = $form_state['values'];
+  $original_asset = clone asset_load($form['#entity']->aid, TRUE);
   $view_mode = isset($values['view_mode']) ? $values['view_mode'] : ASSET_DEFAULT_MODE;
   $alignment = isset($values['align']) ? $values['align'] : '';
   $asset = entity_ui_form_submit_build_entity($form, $form_state);
-  $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment));
+  $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment), $original_asset);
   $placeholder = addslashes($placeholder);
   $placeholder = str_replace("\r\n", '\n', $placeholder);
 
@@ -602,10 +617,7 @@ function asset_get_full_content() {
  * Page callback, return html of asset by wysiwyg view mode.
  */
 function _asset_get_tag($tag_id, $view_mode = NULL, $align = NULL) {
-  $output = '';
-  $placeholder = '';
-
-  $tags = explode(':', $tag_id);
+  $tags = !empty($tag_id) ? explode(':', $tag_id) : array();
   $asset = !empty($tags[0]) ? asset_load($tags[0]) : NULL;
 
   if ($asset) {
@@ -628,20 +640,16 @@ function _asset_get_tag($tag_id, $view_mode = NULL, $align = NULL) {
         'align' => $align,
       )
     );
+
     $placeholder = str_replace("\r\n", '\n', $placeholder);
 
     $asset_content = $asset->view($view_mode);
     $output = render($asset_content);
+
+    // trim() here is very important. Without trim,
+    // if template started with space - dom structure of response will contains empty text node.
+    return array('tag' => $placeholder, 'content' => trim($output));
   }
-
-  print drupal_json_encode(
-    array(
-      'tag' => $placeholder,
-      'content' => $output,
-    )
-  );
-
-  drupal_exit();
 }
 
 /**
@@ -656,5 +664,5 @@ function asset_tooltip_content($asset, $view_mode) {
  */
 function asset_view_asset($asset, $view_mode = ASSET_DEFAULT_MODE) {
   $output = $asset->view($view_mode);
-  return render($output);
+  return $output;
 }

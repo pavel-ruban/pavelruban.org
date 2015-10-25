@@ -39,7 +39,9 @@ function assets_render_by_tag($asset, $params_string, $in_editor = FALSE) {
     // As render works by reference we should pass variable instead of direct value.
     $clone_content = $clone->view($view_mode);
 
-    return render($clone_content);
+    // trim() here is very important. Without trim,
+    // if template started with space - dom structure of response will contains empty text node.
+    return trim(render($clone_content));
   }
 
   return '';
@@ -120,6 +122,7 @@ function _assets_set_field_value(&$asset, $field_name, $values) {
       // @todo: We should check the type of widget instead.
       case 'text':
       case 'text_long':
+      case 'list_test':
         if (!isset($asset->{$field_name}[$langcode])) {
           $asset->{$field_name}[$langcode] = array();
         }

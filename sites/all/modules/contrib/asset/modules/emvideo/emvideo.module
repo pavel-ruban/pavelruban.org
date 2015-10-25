@@ -147,6 +147,8 @@ function emvideo_field_formatter_settings_summary($field, $instance, $view_mode)
  * Implements hook_field_formatter_view().
  */
 function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  global $is_https;
+
   $element = array();
 
   switch ($display['type']) {
@@ -154,14 +156,13 @@ function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, 
       foreach ($items as $delta => $item) {
 
         $output = '';
+        $params = array(
+          'source'   => $item['source'],
+          'provider' => $item['provider'],
+          'height'   => $display['settings']['height'],
+          'width'    => $display['settings']['width'],
+        );
         foreach (module_implements('emvideo_emcode') as $module) {
-          $params = array(
-            'source'   => $item['source'],
-            'provider' => $item['provider'],
-            'height'   => $display['settings']['height'],
-            'width'    => $display['settings']['width'],
-          );
-
           $output = module_invoke($module, 'emvideo_emcode', $params);
 
           if ($output !== FALSE) {
@@ -173,6 +174,9 @@ function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, 
 
         if (!empty($item['source']) && empty($output)) {
           $source = $item['source'];
+          if ($is_https) {
+            $source = preg_replace('/http:\/\//', 'https://', $source);
+          }
           $output .= '<object type="application/x-shockwave-flash" ';
           $output .= 'width="' . $display['settings']['width'] . '" height="' . $display['settings']['height'] . '" data="' . $source . '">' . "\n";
 
@@ -198,10 +202,15 @@ function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, 
     case 'emvideo_snapshot':
       foreach ($items as $delta => $item) {
         if (isset($item['snapshot'])) {
+          // @todo: We need theme('image') here.
           $attributes = array(
             'src' => $item['snapshot'],
             'width' => $display['settings']['width'],
           );
+
+          if ($is_https) {
+            $attributes['src'] = preg_replace('/http:\/\//', 'https://', $attributes['src']);
+          }
 
           if (!empty($display['settings']['class'])) {
             $attributes['class'] = array($display['settings']['class']);
@@ -246,6 +255,7 @@ function emvideo_field_widget_form(&$form, &$form_state, $field, $instance, $lan
       '#type' => 'textarea',
       '#title' => check_plain($element['#title']),
       '#default_value' => $value,
+      '#description' => isset($element['#description']) ? $element['#description'] : '',
       '#format' => 1,
       '#required' => $element['#required'],
     );

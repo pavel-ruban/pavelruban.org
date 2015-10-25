@@ -2,16 +2,15 @@
  * Script related to assets create/edit forms in case of in-frame rendering.
  */
 
+// Store JScroll instance for easy re-init.
+var assetFormJscrollInstance;
 (function ($) {
 
   if ($.fn.jScrollPane) {
-    // Store JScroll instance for easy re-init.
-    var jscrollInstance;
-
     // Re-init scroll, if available.
     var assetChildReinitScroll = function () {
-      if (jscrollInstance) {
-        jscrollInstance.reinitialise();
+      if (assetFormJscrollInstance) {
+        assetFormJscrollInstance.reinitialise();
       }
     };
 
@@ -29,16 +28,30 @@
     Drupal.ajax.prototype.beforeSerialize = function (element, options) {
       // We always pass asset_frame to Drupal if available, to determine widget context in default ajax.
       if (Drupal.settings.assetWidget.assetFrame && options.url.indexOf('asset_frame') == -1) {
-        options.url += options.url.indexOf('?') != -1 ? '&asset_frame=true' : '?asset_frame=true';
-
+        options.url += (options.url.indexOf('?') != -1 ? '&' : '?') + 'asset_frame=true&render=popup';
       }
       this.originalBeforeSerialize(element, options);
     };
   }
 
-  Drupal.behaviors.asssetChildForm = {
+  Drupal.behaviors.assetChildForm = {
     attach:function (context, settings) {
       var $context = $(context);
+
+      // If we have Jcrop elements on form, we need to lookup for image element until it's fully loaded because of delayed behavior of Jcrop.
+      // See Drupal.behaviors.imagefield_crop for details.
+      if (typeof $.fn.Jcrop !== 'undefined' && $context.find('img.cropbox').length) {
+        function completeCheck() {
+          if ($context.find('div.jcrop-holder img.cropbox').length) {
+            assetChildReinitScroll();
+          }
+          else {
+            window.setTimeout(completeCheck,200);
+          }
+        }
+        completeCheck();
+      }
+
       if (parent.assetWidget) {
         var assetWidget = parent.assetWidget;
         // We show loader on submit, and it will be hidden on parent window side.
@@ -77,12 +90,12 @@
                 });
                 isResizing = false;
 
-                if (jscrollInstance) {
-                  jscrollInstance.reinitialise();
+                if (assetFormJscrollInstance) {
+                  assetFormJscrollInstance.reinitialise();
                 }
                 else {
                   $container.jScrollPane({enableKeyboardNavigation: false});
-                  jscrollInstance = $container.data('jsp');
+                  assetFormJscrollInstance = $container.data('jsp');
                 }
               }
             }
