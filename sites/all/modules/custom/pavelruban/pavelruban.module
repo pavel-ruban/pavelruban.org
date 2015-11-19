@@ -11,6 +11,7 @@ define('WOW_SLIDER_DEFAULT_PATH', 'sites/all/libraries/wowslider');
 require_once PR_MODULE_PATH . '/pavelruban.form.inc';
 require_once PR_MODULE_PATH . '/pavelruban.text.inc';
 require_once PR_MODULE_PATH . '/pavelruban.context.inc';
+require_once PR_MODULE_PATH . '/pavelruban.video.inc';
 
 /**
  * Implements hook_ctools_plugin_directory().
