@@ -18,7 +18,7 @@ function pavelruban_emvideo_emcode($data) {
     switch ($data['provider']) {
       case 'vk.com':
         $output = <<<EOL
-<iframe src="{$data['source']}" frameborder="0" height="{$data['height']}" width="{$data['width']}" />
+<iframe src="{$data['source']}" frameborder="0" height="{$data['height']}" width="{$data['width']}"> </iframe>
 EOL;
         return trim($output);
     }
