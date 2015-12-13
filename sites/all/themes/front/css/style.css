@@ -836,3 +836,9 @@ div.view.view-articles div.view-content {
 body.page-front div.main {
   padding-bottom: 0;
 }
+
+pre {
+	background: lightyellow;
+	border: 1px #B9B9B9 dashed;
+	padding: 14px;
+}
