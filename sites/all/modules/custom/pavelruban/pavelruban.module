@@ -244,6 +244,12 @@ function pavelruban_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['ajax/node/%/social-popup'] = array(
+    'page callback' => 'pavelruban_ajax_node_social_popup',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
   $items['ajax/vote/node/%/delete'] = array(
     'page callback' => 'pavelruban_ajax_node_dislike',
     'page arguments' => array(3),
@@ -321,6 +327,18 @@ function pavelruban_ajax_node_vote($nid) {
 }
 
 /**
+ * Render social popup.
+ */
+function pavelruban_ajax_node_social_popup($nid) {
+  if (!empty($nid)) {
+    $response = theme('social_popup', ['nid' => $nid]);
+
+    drupal_json_output([data => $response]);
+    drupal_exit();
+  }
+}
+
+/**
  * Dislike node functional.
  */
 function pavelruban_ajax_node_dislike($nid) {
@@ -380,6 +398,12 @@ function pavelruban_theme() {
     'file' => 'theme.inc',
     'path' => PR_MODULE_PATH . '/theme',
     'template' => 'social',
+  );
+
+  $items['social_popup'] = array(
+    'file' => 'theme.inc',
+    'path' => PR_MODULE_PATH . '/theme',
+    'template' => 'social-popup',
   );
 
   $items['like_popup'] = array(

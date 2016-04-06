@@ -202,6 +202,33 @@ function initVK() {
           }
         });
       });
+
+      // Insert popup data on hover.
+      $('div.social-img').once(function(){
+        var $this = $(this);
+        $this.bind({
+          mouseenter: function(e) {
+            $this.once('data-rendered', function() {
+              $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                global: false,
+                context: {
+                  element: this,
+                  event: e
+                },
+                url: "/ajax/node/" + $(this).attr('nid') + "/social-popup",
+                success: function ($response) {
+                  if ($response['data']) {
+                    $(this.element).siblings('div.social-popup').html($response['data']);
+                  }
+                }
+              });
+            });
+          }
+        });
+      });
+
       $('div.social').once(function(){
         var $this = $(this);
         $this.bind({

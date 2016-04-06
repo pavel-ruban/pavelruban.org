@@ -91,6 +91,75 @@ function pavelruban_preprocess_tags(&$vars) {
 /**
  * Preprocess variables.
  */
+function pavelruban_preprocess_social_popup(&$vars) {
+  if (!empty($vars['nid']) && is_numeric($vars['nid'])) {
+    $node = node_load($vars['nid']);
+    $nid = $vars['nid'];
+  }
+
+  if (empty($node) || $node->type !== 'article') return;
+
+  $social_meta = array();
+  $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
+
+  $image = field_get_items('node', $node, 'field_article_media');
+
+  if (!empty($image[0]['entity']->field_asset_image)) {
+    $asset = field_get_items('asset', $image[0]['entity'], 'field_asset_image');
+    if (!empty($asset[0]['uri'])) {
+      $image_url = file_create_url($asset[0]['uri']);
+    }
+  }
+
+  // Build Tweetter hashtags.
+  $tag_info = pavelruban_tags_context($nid);
+  $hashtags = array();
+
+  foreach ($tag_info as $tag) {
+    if (!empty($tag['name'])) {
+      $hashtags[] = $tag['name'];
+    }
+  }
+
+  $hash_count = count($hashtags);
+  $social_meta['hashtags'] = implode($hashtags, ',');
+  $hash_strlen = strlen($social_meta['hashtags']) + $hash_count + 1; // hash per tag.
+  $url_strlen = strlen($url);
+
+  $title = $node->title;
+
+  $description = field_get_items('node', $node, 'field_article_catchline');
+  $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
+  $description = preg_replace('/\r|\n/', '', $description);
+
+  if ($url_strlen > 140) {
+    $url = url('', array('absolute' => TRUE));
+    $url_strlen = strlen($url);
+  }
+
+  if ($url_strlen + $hash_strlen > 140) {
+    $social_meta['hashtags'] = '';
+    $tweeter_text = '';
+  }
+  else {
+    $tweet_title = truncate_utf8($title, 140 - $url_strlen - $hash_strlen - 1, TRUE, TRUE);
+
+    $tweeter_text = $tweet_title;
+  }
+
+  $social_meta['title'] = $title;
+  $social_meta['description'] = $description;
+  $social_meta['tweeter_text'] = $tweeter_text;
+  $social_meta['url'] = $url;
+  $social_meta['raw_url'] = $url;
+  $social_meta['image'] = !empty($image_url) ? $image_url : '';
+
+  $vars['social_meta'] = $social_meta;
+}
+
+/**
+ * Preprocess variables.
+ */
 function pavelruban_preprocess_social(&$vars) {
   global $user;
 
@@ -168,62 +237,4 @@ function pavelruban_preprocess_social(&$vars) {
 
   $likes_count = pavelruban_current_like_count();
   $vars['empty_likes_count'] = empty($likes_count) ? TRUE : FALSE;
-
-  $social_meta = array();
-  $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
-  $raw_url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => TRUE));
-
-  $image = field_get_items('node', $node, 'field_article_media');
-
-  if (!empty($image[0]['entity']->field_asset_image)) {
-    $asset = field_get_items('asset', $image[0]['entity'], 'field_asset_image');
-    if (!empty($asset[0]['uri'])) {
-      $image_url = file_create_url($asset[0]['uri']);
-    }
-  }
-
-  // Build Tweetter hashtags.
-  $tag_info = pavelruban_tags_context($nid);
-  $hashtags = array();
-
-  foreach ($tag_info as $tag) {
-    if (!empty($tag['name'])) {
-      $hashtags[] = $tag['name'];
-    }
-  }
-
-  $hash_count = count($hashtags);
-  $social_meta['hashtags'] = implode($hashtags, ',');
-  $hash_strlen = strlen($social_meta['hashtags']) + $hash_count + 1; // hash per tag.
-  $url_strlen = strlen($url);
-
-  $title = $node->title;
-
-  $description = field_get_items('node', $node, 'field_article_catchline');
-  $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
-  $description = preg_replace('/\r|\n/', '', $description);
-
-  if ($url_strlen > 140) {
-    $url = url('', array('absolute' => TRUE));
-    $url_strlen = strlen($url);
-  }
-
-  if ($url_strlen + $hash_strlen > 140) {
-    $social_meta['hashtags'] = '';
-    $tweeter_text = '';
-  }
-  else {
-    $tweet_title = truncate_utf8($title, 140 - $url_strlen - $hash_strlen - 1, TRUE, TRUE);
-
-    $tweeter_text = $tweet_title;
-  }
-
-  $social_meta['title'] = $title;
-  $social_meta['description'] = $description;
-  $social_meta['tweeter_text'] = $tweeter_text;
-  $social_meta['url'] = $url;
-  $social_meta['raw_url'] = $url;
-  $social_meta['image'] = !empty($image_url) ? $image_url : '';
-
-  $vars['social_meta'] = $social_meta;
 }
