@@ -221,6 +221,14 @@ function initVK() {
                 success: function ($response) {
                   if ($response['data']) {
                     $(this.element).siblings('div.social-popup').html($response['data']);
+
+                    // Update FB widgets.
+                    if (FB) {
+                      FB.XFBML.parse();
+                    }
+                    if (twttr) {
+                      twttr.widgets.load()
+                    }
                   }
                 }
               });
