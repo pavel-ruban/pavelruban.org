@@ -592,6 +592,7 @@ div[id^="wowslider-container"]:hover a.fullscreen-toggle {
   display: block;
 }
 
+div.asset.raw,
 div.asset.wrapper {
   position: relative;
 }
