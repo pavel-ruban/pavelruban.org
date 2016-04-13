@@ -859,3 +859,8 @@ pre {
 	border: 1px #B9B9B9 dashed;
 	padding: 14px;
 }
+
+hr {
+  clear: both;
+  visibility: hidden;
+}
