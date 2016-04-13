@@ -611,6 +611,10 @@ div.asset.wrapper:hover a.fullscreen-toggle {
   display: block;
 }
 
+div.asset.raw:hover a.fullscreen-toggle {
+  display: block;
+}
+
 div.tea-mug-cloud {
   background: url("../images/common.png") repeat scroll -6px -247px transparent;
   display: block;
