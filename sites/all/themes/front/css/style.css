@@ -516,6 +516,10 @@ h1.comment-bottom-line.empty {
   color: #3D77B4;
 }
 
+div.asset.raw {
+  background: none repeat scroll 0 0 white;
+}
+
 div.asset.wrapper {
   background: none repeat scroll 0 0 white;
   border: 1px solid #E5E5E5;
