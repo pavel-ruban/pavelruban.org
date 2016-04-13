@@ -119,6 +119,10 @@ function pavelruban_entity_info_alter(&$entity_info) {
   $view_modes = array(
     'asset' => array(
       'teaser',
+      'in_body_raw_width_auto',
+      'in_body_raw_height_288',
+      'in_body_raw_height_long',
+      'teaser',
       'small_right',
       'tooltip',
       'slider_thumbnail',
