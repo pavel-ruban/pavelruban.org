@@ -273,10 +273,13 @@ h1 {
   color: #404040;
 }
 
+div[class ^= "content-in-body-raw-height"] {
+  float: left;
+}
+
 #wrapper > .main img {
   display: block;
   float: left;
-  margin-right: 19px;
 }
 
 .logo img {
