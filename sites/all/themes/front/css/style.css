@@ -280,6 +280,11 @@ div[class *= "content-in-body-raw-height"] {
 #wrapper > .main img {
   display: block;
   float: left;
+  margin-right: 19px;
+}
+
+#wrapper > .main .asset.raw img {
+  margin: 0;
 }
 
 .logo img {
