@@ -97,7 +97,7 @@ function pavelruban_preprocess_social_popup(&$vars) {
     $nid = $vars['nid'];
   }
 
-  if (empty($node) || $node->type !== 'article') return;
+  if (empty($node) || $node->type !== 'article' && $node->type !== 'page') return;
 
   $social_meta = array();
   $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
