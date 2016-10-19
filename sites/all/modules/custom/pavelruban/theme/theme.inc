@@ -102,7 +102,15 @@ function pavelruban_preprocess_social_popup(&$vars) {
   $social_meta = array();
   $url = url("node/{$node->nid}", array('absolute' => TRUE, 'alias' => FALSE));
 
-  $image = field_get_items('node', $node, 'field_article_media');
+  switch ($node->type) {
+    case 'article':
+      $image = field_get_items('node', $node, 'field_article_media');
+      break;
+
+    case 'page':
+      $image = field_get_items('node', $node, 'field_page_main_media');
+      break;
+  }
 
   if (!empty($image[0]['entity']->field_asset_image)) {
     $asset = field_get_items('asset', $image[0]['entity'], 'field_asset_image');
@@ -128,7 +136,16 @@ function pavelruban_preprocess_social_popup(&$vars) {
 
   $title = $node->title;
 
-  $description = field_get_items('node', $node, 'field_article_catchline');
+  switch ($node->type) {
+    case 'article':
+      $description = field_get_items('node', $node, 'field_article_catchline');
+      break;
+
+    case 'page':
+      $description = field_get_items('node', $node, 'field_page_body');
+      break;
+  }
+
   $description = !empty($description[0]['value']) ? $description[0]['value'] : '';
   $description = preg_replace('/\r|\n/', '', $description);
 
