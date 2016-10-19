@@ -184,7 +184,7 @@ function pavelruban_preprocess_social(&$vars) {
 
   $node = node_load($vars['nid']);
 
-  if ($node->type !== 'article')
+  if ($node->type !== 'article' && $node->type !== 'page')
      return;
 
   $vars['comment_link'] = l(

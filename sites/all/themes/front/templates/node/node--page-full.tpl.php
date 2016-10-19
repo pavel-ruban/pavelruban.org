@@ -20,3 +20,6 @@
 <?php endif; ?>
 
 <?php echo $body; ?>
+<?php if (!empty($tags)): ?>
+  <?php echo $tags; ?>
+<?php endif; ?>
