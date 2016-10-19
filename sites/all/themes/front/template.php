@@ -317,7 +317,7 @@ function front_preprocess_comment(&$vars) {
 //  }
 //  else {
   setlocale(LC_ALL, 'ru_RU.UTF8');
-  $vars['date'] = strftime('%d %b в %H:%M', $vars['comment']->changed);
+  $vars['date'] = strftime('%d %b %Y в %H:%M', $vars['comment']->changed);
   //}
 
   $delete = $user->uid == 1 || ($user->uid == $comment_owner->uid

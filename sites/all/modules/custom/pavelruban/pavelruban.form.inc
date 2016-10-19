@@ -37,6 +37,13 @@ function pavelruban_form_alter(&$form, &$form_state, $form_id) {
       $form['subject']['#access'] = FALSE;
       $form['author']['#access'] = FALSE;
       break;
+
+    case 'comment_node_page_form':
+      $form['actions']['preview']['#access'] = FALSE;
+      $form['actions']['submit']['#value'] = t('submit');
+      $form['subject']['#access'] = FALSE;
+      $form['author']['#access'] = FALSE;
+      break;
   }
 }
 
