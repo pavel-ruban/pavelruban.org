@@ -864,3 +864,11 @@ hr {
   clear: both;
   visibility: hidden;
 }
+
+#recaptcha_table img,
+#wrapper > .main #recaptcha_table img {
+  float: none;
+  margin-right: 0;
+  width: auto;
+  height: auto;
+}
