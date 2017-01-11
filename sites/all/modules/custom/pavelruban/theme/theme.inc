@@ -21,9 +21,10 @@ function pavelruban_preprocess_like_popup(&$vars) {
       $meta = array_slice($meta, 0, 4);
       $liked_users = '';
       foreach ($meta as $vote) {
-        $account = user_load($vote['uid']);
-        $user_view = user_view($account, 'like_mini');
-        $liked_users .= render($user_view);
+        if ($account = user_load($vote['uid'])) {
+          $user_view = user_view($account, 'like_mini');
+          $liked_users .= render($user_view);
+        }
       }
 
       $vars['likedCount'] = $likedCount;
