@@ -45,6 +45,31 @@ function pavelruban_form_alter(&$form, &$form_state, $form_id) {
       $form['author']['#access'] = FALSE;
       break;
   }
+
+  if (preg_match('/comment.*form/', $form_id)) {
+    $form['#validate'][] = 'pavelruban_comment_form_validate';
+  }
+}
+
+/**
+ * Don't allow bots past comments with hrefs & urls.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function pavelruban_comment_form_validate($form, &$form_state) {
+  if (!empty($form_state['values']['comment_body'][LANGUAGE_NONE][0]['value'])) {
+    $comment = $form_state['values']['comment_body'][LANGUAGE_NONE][0]['value'];
+
+    $regex = '/\[\s*?url\s*?=|(?:http(?:s)|ftp)?:\/\/|<a[^<]*?href=/';
+
+    if (preg_match($regex, $comment)) {
+      form_set_error(
+        'comment_body',
+        t('Sorry but you are not allowed use any references & links inside your comment. Ha ha ha. Go out of my site spammy bot!')
+      );
+    }
+  }
 }
 
 /**
