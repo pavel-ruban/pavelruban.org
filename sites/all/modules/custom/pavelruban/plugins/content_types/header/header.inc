@@ -60,7 +60,7 @@ function template_preprocess_pavelruban_header(&$vars) {
 
   $vars['git_img_link'] = l(
     '',
-    'https://github.com/pavelruban-org',
+    'https://github.com/pavel-ruban',
     array(
       'absolute' => TRUE,
       'external' => TRUE,

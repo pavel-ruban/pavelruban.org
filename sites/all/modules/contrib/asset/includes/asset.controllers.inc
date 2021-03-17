@@ -211,9 +211,6 @@ class AssetType extends Entity {
    *
    * We have to override this method just to invoke the entity_defaults_rebuild,
    * in case when no existent types were reverted
-   *
-   * @param $ids
-   * @param DatabaseTransaction | null $transaction
    */
   public function delete() {
     parent::delete();

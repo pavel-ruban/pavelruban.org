@@ -4,7 +4,7 @@
       $('.reload-captcha', context).not('.processed').bind('click', function () {
         $(this).addClass('processed');
         var $form = $(this).parents('form');
-        // send post query for getting new captcha data
+        // Send post query for getting new captcha data.
         var date = new Date();
         var url = this.href + '?' + date.getTime();
         $.get(

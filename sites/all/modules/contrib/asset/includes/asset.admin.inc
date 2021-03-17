@@ -326,6 +326,8 @@ function _assets_wysiwyg_fields(&$form, $asset, $options) {
 
 /**
  * Page callback for wysiwyg form.
+ *
+ * @todo: We need to redo both edit and override form to avoid complex form building and duplication for drupal_alter().
  */
 function assets_wysiwyg_form($form, &$form_state, $op, $asset, $mode = ASSET_DEFAULT_MODE, $align = '') {
   // In case of add operation we have only type name, but on edit we will have whole entity.
@@ -339,20 +341,65 @@ function assets_wysiwyg_form($form, &$form_state, $op, $asset, $mode = ASSET_DEF
   $form_state['build_info']['base_form_id'] = 'asset_base_form';
 
   $form = asset_base_form($form, $form_state, $asset, $op);
-  $form['#submit'][] = 'asset_base_form_submit';
 
-  if ($op == 'add') {
-    $form['#submit'][] = 'assets_wysiwyg_add_form_submit';
-  }
-  else {
-    $form['#submit'][] = 'assets_wysiwyg_form_submit';
-  }
+  $hooks = array('form');
+  $hooks[] = 'form_' . $form_state['build_info']['base_form_id'];
+  $hooks[] = 'form_asset_edit_' . $form['#bundle'] . '_form';
+  $form_id = 'asset_edit_' . $form['#bundle'] . '_form';
+  drupal_alter($hooks, $form, $form_state, $form_id);
+
+  $form['#submit'][] = 'asset_base_form_submit';
+  $form['#submit'][] = 'assets_wysiwyg_form_submit';
 
   _assets_wysiwyg_fields($form, $asset, array('mode' => $mode, 'align' => $align));
 
   unset($form['actions']['delete']);
 
   return $form;
+}
+
+/**
+ * Custom submit handler.
+ */
+function assets_wysiwyg_form_submit(&$form, &$form_state) {
+  $asset     = $form_state['asset'];
+  $values    = $form_state['values'];
+  $view_mode = isset($values['view_mode']) ? $values['view_mode'] : ASSET_DEFAULT_MODE;
+  $alignment = isset($values['align']) ? $values['align'] : '';
+
+  $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment));
+  $placeholder = addslashes($placeholder);
+  $placeholder = str_replace("\r\n", '\n', $placeholder);
+
+  // @todo: This is pretty ugly way, we need to implement own ajax commands and use ajax_deliver().
+  if ($form_state['op'] == 'edit') {
+    $js = 'var CKEDITOR = parent.CKEDITOR;
+    var dialog =  CKEDITOR.dialog.getCurrent();
+    var outdated = dialog._outdatedAssetEl;
+    if (outdated) {
+      var tag_id = outdated.data(\'asset-cid\');
+      dialog._.editor.plugins.asset.replaceAsset(tag_id, \'' . $placeholder . '\' );
+    }
+    dialog.hide();';
+  }
+  else {
+    $js = 'var CKEDITOR = parent.CKEDITOR;
+    var dialog = CKEDITOR.dialog.getCurrent();
+    var newHtml = dialog._.editor.plugins.asset.Assets.getContentByTag(\'' . $placeholder . '\');
+    if (newHtml) {
+      var element = CKEDITOR.dom.element.createFromHtml(newHtml);
+      element.setAttribute(\'contentEditable\', \'false\');   //Hello, Chrome
+      dialog._.editor.insertElement(element);
+      if (CKEDITOR.env.gecko && newHtml.search(/<object /i) > 0) {
+        var wysiwyg = dialog._.editor.getMode();
+        wysiwyg.loadData(wysiwyg.getData());
+      }
+    }
+    dialog.hide();';
+  }
+
+  echo '<script>' . $js . '</script>';
+  drupal_exit();
 }
 
 /**
@@ -499,64 +546,6 @@ function assets_override_form_submit(&$form, &$form_state) {
   $alignment = isset($values['align']) ? $values['align'] : '';
   $asset = entity_ui_form_submit_build_entity($form, $form_state);
   $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment), $original_asset);
-  $placeholder = addslashes($placeholder);
-  $placeholder = str_replace("\r\n", '\n', $placeholder);
-
-  $js = 'var CKEDITOR = parent.CKEDITOR;
-    var dialog =  CKEDITOR.dialog.getCurrent();
-    var outdated = dialog._outdatedAssetEl;
-    if (outdated) {
-      var tag_id = outdated.data(\'asset-cid\');
-      dialog._.editor.plugins.asset.replaceAsset(tag_id, \'' . $placeholder . '\' );
-    }
-    dialog.hide();';
-
-  echo '<script>' . $js . '</script>';
-  drupal_exit();
-}
-
-/**
- * Custom submit handler.
- */
-function assets_wysiwyg_add_form_submit(&$form, &$form_state) {
-  $asset = $form_state['asset'];
-  $values = $form_state['values'];
-  $view_mode = isset($values['view_mode']) ? $values['view_mode'] : ASSET_DEFAULT_MODE;
-  $alignment = isset($values['align']) ? $values['align'] : '';
-
-  $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment));
-  $placeholder = addslashes($placeholder);
-  $placeholder = str_replace("\r\n", '\n', $placeholder);
-
-  $js = 'var CKEDITOR = parent.CKEDITOR;
-    var dialog = CKEDITOR.dialog.getCurrent();
-    var newHtml = dialog._.editor.plugins.asset.Assets.getContentByTag(\'' . $placeholder . '\');
-    //var newHtml = dialog.definition.Assets.getContentByTag(\'' . $placeholder . '\');
-    if (newHtml) {
-      var element = CKEDITOR.dom.element.createFromHtml(newHtml);
-      element.setAttribute(\'contentEditable\', \'false\');   //Hello, Chrome
-      dialog._.editor.insertElement(element);
-      if (CKEDITOR.env.gecko && newHtml.search(/<object /i) > 0) {
-        var wysiwyg = dialog._.editor.getMode();
-        wysiwyg.loadData(wysiwyg.getData());
-      }
-    }
-    dialog.hide();';
-
-  echo '<script>' . $js . '</script>';
-  drupal_exit();
-}
-
-/**
- * Custom submit handler.
- */
-function assets_wysiwyg_form_submit(&$form, &$form_state) {
-  $asset     = $form_state['asset'];
-  $values    = $form_state['values'];
-  $view_mode = isset($values['view_mode']) ? $values['view_mode'] : ASSET_DEFAULT_MODE;
-  $alignment = isset($values['align']) ? $values['align'] : '';
-
-  $placeholder = assets_get_placeholder($asset, array('mode' => $view_mode, 'align' => $alignment));
   $placeholder = addslashes($placeholder);
   $placeholder = str_replace("\r\n", '\n', $placeholder);
 

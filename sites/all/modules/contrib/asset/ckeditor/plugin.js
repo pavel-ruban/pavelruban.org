@@ -205,8 +205,8 @@ var Assets;
                 {
                   type: 'iframe',
                   src: Drupal.settings.basePath + Drupal.settings.pathPrefix + 'admin/assets/add/' + type + '/?render=popup',
-                  width: 800,
-                  height: 600
+                  width: '100%',
+                  height: '100%'
                 }
               ]
             }
@@ -946,18 +946,27 @@ var Assets;
               type = Assets.parseId(element.data('asset-cid'), 'type');
               conf = Drupal.settings.ckeditor.plugins.asset[type];
 
-              menu.assetcut = CKEDITOR.TRISTATE_ON;
-              menu.assetdelete = CKEDITOR.TRISTATE_ON;
-              menu.addLineBefore = CKEDITOR.TRISTATE_ON;
-              menu.addLineAfter = CKEDITOR.TRISTATE_ON;
+              var suppressedMenuItems = element.data('asset-suppress-menu-items');
+              suppressedMenuItems = suppressedMenuItems ? suppressedMenuItems.split(' ') : [];
+
+              // Add default menu items.
+              var defaultMenuItems = ['assetcut', 'assetdelete', 'addLineBefore', 'addLineAfter'];
+              $.each(defaultMenuItems, function(key, menuItem) {
+                if ($.inArray(menuItem, suppressedMenuItems) === -1) {
+                  menu[menuItem] = CKEDITOR.TRISTATE_ON;
+                }
+              });
 
               // We just control item visibility, real access check will be on server side.
-              if (conf.accessEdit) {
+              if ($.inArray('assetedit', suppressedMenuItems) === -1 && conf.accessEdit) {
                 menu.assetedit = CKEDITOR.TRISTATE_ON;
               }
 
-              if (conf && conf.modes && !(Object.keys(conf.modes).length === 1 && conf.modes.full && !conf.fields.length)) {
-                menu.assetoverride = CKEDITOR.TRISTATE_ON;
+              // Check visibility for "override" item.
+              if ($.inArray('assetoverride', suppressedMenuItems) === -1 && conf && conf.modes) {
+                if (!(Object.keys(conf.modes).length === 1 && conf.modes.full && !conf.fields.length)) {
+                  menu.assetoverride = CKEDITOR.TRISTATE_ON;
+                }
               }
             }
             else {

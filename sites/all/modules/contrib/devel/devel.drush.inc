@@ -12,21 +12,29 @@ function devel_drush_command() {
   $items['devel-download'] = array(
     'description' => dt('Downloads the FirePHP library from http://firephp.org/.'),
     'arguments' => array(
-      'path' => dt('Optional. A path to the download folder. If omitted Drush will use the default location (sites/all/libraries/firephp).'),
+      'path' => dt('Path to the download folder. This path is relative to the Drupal root. If omitted Drush will use the default location (sites/all/libraries/FirePHPCore).'),
     ),
   );
   $items['devel-reinstall'] = array(
     'description' => dt('Disable, Uninstall, and Install a list of projects.'),
+    'drush dependencies' => array('pm'),
     'arguments' => array(
       'projects' => dt('A space-separated list of project names.'),
     ),
+    'allow-additional-options' => array('pm-disable', 'pm-uninstall', 'pm-enable'),
+    'required-arguments' => 1,
     'aliases' => array('dre'),
   );
   $items['fn-hook'] = array(
-    'description' => 'List implementations of a given hook and explore source of specified one.',
+    'description' => 'List implementations of a given hook and explore the source of the selected one.',
     'arguments' => array(
-      'hook' => 'The name of the hook to explore.'
+      'hook' => 'The name of the hook to explore (e.g. "menu" for hook_menu()).'
     ),
+    'examples' => array(
+      'fn-hook cron' => 'List implementations of hook_cron().',
+    ),
+    'allow-additional-options' => array('fn-view'),
+    'required-arguments' => 1,
     'aliases' => array('fnh', 'hook'),
   );
   $items['fn-view'] = array(
@@ -44,17 +52,21 @@ function devel_drush_command() {
       'fn-view NodeController::load' => 'View the source code for method load in the class NodeController'
     ),
     'aliases' => array('fnv'),
+    'required-arguments' => 1,
   );
   $items['devel-token'] = array(
     'description' => dt('List available tokens'),
     'aliases' => array('token'),
     'core' => array(7), // Remove once 3.0 is released.
+    //@todo support --format option for json, csv, etc.
   );
   return $items;
 }
 
 /**
- * A command callback. This is faster than 3 separate bootstraps.
+ * A command callback for reinstalling one or more projects.
+ *
+ * This is faster than 3 separate bootstraps.
  */
 function drush_devel_reinstall() {
   $projects = func_get_args();
@@ -70,27 +82,30 @@ function drush_devel_reinstall() {
 }
 
 /**
- * A command callback.
+ * A command callback for downloading a project.
  */
-function drush_devel_download() {
-  $args = func_get_args();
-  if (isset($args[0])) {
-    $path = $args[0];
+function drush_devel_download($path = NULL) {
+  // If no path is provided by the user, set our default path.
+  if (is_null($path)) {
+    // We use devel folder for legacy reason.
+    $path = drupal_get_path('module', 'devel') . '/FirePHPCore';
   }
-  else {
-    $path = drush_get_context('DRUSH_DRUPAL_ROOT');
+  // If FirePHP is not installed and libraries module is enabled,
+  // try to find FirePHP by its own means.
+  if (!is_dir($path)) {
     if (module_exists('libraries')) {
-      $path .= '/' . libraries_get_path('FirePHPCore') . '/FirePHPCore';
-    }
-    else {
-      $path .= '/' . drupal_get_path('module', 'devel') . '/FirePHPCore';
+      // Libraries 1.x will return a path even if it doesn't exist
+      // while 2.x will return FALSE.
+      $path = libraries_get_path('FirePHPCore');
+      if (!$path) {
+        $path = 'sites/all/libraries/FirePHPCore';
+      }
     }
   }
-
   if (is_dir($path)) {
-    drush_log('FirePHP already present. No download required.', 'ok');
+    drush_log(dt('FirePHP already present at @path. No download required.', array('@path' => $path)), 'ok');
   }
-  elseif (drush_shell_exec('svn export http://firephp.googlecode.com/svn/branches/Library-FirePHPCore-0.3 ' . $path)) {
+  elseif (drush_shell_exec('svn export http://firephp.googlecode.com/svn/branches/Library-FirePHPCore-0.3 %s', $path)) {
     drush_log(dt('FirePHP has been exported via svn to @path.', array('@path' => $path)), 'success');
   }
   else {
@@ -99,22 +114,7 @@ function drush_devel_download() {
 }
 
 /**
- * Implements drush_MODULE_post_COMMAND().
- */
-function drush_devel_post_pm_enable() {
-  $extensions = func_get_args();
-  // Deal with comma delimited extension list.
-  if (strpos($extensions[0], ',') !== FALSE) {
-    $extensions = explode(',', $extensions[0]);
-  }
-
-  if (in_array('devel', $extensions) && !drush_get_option('skip')) {
-    drush_devel_download();
-  }
-}
-
-/**
- * Command handler. Show hook implementations.
+ * A command handler for showing hook implementations.
  */
 function drush_devel_fn_hook($hook) {
   // Get implementations in the .install files as well.
@@ -132,7 +132,7 @@ function drush_devel_fn_hook($hook) {
 }
 
 /**
- * Command handler.  Show source code of specified function or method.
+ * A command handler for showing source code of a function or method.
  */
 function drush_devel_fn_view($function_name) {
   // Get implementations in the .install files as well.
@@ -161,7 +161,7 @@ function drush_devel_fn_view($function_name) {
 }
 
 /**
- * Command callback. List available tokens.
+ * A command callback for listing available tokens.
  */
 function drush_devel_token() {
   $rows[] = array(dt('Group'), dt('Token'), dt('Name'));
@@ -176,8 +176,7 @@ function drush_devel_token() {
 
 
 /**
- * Print the specified function, including any
- * doxygen-style comments that come before it.
+ * Prints a function including any Doxygen-style comments preceding it.
  */
 function _drush_devel_print_function($file, $start_line, $end_line) {
   $line_num = 0;

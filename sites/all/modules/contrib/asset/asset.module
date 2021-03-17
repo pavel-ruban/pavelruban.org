@@ -25,6 +25,7 @@ function asset_entity_info() {
       'entity class' => 'Asset',
       'controller class' => 'EntityAPIController',
       'views controller class' => 'AssetViewsController',
+      'inline entity form' => array('controller' => 'AssetInlineEntityFormController'),
       'base table' => 'asset',
       'fieldable' => TRUE,
       'entity keys' => array(
@@ -111,7 +112,7 @@ function asset_entity_info() {
  *
  * @param $type_name
  *   If set, the type with the given name is returned.
- * @return AssetType[]
+ * @return AssetType[]|AssetType
  *   Depending whether $type isset, an array of asset types or a single one.
  */
 function assets_get_types($type_name = NULL) {
@@ -124,8 +125,9 @@ function assets_get_types($type_name = NULL) {
  *
  * @param $type
  *   The machine-readable name of an asset type to load.
- * @return
- *   An asset type array or FALSE if $type does not exist.
+ *
+ * @return AssetType|bool
+ *   An asset type object or FALSE if $type does not exist.
  */
 function asset_type_load($type) {
   return assets_get_types($type);
@@ -455,7 +457,8 @@ function asset_module_implements_alter(&$implementations, $hook) {
  *   Integer specifying the asset id.
  * @param $reset
  *   A boolean indicating that the internal cache should be reset.
- * @return
+ *
+ * @return object|bool
  *   A fully-loaded $asset object or FALSE if it cannot be loaded.
  *
  * @see asset_load_multiple()
@@ -488,10 +491,10 @@ function asset_load_multiple($aids = array(), $conditions = array(), $reset = FA
 /**
  * Returns the asset type of the passed asset or asset type string.
  *
- * @param $asset
+ * @param object|string $asset
  *   An asset object or string that indicates the asset type to return.
  *
- * @return
+ * @return AssetType|bool
  *   A single asset type, as an object, or FALSE if the asset type is not found.
  */
 function assets_get_type($asset) {
@@ -854,25 +857,10 @@ function asset_theme() {
 
 /**
  * Implements hook_entity_property_info_alter().
+ * @todo: Why we are using alter instead of hook_entity_property_info() like Entity module originally does?
  */
 function asset_entity_property_info_alter(&$info) {
   $properties = &$info['asset']['properties'];
-
-  $properties['created'] = array(
-    'label' => t('Date created'),
-    'type' => 'date',
-    'description' => t('The date the asset was created.'),
-    'setter callback' => 'entity_property_verbatim_set',
-    'setter permission' => 'administer assets',
-    'schema field' => 'created',
-  );
-
-  $properties['changed'] = array(
-    'label' => t('Date changed'),
-    'type' => 'date',
-    'schema field' => 'changed',
-    'description' => t('The date the asset was most recently updated.'),
-  );
 
   $properties['uid'] = array(
     'label' => t('Author'),
@@ -892,6 +880,31 @@ function asset_entity_property_info_alter(&$info) {
     'required' => TRUE,
     'schema field' => 'type',
     'options list' => 'asset_type_get_names',
+  );
+
+  $properties['title'] = array(
+    'label' => t('Label'),
+    'description' => t('The human readable label.'),
+    'setter callback' => 'entity_property_verbatim_set',
+    'type' => 'text',
+    'schema field' => 'title',
+    'required' => TRUE,
+  );
+
+  $properties['created'] = array(
+    'label' => t('Date created'),
+    'type' => 'date',
+    'description' => t('The date the asset was created.'),
+    'setter callback' => 'entity_property_verbatim_set',
+    'setter permission' => 'administer assets',
+    'schema field' => 'created',
+  );
+
+  $properties['changed'] = array(
+    'label' => t('Date changed'),
+    'type' => 'date',
+    'schema field' => 'changed',
+    'description' => t('The date the asset was most recently updated.'),
   );
 
   $properties = &$info['asset_type']['properties'];

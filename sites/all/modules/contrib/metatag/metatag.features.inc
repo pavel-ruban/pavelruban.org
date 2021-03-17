@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Features integration for the Metatag module.
@@ -11,7 +12,9 @@ function metatag_features_export($data, &$export, $module_name = '', $type = 'me
   $pipe = array();
 
   foreach ($data as $name) {
-    $export['features'][$type][$name] = metatag_config_load($name);
+    if (metatag_config_load($name)) {
+      $export['features'][$type][$name] = $name;
+    }
   }
 
   $export['dependencies']['metatag'] = 'metatag';
@@ -34,6 +37,9 @@ function metatag_features_export_render($module_name, $data, $export = NULL) {
     if ($config = metatag_config_load($name)) {
       $export = new stdClass();
       $export->instance = $config->instance;
+      if (isset($config->disabled)) {
+        $export->disabled = $config->disabled;
+      }
       $export->config = $config->config;
       $export = features_var_export($export, '  ');
       $key = features_var_export($name);
@@ -51,18 +57,25 @@ function metatag_features_export_render($module_name, $data, $export = NULL) {
  * Implements hook_features_revert().
  */
 function metatag_features_revert($module) {
-  $function = "{$module}_metatag_export_default";
-  $feature_conf = $function();
-  foreach (array_keys($feature_conf) as $config) {
-    if ($conf = metatag_config_load($config)) {
-      db_delete('metatag_config')->condition('instance', $config)->execute();
+  if ($feature_conf = features_get_default('metatag', $module)) {
+    foreach (array_keys($feature_conf) as $config) {
+      if ($conf = metatag_config_load($config)) {
+        db_delete('metatag_config')->condition('instance', $config)->execute();
+      }
+      unset($feature_conf[$config]['cid']);
+      $object = new stdClass();
+      $object->cid = NULL;
+      $object->instance = $config;
+      $object->config = $feature_conf[$config]['config'];
+      metatag_config_save($object);
+
+      if (!empty($feature_conf[$config]['disabled'])) {
+        ctools_export_crud_disable('metatag_config', $config);
+      }
+      else {
+        ctools_export_crud_enable('metatag_config', $config);
+      }
     }
-    unset($feature_conf[$config]['cid']);
-    $object = new stdClass();
-    $object->cid = NULL;
-    $object->instance = $config;
-    $object->config = $feature_conf[$config]['config'];
-    metatag_config_save($object);
   }
 }
 
@@ -75,4 +88,11 @@ function metatag_features_export_options() {
     $options[$key] = $key;
   };
   return $options;
+}
+
+/**
+ * Implements hook_features_rebuild().
+ */
+function metatag_features_rebuild($module) {
+  metatag_features_revert($module);
 }

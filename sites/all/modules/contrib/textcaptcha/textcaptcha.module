@@ -1,16 +1,16 @@
-<?php // $Id: textcaptcha.module,v 1.1.2.2.2.1 2010/12/08 21:34:33 kevee Exp $
-
+<?php
 /**
-*  @file
-*  Provides integration between the CAPTCHA module [http://drupal.org/project/captcha]
-*  and the text-only CAPTCHA service textcaptcha.com
-*/
+ * @file
+ * Provides integration between the CAPTCHA module
+ * [http://drupal.org/project/captcha] and the text-only
+ * CAPTCHA service textcaptcha.com
+ */
 
 define('TEXTCAPTCHA_URL_PREFIX', 'http://textcaptcha.com/api/');
 
 /**
-*  Implementation of hook_menu()
-*/
+ *  Implements hook_menu().
+ */
 function textcaptcha_menu() {
   $items = array();
   $items['admin/config/people/captcha/textcaptcha'] = array(
@@ -19,20 +19,30 @@ function textcaptcha_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('textcaptcha_settings_form'),
     'access arguments' => array('administer CAPTCHA settings'),
-    'type' => MENU_LOCAL_TASK
+    'type' => MENU_LOCAL_TASK,
   );
   return $items;
 }
 
 /**
-*  Admin settings form callback
-*/
+ *  Admin settings form callback.
+ */
 function textcaptcha_settings_form() {
   $form = array();
 
   $form['instructions']['#value'] = t('To use TextCAPTCHA, you need to get an API key by !link',
-                      array('!link' => l('registering at textcaptcha.com',
-                                 'http://textcaptcha.com/register')));
+                      array(
+                        '!link' => l(t('registering at textcaptcha.com'),
+                        'http://textcaptcha.com/register'))
+                      );
+
+  $form['textcaptcha_challenge_description'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Text Captcha challenge description'),
+    '#description' => t("Text inserted here will be prepended before the challenge question. This can be helpful for accessibility. Screen readers do not ready Drupal form element descriptions by default (which is where CAPTCHA module's default Challenge Description goes)."),
+    '#default_value' => variable_get('textcaptcha_challenge_description', ''),
+    '#required' => TRUE,
+  );
 
   $form['textcaptcha_api_key'] = array(
     '#type' => 'textfield',
@@ -42,138 +52,429 @@ function textcaptcha_settings_form() {
     '#required' => TRUE,
   );
 
-  $form['textcaptcha_cache_limit'] = array(
-    '#type' => 'select',
-    '#title' => t('Number of challenges to keep as backup'),
-    '#description' => t('If you cannot contact textcaptcha.com or the service is unavailable, some challenges are kept in the site cache as backup. Select zero to turn this feature off.'),
-    '#options' => array(
-              0,
-              10,
-              20,
-              30,
-              40
-            ),
-    '#default_value' => variable_get('textcaptcha_cache_limit', 10),
+  $form['textcaptcha_cron'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Fetch questions on cron'),
+    '#description' => t('Enable or disable fetching and processing questions on cron.'),
+    '#default_value' => variable_get('textcaptcha_cron', 1),
+  );
+
+  $form['textcaptcha_question_limit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Local question limit'),
+    '#description' => t('The number of questions to cache in the database. Set to 0 for unlimited.'),
+    '#default_value' => variable_get('textcaptcha_question_limit', 1000),
+    '#required' => TRUE,
+  );
+
+  $form['actions']['trim_questions'] = array(
+    '#type' => 'submit',
+    '#value' => t('Trim local questions tables now'),
+    '#submit' => array('textcaptcha_trim_tables'),
+  );
+
+  $form['actions']['text_captcha'] = array(
+    '#type' => 'submit',
+    '#value' => t('Retrieve new captcha challenges'),
+    '#submit' => array('textcaptcha_get_new_challenges'),
   );
 
   return system_settings_form($form);
 }
 
 /**
-*  Form validation for admin settings. Here we check that the API key works.
-*/
+ *  Form validation for admin settings. Here we check that the API key works.
+ */
 function textcaptcha_settings_form_validate($form, $form_state) {
   $result = drupal_http_request(TEXTCAPTCHA_URL_PREFIX . trim($form_state['values']['textcaptcha_api_key']));
   if ($result->code !== '200') {
     form_set_error('textcaptcha_api_key', t('The API Key did not work or the server cannot contact textcaptcha.com'));
   }
+  $value = $form_state['values']['textcaptcha_question_limit'];
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value || $value < 0)) {
+    form_set_error('textcaptcha_question_limit', t('Local question limit must be an integer greater than or equal to 0.'));
+  }
 }
 
 /**
- * Implementation of hook_captcha().
+ * Function to add new question to database.
+ *
+ * @param string $question
+ *   Question to enter into the database.
+ *
+ * @return int
+ *   Returns the id of the newly created question, or FALSE if error.
+ */
+function textcaptcha_question_create($question) {
+
+  $record = new stdClass();
+  $record->question = $question;
+  $record->created = time();
+
+  drupal_write_record('textcaptcha_questions', $record);
+
+  if (!isset($record->qid)) {
+    watchdog('textcaptcha', "There was an error writing a question to the database. Try clearing drupal's cache to update the schema registry.");
+    return FALSE;
+  }
+
+  return $record->qid;
+}
+
+/**
+ * Function to add new answer to database.
+ *
+ * @param int $qid
+ *   The database id of the question to which this answer is associated.
+ * @param string $answer
+ *   Hashed answer for the question.
+ *
+ * @return int
+ *   Returns the id of the newly created question, or FALSE if error.
+ */
+function textcaptcha_answer_create($qid, $answer) {
+
+  $record = new stdClass();
+  $record->qid = $qid;
+  $record->answer = $answer;
+  $record->created = time();
+
+  drupal_write_record('textcaptcha_answers', $record);
+
+  if (!isset($record->aid)) {
+    watchdog('textcaptcha', "There was an error writing the answer to the database. Try clearing drupal's cache to update the schema registry.");
+    return FALSE;
+  }
+
+  return $record->aid;
+}
+
+/**
+ * Save new question / answer combo to database.
+ *
+ * @param array $challenge
+ *   Challange retrieved from textcaptcha.org and parsed into array.
+ *
+ * @return bool
+ *   Returns TRUE on success or FALSE on failure
+ */
+function textcaptcha_challange_add($challenge) {
+  if (!textcaptcha_verify_distinct_challenge($challenge['question'])) {
+    return FALSE;
+  }
+
+  $qid = textcaptcha_question_create($challenge['question']);
+  foreach ($challenge['answers'] as $answer) {
+    if ($qid) {
+      textcaptcha_answer_create($qid, $answer);
+    }
+  }
+
+  return TRUE;
+}
+
+/**
+ * Function to verify that new challenges are distinct.
+ *
+ * @param array $question
+ *   Question to verify if entry exists in database.
+ *
+ * @return bool
+ *   If an entry exists validation returns FAILURE, otherwise pass
+ *   validation with TRUE
+ */
+function textcaptcha_verify_distinct_challenge($question) {
+  // Check to see if question is already in the system.
+  $result = db_select('textcaptcha_questions', 'q')
+    ->fields('q')
+    ->condition('question', $question)
+    ->execute()
+    ->fetchAssoc();
+
+  return $result ? FALSE : TRUE;
+}
+
+/**
+ * Get new challenge questions.
+ */
+function textcaptcha_get_new_challenges() {
+  $success = 0;
+  $total_successes = 0;
+  for ($i = 0; $i < 10; $i++) {
+    if ($challenge = textcaptcha_get_new_challenge()) {
+      $new_challenge = textcaptcha_challange_add($challenge);
+      if ($new_challenge) {
+        $success++;
+      }
+      $total_successes++;
+    }
+  }
+
+  if ($success < 1) {
+    $text = t('Sorry. After trying !i times, I was unable to retrieve any new
+    challenge questions. Either your API key is bad, you are not online, or the
+    web service you are trying to reach is not responding.', array('!i' => $i));
+    drupal_set_message($text, 'warning');
+  }
+  else {
+    $text = t('Success! You have !success new challenge questions. (!total/!i
+    attempts to retrieve new challenge questions were successful.)',
+      array(
+        '!success' => $success,
+        '!total' => $total_successes,
+        '!i' => $i,
+      )
+    );
+    drupal_set_message($text, 'success');
+    textcaptcha_update_question_count();
+  }
+}
+
+/**
+ * Retrieve a new challenge from the Text CAPTCHA web service.
+ *
+ * @return int
+ *   Returns a challenge array or FALSE if failed attempt to
+ *   reach textcaptcha.com
+ */
+function textcaptcha_get_new_challenge() {
+  // Attempt to retrieve a new challenge from the web service.
+  $success = FALSE;
+  for ($i = 1; $i <= 10; $i++) {
+    $response = textcaptcha_http_request();
+    if (!$response->code == 200) {
+      // We didn't get a successful response. Log failed attempt.
+      $text = t('Failed attempt !n to get textcaptcha question from !api.', array('!n' => $i, '!api' => TEXTCAPTCHA_URL_PREFIX));
+      watchdog('textcaptcha', $text);
+    }
+    else {
+      // Log success.
+      $success = TRUE;
+      $text = t('Successfully retrieved new textcaptcha challenge question on attempt !n', array('!n' => $i));
+      watchdog('textcaptcha', $text);
+      break;
+    }
+  }
+
+  return ($success) ? textcaptcha_parse_data($response->data) : FALSE;
+}
+
+/**
+ * Wrapper around textcaptcha API call.
+ *
+ * @return array
+ *   Response from drupal_http_request() to textcaptcha web service.
+ */
+function textcaptcha_http_request() {
+  $response = drupal_http_request(TEXTCAPTCHA_URL_PREFIX . trim(variable_get('textcaptcha_api_key', '')));
+  return $response;
+}
+
+/**
+ * Parse return from textcaptcha.com api calls.
+ *
+ * @param array $data
+ *   Data from a successful drupal_http_request() call to textcaptcha.com API
+ *
+ * @return array
+ *   Return array including challenge and md5 hash of valid answers.
+ *    e.g. $challenge(
+ *            'question' => 'What color is the sky?',
+ *            'answers' => array('c9f0f895f', '24d27c169'),
+ *    );
+ */
+function textcaptcha_parse_data($data) {
+  $parser = drupal_xml_parser_create($data);
+  $captcha_xml = array();
+  xml_parse_into_struct($parser, $data, $captcha_xml);
+
+  $challenge = array();
+  foreach ($captcha_xml as $element) {
+    if ($element['tag'] == 'QUESTION' && $element['type'] == 'complete') {
+      $challenge['question'] = $element['value'];
+    }
+    if ($element['tag'] == 'ANSWER' && $element['type'] == 'complete') {
+      $challenge['answers'][] = $element['value'];
+    }
+  }
+
+  return $challenge;
+}
+
+/**
+ * Implements hook_captcha().
  */
 function textcaptcha_captcha($op, $captcha_type='') {
   switch ($op) {
-    case 'list' :
+    case 'list':
       return array('Text Captcha');
-      break;
-    case 'generate' :
+
+    case 'generate':
+      $challenge_description = variable_get('textcaptcha_challenge_description', FALSE);
+
       $result = array();
       if ($captcha_type == 'Text Captcha') {
-        $textcaptcha = textcaptcha_get_captcha();
+        $challenge = textcaptcha_get_captcha();
         $result['form']['captcha_response'] = array(
           '#type' => 'textfield',
-          '#title' => $textcaptcha['question'],
+          '#title' => $challenge['question'],
           '#description' => t('Question text provided by !link',
-                              array('!link' => l('textcaptcha.com', 'http://textcaptcha.com'))
-                             ),
+                              array('!link' => l(t('textcaptcha.com'), 'http://textcaptcha.com'))
+          ),
           '#size' => 50,
           '#maxlength' => 50,
           '#required' => TRUE,
+          // For accessibility put the challenge description in front of the
+          // challenge. This way it will be read by screen readers.
+          '#prefix' => '<span class="textcaptcha-challenge-description">' . variable_get('textcaptcha_challenge_description', '') . '</span><div class="textcaptcha-question">',
+          '#suffix' => '</div>',
         );
-        $result['solution'] = serialize($textcaptcha['answers']);
+        $result['solution'] = serialize($challenge['answers']);
         $result['captcha_validate'] = 'textcaptcha_captcha_validate';
 
         return $result;
       }
-    break;
+      break;
   }
 }
 
 /**
-*  Retrieves CAPTCHA and possible answer list from the textcaptcha.com service
-*/
-function textcaptcha_get_captcha($use_cache = TRUE) {
-  if (variable_get('textcaptcha_cache_limit', 10) == 0) {
-    $use_cache = FALSE;
-  }
-  if (variable_get('textcaptcha_api_key', FALSE)) {
-    $cached_challenges = cache_get('textcaptcha_cached_challenges');
-    $captcha = drupal_http_request(TEXTCAPTCHA_URL_PREFIX . trim(variable_get('textcaptcha_api_key', '')));
-    if ($captcha->code == '200' && $captcha->data) {
-      $parser = drupal_xml_parser_create($captcha->data);
-      $captcha_xml = array();
-      xml_parse_into_struct($parser, $captcha->data, $captcha_xml);
-      $answers = array();
-      foreach ($captcha_xml as $element) {
-        if ($element['tag'] == 'QUESTION' && $element['type'] == 'complete') {
-          $question = $element['value'];
-        }
-        if ($element['tag'] == 'ANSWER' && $element['type'] == 'complete') {
-          $answers[] = $element['value'];
-        }
-      }
-      $cached_challenges->data[] = array('question' => $question,
-                         'answers' => $answers);
-      if (count($cached_challenges->data) > variable_get('textcaptcha_cache_limit', 10)) {
-        array_shift($cached_challenges->data);
-      }
-      if ($use_cache) {
-        cache_set('textcaptcha_cached_challenges', $cached_challenges->data);
-      }
-      return array('question' => $question, 'answers' => $answers);
-    }
-    elseif ($cached_challenges && $use_cache) {
-      return array_rand($cached_challenges->data);
-    }
-  }
-  return FALSE;
+ * Retrieve captcha from service.
+ *
+ * @return array
+ *   Question and appropriate answer hashes.
+ */
+function textcaptcha_get_captcha() {
+
+  // Right now, just proxy textcaptcha_get_random_question().
+  // This should be able to grab a question from multiple sources.
+  return textcaptcha_get_random_question();
 }
 
 /**
-*  Custom CAPTCHA validation callback.
-*/
+ * Implements hook_cron().
+ *
+ * Every time cron runs it fetches new challenge questions.
+ */
+function textcaptcha_cron() {
+  if (variable_get('textcaptcha_cron', 1)) {
+    textcaptcha_get_new_challenges();
+  }
+  if (variable_get('textcaptcha_question_limit', 1000)) {
+    textcaptcha_trim_tables();
+  }
+}
+
+/**
+ * Retrieve random question/answer.
+ *
+ * @return array
+ *   Question and appropriate answer hashes from database.
+ */
+function textcaptcha_get_random_question() {
+  $textcaptcha = array();
+
+  $random_row = rand(0, textcaptcha_get_question_count() - 1);
+  $result = db_select('textcaptcha_questions', 'q')
+    ->fields('q')
+    ->range($random_row, 1)
+    ->execute()
+    ->fetchAssoc();
+
+  $textcaptcha['question'] = $result['question'];
+
+  $answers = db_select('textcaptcha_answers', 'a')
+    ->fields('a')
+    ->condition('qid', $result['qid'])
+    ->execute();
+
+  $textcaptcha['answers'] = array();
+  while ($answer = $answers->fetchAssoc()) {
+    $textcaptcha['answers'][] = $answer['answer'];
+  }
+
+  return $textcaptcha;
+}
+
+/**
+ * Retrieve the number of questions cached in your local database.
+ *
+ * @return int
+ *   Returns the number of textcaptcha questions cached in the database.
+ */
+function textcaptcha_get_question_count() {
+  $textcaptcha_question_count = variable_get('textcaptcha_question_count');
+  if (isset($textcaptcha_question_count)) {
+    return $textcaptcha_question_count;
+  }
+  return textcaptcha_update_question_count();
+}
+
+/**
+ * Update the question count in the variables table, and return the count.
+ *
+ * @return int
+ *   Returns the number of textcaptcha questions cached in the database.
+ */
+function textcaptcha_update_question_count() {
+  $query = db_select('textcaptcha_questions', 'q')
+     ->fields('q', array('qid'));
+  $query->addExpression('COUNT(qid)', 'question_count');
+  $results = $query->execute()->fetchAssoc();
+
+  if ($results) {
+    $textcaptcha_question_count = $results['question_count'];
+  }
+  else {
+    watchdog('textcaptcha', 'The COUNT query failed. Please check your database to ensure the schema was installed properly');
+  }
+
+  if ($results && $textcaptcha_question_count == 0) {
+    watchdog('textcaptcha', "There are no questions cached in the database. You may want to cache more questions with 'drush textcaptcha-fetch', the options at 'admin/config/people/captcha/textcaptcha' or by running cron.");
+  }
+
+  $textcaptcha_question_count = $textcaptcha_question_count == NULL ? 0 : $textcaptcha_question_count;
+  variable_set('textcaptcha_question_count', $textcaptcha_question_count);
+
+  return $textcaptcha_question_count;
+}
+
+/**
+ * Custom CAPTCHA validation callback.
+ */
 function textcaptcha_captcha_validate($solution, $response) {
-  if(!unserialize($solution)) {
+  if (!unserialize($solution)) {
     return TRUE;
   }
   return (in_array(md5(drupal_strtolower(trim($response))), unserialize($solution)));
 }
 
+
 /**
-*  Implementation of hook_requirements()
-*/
-function textcaptcha_requirements($phase) {
-  $requirements = array();
-  if ($phase == 'runtime') {
-    if (variable_get('textcaptcha_api_key', FALSE)) {
-      $requirements['textcaptcha_api_key'] = array(
-        'title' => t('Text CAPTCHA'),
-        'value' => t('API Key updated and server contacted'),
-        'severity' => REQUIREMENT_OK,
-      );
-    }
-    else {
-       $requirements['textcaptcha_api_key'] = array(
-        'title' => t('Text CAPTCHA'),
-        'value' => t('API Key missing. Plese !link for an API key and then update the !settings.',
-                      array('!link' => l('registering at textcaptcha.com',
-                                 'http://textcaptcha.com/register'),
-                            '!settings' => l('Text CAPTCHA settings',
-                               'admin/user/captcha/textcaptcha'))),
-        'severity' => REQUIREMENT_WARNING,
-      );
-    }
+ * Trims the textcaptcha_questions and textcaptcha_answers tables.
+ */
+function textcaptcha_trim_tables() {
+  $limit = variable_get('textcaptcha_question_limit', 1000);
+  if (intval($limit) > 0) {
+    $inner_subquery = db_select('textcaptcha_questions', 'tq')
+      ->fields('tq', array('qid'))
+      ->orderBy('qid', 'DESC')
+      ->range(0, $limit);
+    $outer_subquery = db_select($inner_subquery, 'intermediary')
+      ->fields('intermediary', array('qid'));
+    $results = db_delete('textcaptcha_questions')
+      ->condition('qid', $outer_subquery, 'NOT IN')
+      ->execute();
+
+    watchdog('textcaptcha', '@table table trimmed. @records records removed.', array('@table' => 'textcaptcha_questions', '@records' => $results));
+
+    $subquery = db_select('textcaptcha_questions', 'tq')
+      ->fields('tq', array('qid'));
+    $results = db_delete('textcaptcha_answers')
+      ->condition('qid', $subquery, 'NOT IN')
+      ->execute();
+
+    watchdog('textcaptcha', '@table table trimmed. @records records removed.', array('@table' => 'textcaptcha_answers', '@records' => $results));
   }
-  return $requirements;
+  textcaptcha_update_question_count();
 }

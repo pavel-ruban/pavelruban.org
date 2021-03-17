@@ -85,14 +85,16 @@ class MigrateDestinationAsset extends MigrateDestinationEntity {
   /**
    * Import a single asset.
    *
-   * @param $mapped_asset
+   * @param stdClass $mapped_asset
    *   Asset object to build. Prefilled with any fields mapped in the Migration.
-   * @param $row
+   * @param stdClass $row
    *   Raw source data object - passed through to prepare/complete handlers.
+   *
    * @return array
    *   Array of key fields (aid only in this case) of the asset that was saved if
    *   successful. FALSE on failure.
    *
+   * @throws MigrateException exception.
    */
   public function import(stdClass $mapped_asset, stdClass $row) {
     $asset = new Asset(array('type' => $this->bundle));

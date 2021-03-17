@@ -1,12 +1,21 @@
+/**
+ * @file
+ * Behaviors for Devel.
+ */
+
 (function ($) {
 
-// Explain link in query log
+/**
+ * Explain link in query log.
+ *
+ * @type {Drupal~behavior}
+ */
 Drupal.behaviors.devel_explain = {
-  attach: function() {
+  attach: function(context, settings) {
     $('a.dev-explain').click(function () {
       qid = $(this).attr("qid");
       cell = $('#devel-query-' + qid);
-      $('.dev-explain', cell).load(Drupal.settings.basePath + '?q=devel/explain/' + Drupal.settings.devel.request_id + '/' + qid).show();
+      $('.dev-explain', cell).load(settings.basePath + '?q=devel/explain/' + settings.devel.request_id + '/' + qid).show();
       $('.dev-placeholders', cell).hide();
       $('.dev-arguments', cell).hide();
       return false;
@@ -14,13 +23,17 @@ Drupal.behaviors.devel_explain = {
   }
 }
 
-// Arguments link in query log
+/**
+ * Arguments link in query log.
+ *
+ * @type {Drupal~behavior}
+ */
 Drupal.behaviors.devel_arguments = {
-  attach: function() {
+  attach: function(context, settings) {
     $('a.dev-arguments').click(function () {
       qid = $(this).attr("qid");
       cell = $('#devel-query-' + qid);
-      $('.dev-arguments', cell).load(Drupal.settings.basePath + '?q=devel/arguments/' + Drupal.settings.devel.request_id + '/' + qid).show();
+      $('.dev-arguments', cell).load(settings.basePath + '?q=devel/arguments/' + settings.devel.request_id + '/' + qid).show();
       $('.dev-placeholders', cell).hide();
       $('.dev-explain', cell).hide();
       return false;
@@ -28,9 +41,13 @@ Drupal.behaviors.devel_arguments = {
   }
 }
 
-// Placeholders link in query log
+/**
+ * Placeholders link in query log.
+ *
+ * @type {Drupal~behavior}
+ */
 Drupal.behaviors.devel_placeholders = {
-  attach: function() {
+  attach: function(context, settings) {
     $('a.dev-placeholders').click(function () {
       qid = $(this).attr("qid");
       cell = $('#devel-query-' + qid);

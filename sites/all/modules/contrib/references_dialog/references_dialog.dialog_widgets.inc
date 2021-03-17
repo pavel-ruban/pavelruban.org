@@ -71,6 +71,27 @@ function references_dialog_references_dialog_widgets() {
         ),
       ),
     ),
+    'references_dialog_term_reference' => array(
+      'element_type' => 'textfield',
+      'dialog_form' => 'term_reference_dialog_form',
+      'entity_type' => 'taxonomy_term',
+      'format' => '$label',
+      'views_query' => 'references_dialog_term_reference_views_query',
+      'operations' => array(
+        'search' => array(
+          'function' => 'references_dialog_get_field_search_links',
+          'title' => t('Search Dialog'),
+        ),
+        'edit' => array(
+          'function' => 'references_dialog_term_reference_edit_link',
+          'title' => t('Edit dialog'),
+        ),
+        'add' => array(
+          'function' => 'references_dialog_term_reference_add_link',
+          'title' => t('Add dialog'),
+        ),
+      ),
+    ),
   );
 }
 
@@ -78,13 +99,24 @@ function references_dialog_references_dialog_widgets() {
  * Edit link callback for node references.
  */
 function references_dialog_node_reference_edit_link($element, $widget_settings, $field, $instance) {
-  if (isset($element['#default_value'])) {
-    $node = node_load($element['#default_value']);
+  if (isset($element['#default_value']) || isset($element['#value'])) {
+    if (isset($element['#default_value'])) {
+      $value = $element['#default_value'];
+    } else {
+      // Take "label [nid:id]', match the id from parenthesis.
+      if (preg_match('/^(?:\s*|(.*) )?\[\s*nid\s*:\s*(\d+)\s*\]$/', $element['#value'], $matches)) {
+        list(, $title, $value) = $matches;
+      } else {
+        return array();
+      }
+    }
+
+    $node = node_load($value);
     if (node_access('update', $node)) {
       return array(
         array(
           'title' => t('Edit'),
-          'href' => 'node/' . $element['#default_value'] . '/edit'
+          'href' => 'node/' . $value . '/edit'
         ),
       );
     }
@@ -130,14 +162,27 @@ function references_dialog_node_reference_views_query($view, $instance, $field) 
  * Edit callback for user references.
  */
 function references_dialog_user_reference_edit_link($element, $widget_settings, $field, $instance) {
+  if (!isset($element['#default_value']) && !isset($element['#value'])) {
+    return array();
+  }
+  if (isset($element['#default_value'])) {
+    $value = $element['#default_value'];
+  } else {
+    // Take "label [uid:id]', match the id from parenthesis.
+    if (preg_match('/^(?:\s*|(.*) )?\[\s*uid\s*:\s*(\d+)\s*\]$/', $element['#value'], $matches)) {
+      list(, $title, $value) = $matches;
+    } else {
+      return array();
+    }
+  }
   global $user;
   $user_links = array();
-  if (is_numeric($element['#default_value']) && user_load($element['#default_value']) &&
+  if (is_numeric($value) && user_load($value) &&
     user_access('access user profiles') &&
-    (user_access('administer users') || $user->uid == $element['#default_value'])) {
+    (user_access('administer users') || $user->uid == $value)) {
     $user_links[] = array(
       'title' => t('Edit'),
-      'href' => 'user/' . $element['#default_value'] . '/edit',
+      'href' => 'user/' . $value . '/edit',
     );
   }
   return $user_links;
@@ -163,9 +208,10 @@ function references_dialog_user_reference_add_link($element, $widget_settings, $
  */
 function references_dialog_entityreference_edit_link($element, $widget_settings, $field, $instance) {
   if (isset($element['#default_value'])) {
+    $raw_value = $element['#default_value'] ? $element['#default_value'] : $element['#value'];
     $entity_type = $field['settings']['target_type'];
     // Take "label (entity id)', match the id from parenthesis.
-    if (preg_match("/.+\((\d+)\)/", $element['#default_value'], $matches)) {
+    if (preg_match("/.+\((\d+)\)/", $raw_value, $matches)) {
         $value = $matches[1];
       }
     if (isset($value)) {
@@ -179,7 +225,7 @@ function references_dialog_entityreference_edit_link($element, $widget_settings,
         );
       }
     }
-  }
+ }
   return array();
 }
 
@@ -193,6 +239,22 @@ function references_dialog_entityreference_add_link($element, $widget_settings, 
   $entity_bundles = array_keys($entity_info['bundles']);
   if (!empty($field['settings']['handler_settings']['target_bundles'])) {
     $bundles = $field['settings']['handler_settings']['target_bundles'];
+  }
+  elseif (!empty($field['settings']['handler_settings']['view'])) {
+    $name = $field['settings']['handler_settings']['view']['view_name'];
+    $display = $field['settings']['handler_settings']['view']['display_name'];
+    $views = views_get_view($name);
+    $views_display = $views->display;
+    $bundle_key = $entity_info['bundle keys']['bundle'];
+
+    if (isset($views_display[$display]->display_options['filters'][$bundle_key])) {
+      $views_filters = $views_display[$display]->display_options['filters'][$bundle_key]['value'];
+    }
+    else if (!empty($views_display['default']->display_options['filters'][$bundle_key]['value'])) {
+      $views_filters = $views_display['default']->display_options['filters'][$bundle_key]['value'];
+    }
+
+    $bundles = array_keys($views_filters);
   }
   elseif (isset($entity_info['bundles'])) {
     // If the entity target bundles is empty, it means all target bundles are allowed. Fill it all up!
@@ -218,11 +280,30 @@ function references_dialog_entityreference_link_helper($entity_type, $bundle = N
   else {
     $label = $info['label'];
   }
-  // We use entity_access here. We provide the bundle if this is a node type,
-  // since node_access expects that to be passed to it as the entity when you
-  // run node_access('create')
-  if (entity_access('create', $entity_type, $entity_type == 'node' ? $bundle : NULL) &&
-    $path = references_dialog_get_admin_path($entity_type, 'add', $bundle)) {
+
+  // entity_access() doesn't provide a generic bundle create op access check.
+  switch ($entity_type) {
+    case 'node':
+      $access = node_access('create', $bundle);
+      break;
+
+    case 'taxonomy_term':
+      if (module_exists('taxonomy_access_fix')) {
+        $vocabulary = taxonomy_vocabulary_machine_name_load($bundle);
+        $access = taxonomy_access_fix_access('add terms', $vocabulary);
+      } else {
+        $access = entity_access('create', $entity_type);
+      }
+      break;
+
+    default:
+      $access = entity_access('create', $entity_type);
+      break;
+  }
+
+  $path = references_dialog_get_admin_path($entity_type, 'add', $bundle);
+
+  if ($access && $path) {
     $link = array(
       'title' => t('Create @type', array('@type' => $label)),
       'href' => $path,
@@ -260,4 +341,50 @@ function references_dialog_entityreference_views_query($view, $instance, $field)
 
 function references_dialog_entityreference_get_type($instance, $field) {
   return $field['settings']['target_type'];
+}
+
+/**
+ * Edit link callback for term references.
+ */
+function references_dialog_term_reference_edit_link($element, $widget_settings, $field, $instance) {
+  if (isset($element['#default_value'])) {
+    // Get Term ID from entity.
+    $term = taxonomy_term_load($element['#entity']->{$element['#field_name']}[$element['#language']][$element['#delta']]['tid']);
+    if ($term && taxonomy_term_edit_access($term)) {
+      $path = taxonomy_term_uri($term);
+      return array(
+        array(
+          'title' => t('Edit'),
+          'href' => $path['path'] . '/edit'
+        ),
+      );
+    }
+  }
+  return array();
+}
+
+/**
+ * Add link callback for term references.
+ */
+function references_dialog_term_reference_add_link($element, $widget_settings, $field, $instance) {
+  $vocabulary = $field['settings']['allowed_values'][0]['vocabulary'];
+  $add_links = array();
+  if (user_access('administer taxonomy') || (module_exists('taxonomy_access_fix') && taxonomy_access_fix_access('add terms', $vocabulary))) {
+    $add_links[] = array(
+      'title' => t('Create @type', array('@type' => taxonomy_vocabulary_machine_name_load($vocabulary)->name)),
+      'href' => 'admin/structure/taxonomy/' . $field['settings']['allowed_values'][0]['vocabulary'] . '/add',
+    );
+  }
+  return $add_links;
+}
+
+/**
+ * View query callback for term references.
+ */
+function references_dialog_term_reference_views_query($view, $instance, $field) {
+  // We need to make sure that no entries that we can't add to our field shows
+  // up, so we need to limit the data here.
+  $vocabulary = taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary']);
+  $types = array($vocabulary->vid);
+  $view->query->add_where(0, "$view->base_table.vid", $types);
 }

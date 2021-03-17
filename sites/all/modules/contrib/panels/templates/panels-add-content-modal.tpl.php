@@ -24,7 +24,14 @@
     </div>
   <?php endif; ?>
 
+  <?php if (!empty($columns)): ?>
   <div class="panels-section-columns">
+    <div class="panels-section-columns-quickfilter container-inline">
+      <label for="quick-filter"><?php print t('Quick-Filter'); ?> </label> <input type="text" name="quickfilter" class="form-text" />
+      <script type="text/javascript">
+        (function ($) { Drupal.Panels.AddContentModalQuickFilter(); })(jQuery);
+      </script>
+    </div>
     <?php foreach ($columns as $column_id => $column): ?>
       <div class="panels-section-column panels-section-column-<?php print $column_id; ?> ">
         <div class="inside">
@@ -33,5 +40,5 @@
       </div>
     <?php endforeach; ?>
   </div>
-  <?php print $category; ?>
+  <?php endif; ?>
 </div>

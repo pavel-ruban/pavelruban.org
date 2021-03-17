@@ -1,13 +1,35 @@
 <?php
 
 /**
+ * Provides the fancyBox jQuery plugin, a tool that offers a nice and elegant
+ * way to add zooming functionality for images, html content and multi-media
+ * on your webpages, and an extensive settings page for configuring fancyBox
+ * settings and how fancyBox interacts with your Drupal website.
+ *
+ * Commercial websites must obtain at least a single domain license in order
+ * to use the fancyBox plugin legally. (http://fancyapps.com/fancybox/#license).
+ *
+ * If you find this module useful and would like to donate towards further
+ * development and maintenance, please consider donating to the module
+ * maintainer(s):
+ *  - Daniel Imhoff (d.o: dwieeb, email: dwieeb@gmail.com)
+ *    http://www.danielimhoff.com/donations/
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under:
+ *  - Creative Commons Attribution-NonCommercial 3.0
+ *    http://creativecommons.org/licenses/by-nc/3.0/
+ *
+ * == END LICENSE ==
+ *
  * @file
  * Administration page callbacks for the fancyBox module.
  */
 
 function fancybox_admin_settings_form($form, &$form_state) {
   $library = libraries_info('fancybox');
-  $settings = variable_get('fancybox_settings');
+  $settings = _fancybox_array_replace_recursive(_fancybox_defaults(), variable_get('fancybox_settings'));
 
   if (!$library['installed']) {
     if ($library['error'] == 'not found' || $library['error'] == 'not detected') {
@@ -284,6 +306,13 @@ function fancybox_admin_settings_form($form, &$form_state) {
     '#title' => t('modal'),
     '#description' => t('If checked, will disable navigation and closing.'),
     '#default_value' => $settings['options']['modal'],
+  );
+
+  $form['options']['advanced']['loop'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('loop'),
+    '#description' => t('If checked, enables cyclic navigation. This means, if you click "next" after you reach the last element, first element will be displayed (and vice versa).'),
+    '#default_value' => $settings['options']['loop'],
   );
 
   $form['options']['advanced']['effects'] = array(

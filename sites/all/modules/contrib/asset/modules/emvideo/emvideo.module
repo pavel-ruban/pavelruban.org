@@ -144,39 +144,47 @@ function emvideo_field_formatter_settings_summary($field, $instance, $view_mode)
 }
 
 /**
+ * We need to make any src or url attribute to be protocol-agnostic to make things work both on http/https.
+ *
+ * @param string $source
+ *   Source URL or whole iframe tag string.
+ *
+ * @return string
+ *   String with replacements of all certain protocols.
+ */
+function emvideo_fix_src_protocol($source) {
+  return str_replace(array('http://', 'https://'), '//', $source);
+}
+
+/**
  * Implements hook_field_formatter_view().
  */
 function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  global $is_https;
-
   $element = array();
 
   switch ($display['type']) {
     case 'emvideo_video':
       foreach ($items as $delta => $item) {
-
         $output = '';
         $params = array(
-          'source'   => $item['source'],
+          'source' => $item['source'],
           'provider' => $item['provider'],
-          'height'   => $display['settings']['height'],
-          'width'    => $display['settings']['width'],
+          'height' => $display['settings']['height'],
+          'width' => $display['settings']['width'],
         );
         foreach (module_implements('emvideo_emcode') as $module) {
           $output = module_invoke($module, 'emvideo_emcode', $params);
 
+          // If we found proper provider for embed code, stop searching and don't generate default code.
           if ($output !== FALSE) {
-            $element[$delta]['#markup'] = $output;
+            $element[$delta]['#markup'] = emvideo_fix_src_protocol($output);
             break;
             continue 2;
           }
         }
 
         if (!empty($item['source']) && empty($output)) {
-          $source = $item['source'];
-          if ($is_https) {
-            $source = preg_replace('/http:\/\//', 'https://', $source);
-          }
+          $source = emvideo_fix_src_protocol($item['source']);
           $output .= '<object type="application/x-shockwave-flash" ';
           $output .= 'width="' . $display['settings']['width'] . '" height="' . $display['settings']['height'] . '" data="' . $source . '">' . "\n";
 
@@ -194,33 +202,27 @@ function emvideo_field_formatter_view($entity_type, $entity, $field, $instance, 
           $element[$delta]['#markup'] = $output;
         }
         elseif (empty($output)) {
-          $element[$delta]['#markup'] = $item['url'];
+          $element[$delta]['#markup'] = emvideo_fix_src_protocol($item['url']);
         }
       }
       break;
 
     case 'emvideo_snapshot':
       foreach ($items as $delta => $item) {
-        if (isset($item['snapshot'])) {
-          // @todo: We need theme('image') here.
+        $output = '';
+        if (!empty($item['snapshot'])) {
           $attributes = array(
-            'src' => $item['snapshot'],
+            'src' => emvideo_fix_src_protocol($item['snapshot']),
             'width' => $display['settings']['width'],
           );
-
-          if ($is_https) {
-            $attributes['src'] = preg_replace('/http:\/\//', 'https://', $attributes['src']);
-          }
 
           if (!empty($display['settings']['class'])) {
             $attributes['class'] = array($display['settings']['class']);
           }
 
-          $element[$delta]['#markup'] = '<img' . drupal_attributes($attributes) . ' />';
+          $output = '<img' . drupal_attributes($attributes) . ' />';
         }
-        else {
-          $element[$delta]['#markup'] = '';
-        }
+        $element[$delta]['#markup'] = $output;
       }
       break;
   }

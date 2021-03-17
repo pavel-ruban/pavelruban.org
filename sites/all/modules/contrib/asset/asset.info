@@ -11,6 +11,7 @@ dependencies[] = menu
 files[] = "asset.install"
 files[] = "includes/asset.controllers.inc"
 files[] = "includes/asset.migrate.inc"
+files[] = "includes/asset.inline_entity_form.inc"
 files[] = "views/asset.views.inc"
 files[] = "views/asset.views_default.inc"
 files[] = "views/handlers/asset_views_handler_field_asset.inc"
@@ -26,9 +27,9 @@ files[] = "theme/theme.inc"
 
 stylesheets[all][] = css/assets.css
 
-; Information added by Drupal.org packaging script on 2015-10-24
-version = "7.x-1.0-beta4+42-dev"
+; Information added by Drupal.org packaging script on 2016-01-05
+version = "7.x-1.0"
 core = "7.x"
 project = "asset"
-datestamp = "1445693943"
+datestamp = "1452004154"
 

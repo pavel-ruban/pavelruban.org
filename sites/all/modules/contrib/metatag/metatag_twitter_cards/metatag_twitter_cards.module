@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Primary hook implementations for Metatag: Twitter Cards.
@@ -17,7 +18,7 @@ function metatag_twitter_cards_ctools_plugin_api($owner, $api) {
  * Implements hook_theme().
  */
 function metatag_twitter_cards_theme() {
-  $info['metatag_twittercard'] = array(
+  $info['metatag_twitter_cards'] = array(
     'render element' => 'element',
   );
 
@@ -29,7 +30,11 @@ function metatag_twitter_cards_theme() {
  */
 function theme_metatag_twitter_cards($variables) {
   $element = &$variables['element'];
-  element_set_attributes($element, array('#name' => 'property', '#value' => 'content'));
+  $args = array(
+    '#name' => 'name',
+    '#value' => 'content',
+  );
+  element_set_attributes($element, $args);
   unset($element['#value']);
   return theme('html_tag', $variables);
 }

@@ -25,13 +25,14 @@ function emvideo_wattv_emvideo_parse($data) {
     if ($video_page_data) {
       $video_page_data = implode("\n", $video_page_data);
       $matches = array();
-      if (preg_match('@<meta property="og:video" content="(.*?)"@i', $video_page_data, $matches)) {
+      if (preg_match('@<meta name="twitter:player" content="(.*?)"@i', $video_page_data, $matches)) {
         $ret = array(
           'source' => $matches[1],
           'provider' => 'wattv',
         );
 
         $matches = array();
+        // @todo: We have a problem with different https/http urls for snapshot. Seems we need redo whole storage system.
         if (preg_match('@<meta property="og:image" content="(.*?)"@i', $video_page_data, $matches)) {
           $ret['snapshot'] = $matches[1];
         }

@@ -1,11 +1,6 @@
-.htaccess
-/sites/default/*
-/redmine*
-/projects*
-/tags
-settings.php
-/redmine*
-/projects*
-/tags
-error_log
-.idea*
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
